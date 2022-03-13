@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Charge</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="how_are_you_feeling_now">How are you feeling now?</string>
+    <string name="mind">Mind</string>
+    <string name="body">Body</string>
+</resources>
