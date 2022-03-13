@@ -23,7 +23,7 @@
         android:id="@+id/feelingsTable"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/feelingTextView">
@@ -139,7 +139,7 @@
         android:layout_marginRight="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:text="Suggest An Activity"
         android:backgroundTint="@color/charge_green"
         app:layout_constraintEnd_toEndOf="parent"
@@ -173,7 +173,7 @@
         android:id="@+id/activitiesTable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/orTextView">
@@ -187,21 +187,21 @@
                 android:padding="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:srcCompat="@tools:sample/avatars" />
+                android:src="@drawable/sample" />
 
             <ImageView
                 android:id="@+id/imageView25"
                 android:padding="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:srcCompat="@tools:sample/avatars" />
+                android:src="@drawable/sample" />
 
             <ImageView
                 android:id="@+id/imageView26"
                 android:padding="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:srcCompat="@tools:sample/avatars" />
+                android:src="@drawable/sample" />
         </TableRow>
 
         <TableRow
@@ -213,21 +213,21 @@
                 android:padding="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:srcCompat="@tools:sample/avatars" />
+                android:src="@drawable/sample" />
 
             <ImageView
                 android:id="@+id/imageView28"
                 android:padding="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:srcCompat="@tools:sample/avatars" />
+                android:src="@drawable/sample" />
 
             <ImageView
                 android:id="@+id/imageView29"
                 android:padding="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:srcCompat="@tools:sample/avatars" />
+                android:src="@drawable/sample" />
         </TableRow>
 
     </TableLayout>
