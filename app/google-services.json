@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "453465846400",
+    "firebase_url": "https://charge-9f52a-default-rtdb.firebaseio.com",
+    "project_id": "charge-9f52a",
+    "storage_bucket": "charge-9f52a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:453465846400:android:cb5c99a5964c280eb0ac65",
+        "android_client_info": {
+          "package_name": "edu.neu.madcourse.charge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "453465846400-7ikkasjlg093hp8cfojnvfd2slrotvv5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYXVJ4gdvm1pD4x3KLi0mOm5ggt4hYSZQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "453465846400-7ikkasjlg093hp8cfojnvfd2slrotvv5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
