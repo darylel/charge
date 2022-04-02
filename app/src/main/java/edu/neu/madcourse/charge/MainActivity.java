@@ -6,29 +6,40 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
         // Set the custom app bar view
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.toolbar_custom);
 
-        setContentView(R.layout.activity_main);
+        auth = FirebaseAuth.getInstance();
     }
 
-    public void onClick(View view) {
-        switch(view.getId()) {
-            case R.id.loginButton:
-                Intent landing = new Intent(this, LandingPageActivity.class);
-                startActivity(landing);
-                break;
-            case R.id.signUpButton:
-                break;
-        }
+    @Override
+    protected void onStart() {
+        super.onStart();
 
+        // Get current logged in user from Firebase auth
+        FirebaseUser user = auth.getCurrentUser();
+
+        // If user is not logged in, go to sign in page else go to landing page
+        if(user == null) {
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        } else {
+            startActivity(new Intent(MainActivity.this, LandingPageActivity.class));
+        }
     }
 }
