@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Charge">
         <activity
+            android:name=".SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".LandingPageActivity"
             android:exported="false" />
         <activity
