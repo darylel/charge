@@ -22,9 +22,14 @@ public class LandingPageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_landing_page);
 
         ImageView account = findViewById(R.id.accountImageView);
+        ImageView gratitude = findViewById(R.id.imageViewGratitude);
 
         account.setOnClickListener(view -> startActivity(new Intent(
                 LandingPageActivity.this, AccountActivity.class
+        )));
+
+        gratitude.setOnClickListener(view -> startActivity(new Intent(
+                LandingPageActivity.this, GratitudeActivity.class
         )));
     }
 }

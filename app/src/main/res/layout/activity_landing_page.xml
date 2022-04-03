@@ -219,11 +219,11 @@
                     android:src="@drawable/sample" />
 
                 <ImageView
-                    android:id="@+id/imageView29"
+                    android:id="@+id/imageViewGratitude"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="4dp"
-                    android:src="@drawable/sample" />
+                    android:src="@drawable/gratitude_125" />
             </TableRow>
         </TableLayout>
 
