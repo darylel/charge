@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Charge">
         <activity
+            android:name=".GratitudeActivity"
+            android:exported="false" />
+        <activity
             android:name=".AccountActivity"
             android:exported="false" />
         <activity
