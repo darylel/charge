@@ -6,13 +6,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
@@ -51,18 +47,15 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Email and/or password cannot be empty", Toast.LENGTH_SHORT).show();
         } else {
             auth.signInWithEmailAndPassword(emailRegister, passwordRegister)
-                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful()) {
-                                startActivity(new Intent(LoginActivity.this,
-                                        LandingPageActivity.class));
-                            } else {
-                                Toast.makeText(LoginActivity.this, "Unable to login",
-                                        Toast.LENGTH_SHORT).show();
-                            }
+                    .addOnCompleteListener(task -> {
+                        if(task.isSuccessful()) {
+                            startActivity(new Intent(LoginActivity.this,
+                                    LandingPageActivity.class));
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Unable to login",
+                                    Toast.LENGTH_SHORT).show();
                         }
-            });
+                    });
         }
     }
 }

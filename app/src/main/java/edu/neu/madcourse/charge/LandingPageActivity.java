@@ -1,12 +1,13 @@
 package edu.neu.madcourse.charge;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.ImageView;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.media.Image;
-import android.os.Bundle;
-import android.widget.ImageView;
+import java.util.Objects;
 
 public class LandingPageActivity extends AppCompatActivity {
 
@@ -15,15 +16,15 @@ public class LandingPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Set the custom app bar view
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.toolbar_custom);
 
         setContentView(R.layout.activity_landing_page);
 
         ImageView account = findViewById(R.id.accountImageView);
 
-        account.setOnClickListener(view -> {
-            startActivity(new Intent(LandingPageActivity.this, AccountActivity.class));
-        });
+        account.setOnClickListener(view -> startActivity(new Intent(
+                LandingPageActivity.this, AccountActivity.class
+        )));
     }
 }
