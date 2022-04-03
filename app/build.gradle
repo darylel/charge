@@ -21,6 +21,16 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        // This is code to change the APK name. This approach was taken from GeeksforGeeks: "How to Change the Default Generated apk Name in Android Studio?
+        applicationVariants.all {
+                // Update both debug and release APKs
+            variant ->
+                variant.outputs.each {
+                    output->
+                        def name = "NUMAD22Sp_TeamRelief.apk"
+                        output.outputFileName = name
+                }
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
