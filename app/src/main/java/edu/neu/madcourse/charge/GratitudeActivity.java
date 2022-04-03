@@ -69,13 +69,13 @@ public class GratitudeActivity extends AppCompatActivity implements OnGratitudeC
             String itemDelete = "Item deleted";
             Gratitude deletedItem = gratitudeList.get(position);
 
-            if(direction == ItemTouchHelper.LEFT) {
+            if (direction == ItemTouchHelper.LEFT) {
                 gratitudeRecyclerAdapter.notifyDataSetChanged();
                 // FIX THIS with a re-record option
                 // editDialog(position);
             }
 
-            if(direction == ItemTouchHelper.RIGHT) {
+            if (direction == ItemTouchHelper.RIGHT) {
                 gratitudeList.remove(position);
                 gratitudeRecyclerAdapter.notifyItemRemoved(position);
 
@@ -87,4 +87,5 @@ public class GratitudeActivity extends AppCompatActivity implements OnGratitudeC
                 undoDelete.show();
             }
         }
-    }
+    };
+}
