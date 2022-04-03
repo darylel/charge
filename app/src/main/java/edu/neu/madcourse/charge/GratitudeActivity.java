@@ -33,6 +33,10 @@ public class GratitudeActivity extends AppCompatActivity implements OnGratitudeC
         TextView toolbar = findViewById(R.id.custom_toolbar);
         toolbar.setText("Gratitude List");
 
+        // Test data to be deleted
+        gratitudeList.add(new Gratitude("you"));
+        gratitudeList.add(new Gratitude("family"));
+
         gratitudeRecyclerView = findViewById(R.id.recyclerViewGratitude);
         gratitudeRecyclerAdapter = new GratitudeRecyclerAdapter(gratitudeList, this);
         gratitudeRecyclerView.setHasFixedSize(true);
