@@ -1,5 +1,9 @@
 package edu.neu.madcourse.charge;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,9 +11,14 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
+import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
@@ -19,6 +28,7 @@ import java.util.Objects;
 public class GratitudeActivity extends AppCompatActivity implements OnGratitudeClickListener {
     private RecyclerView gratitudeRecyclerView;
     private GratitudeRecyclerAdapter gratitudeRecyclerAdapter;
+    private FloatingActionButton addItem;
     private ArrayList<Gratitude> gratitudeList = new ArrayList<>();
 
     @Override
@@ -32,6 +42,33 @@ public class GratitudeActivity extends AppCompatActivity implements OnGratitudeC
 
         TextView toolbar = findViewById(R.id.custom_toolbar);
         toolbar.setText("Gratitude List");
+
+        addItem = findViewById(R.id.fabAddItem);
+
+        ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        if (result.getResultCode() == Activity.RESULT_OK && result.getData()!=null) {
+                            ArrayList<String> d=result.getData().getStringArrayListExtra(
+                                    RecognizerIntent.EXTRA_RESULTS);
+                            gratitudeList.add(new Gratitude(d.get(0)));
+                        }
+                    }
+                });
+
+        addItem.setOnClickListener(view -> {
+            Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                    RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+            intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speech to text");
+            activityResultLauncher.launch(intent);
+        });
+
+        // Test data to be deleted
+        gratitudeList.add(new Gratitude("you"));
+        gratitudeList.add(new Gratitude("family"));
 
         gratitudeRecyclerView = findViewById(R.id.recyclerViewGratitude);
         gratitudeRecyclerAdapter = new GratitudeRecyclerAdapter(gratitudeList, this);
