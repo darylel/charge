@@ -25,6 +25,10 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,6 +39,9 @@ public class GratitudeActivity extends AppCompatActivity implements OnGratitudeC
     private GratitudeRecyclerAdapter gratitudeRecyclerAdapter;
     private FloatingActionButton addItem;
     private ArrayList<Gratitude> gratitudeList = new ArrayList<>();
+    private FirebaseAuth auth;
+    private String user;
+    private DatabaseReference db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +61,10 @@ public class GratitudeActivity extends AppCompatActivity implements OnGratitudeC
             }, 100);
         }
 
+        auth = FirebaseAuth.getInstance();
+        db = FirebaseDatabase.getInstance().getReference();
+        user = auth.getCurrentUser().getUid();
+
         addItem = findViewById(R.id.fabAddItem);
 
         ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
@@ -66,6 +77,7 @@ public class GratitudeActivity extends AppCompatActivity implements OnGratitudeC
                                     RecognizerIntent.EXTRA_RESULTS);
                             gratitudeList.add(new Gratitude(d.get(0)));
                             gratitudeRecyclerAdapter.notifyItemInserted(gratitudeList.size()-1);
+                            db.child("gratitude").child(user).push().setValue(new Gratitude(d.get(0)));
                         }
                     }
                 });
