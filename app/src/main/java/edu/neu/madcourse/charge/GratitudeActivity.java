@@ -7,12 +7,16 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.util.Log;
@@ -43,6 +47,12 @@ public class GratitudeActivity extends AppCompatActivity implements OnGratitudeC
 
         TextView toolbar = findViewById(R.id.custom_toolbar);
         toolbar.setText("Gratitude List");
+
+        if(ContextCompat.checkSelfPermission(GratitudeActivity.this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(GratitudeActivity.this, new String[] {
+                    Manifest.permission.RECORD_AUDIO
+            }, 100);
+        }
 
         addItem = findViewById(R.id.fabAddItem);
 
