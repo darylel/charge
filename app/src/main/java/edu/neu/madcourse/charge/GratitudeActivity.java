@@ -15,6 +15,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -54,6 +55,7 @@ public class GratitudeActivity extends AppCompatActivity implements OnGratitudeC
                             ArrayList<String> d=result.getData().getStringArrayListExtra(
                                     RecognizerIntent.EXTRA_RESULTS);
                             gratitudeList.add(new Gratitude(d.get(0)));
+                            gratitudeRecyclerAdapter.notifyItemInserted(gratitudeList.size()-1);
                         }
                     }
                 });
@@ -62,7 +64,7 @@ public class GratitudeActivity extends AppCompatActivity implements OnGratitudeC
             Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                     RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-            intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speech to text");
+            intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Say what you're grateful for");
             activityResultLauncher.launch(intent);
         });
 
