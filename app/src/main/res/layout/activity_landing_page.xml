@@ -211,19 +211,51 @@
                     android:padding="4dp"
                     android:src="@drawable/sample" />
 
-                <ImageView
-                    android:id="@+id/imageViewDoodle"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:padding="4dp"
-                    android:src="@drawable/doodle_120" />
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/imageViewGratitude"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:padding="4dp"
-                    android:src="@drawable/gratitude_125" />
+                    <ImageView
+                        android:id="@+id/imageViewDoodle"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:padding="4dp"
+                        android:src="@drawable/doodle_120_g" />
+
+                    <TextView
+                        android:id="@+id/textViewDoodle"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Doodle"
+                        android:textSize="18dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/imageViewGratitude"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:padding="4dp"
+                        android:src="@drawable/gratitude_125" />
+
+                    <TextView
+                        android:id="@+id/textViewGratitudeList"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Gratitude"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
             </TableRow>
         </TableLayout>
 
