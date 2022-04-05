@@ -76,7 +76,13 @@ public class GratitudeActivity extends AppCompatActivity implements OnGratitudeC
                         if (result.getResultCode() == Activity.RESULT_OK && result.getData()!=null) {
                             ArrayList<String> d=result.getData().getStringArrayListExtra(
                                     RecognizerIntent.EXTRA_RESULTS);
-                            db.child("gratitude").child(user).push().setValue(new Gratitude(d.get(0)));
+                            String newKey = db.child("gratitude").child("user").push().getKey();
+                            Log.i("LOG/Key", newKey);
+                            db.child("gratitude").child(user).child(newKey).setValue(new Gratitude(d.get(0)));
+                            Gratitude gratitude = new Gratitude(d.get(0));
+                            gratitude.setKey(newKey);
+                            gratitudeList.add(gratitude);
+                            gratitudeRecyclerAdapter.notifyItemInserted(gratitudeList.size()-1);
                         }
                     }
                 });
@@ -97,7 +103,7 @@ public class GratitudeActivity extends AppCompatActivity implements OnGratitudeC
         new ItemTouchHelper(itemTouchHelper).attachToRecyclerView(gratitudeRecyclerView);
         gratitudeRecyclerView.setAdapter(gratitudeRecyclerAdapter);
 
-        db.addValueEventListener(new ValueEventListener() {
+        db.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot snap : snapshot.child("gratitude").child(user.toString()).getChildren()) {
