@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.util.Log;
 import android.widget.TextView;
 
 import androidx.activity.result.ActivityResult;
@@ -32,10 +33,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Locale;
 import java.util.Objects;
 
 public class GratitudeActivity extends AppCompatActivity implements OnGratitudeClickListener {
-    private RecyclerView gratitudeRecyclerView;
     private GratitudeRecyclerAdapter gratitudeRecyclerAdapter;
     private FloatingActionButton addItem;
     private ArrayList<Gratitude> gratitudeList = new ArrayList<>();
@@ -75,8 +76,6 @@ public class GratitudeActivity extends AppCompatActivity implements OnGratitudeC
                         if (result.getResultCode() == Activity.RESULT_OK && result.getData()!=null) {
                             ArrayList<String> d=result.getData().getStringArrayListExtra(
                                     RecognizerIntent.EXTRA_RESULTS);
-                            //gratitudeList.add(new Gratitude(d.get(0)));
-                            //gratitudeRecyclerAdapter.notifyItemInserted(gratitudeList.size()-1);
                             db.child("gratitude").child(user).push().setValue(new Gratitude(d.get(0)));
                         }
                     }
@@ -90,7 +89,7 @@ public class GratitudeActivity extends AppCompatActivity implements OnGratitudeC
             activityResultLauncher.launch(intent);
         });
 
-        gratitudeRecyclerView = findViewById(R.id.recyclerViewGratitude);
+        RecyclerView gratitudeRecyclerView = findViewById(R.id.recyclerViewGratitude);
         gratitudeRecyclerAdapter = new GratitudeRecyclerAdapter(gratitudeList, this);
         gratitudeRecyclerView.setHasFixedSize(true);
 
@@ -103,6 +102,7 @@ public class GratitudeActivity extends AppCompatActivity implements OnGratitudeC
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot snap : snapshot.child("gratitude").child(user.toString()).getChildren()) {
                     Gratitude gratitude = new Gratitude(snap.child("item").getValue().toString());
+                    gratitude.setKey(snap.getKey());
                     gratitudeList.add(gratitude);
                 }
                 gratitudeRecyclerAdapter.notifyDataSetChanged();
@@ -125,8 +125,8 @@ public class GratitudeActivity extends AppCompatActivity implements OnGratitudeC
             ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-            int startMove = viewHolder.getAdapterPosition();
-            int endMove = target.getAdapterPosition();
+            int startMove = viewHolder.getBindingAdapterPosition();
+            int endMove = target.getBindingAdapterPosition();
 
             Collections.swap(gratitudeList, startMove, endMove);
 
@@ -137,7 +137,8 @@ public class GratitudeActivity extends AppCompatActivity implements OnGratitudeC
 
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-            int position = viewHolder.getAdapterPosition();
+            //int position = viewHolder.getAdapterPosition();
+            int position = viewHolder.getBindingAdapterPosition();
             String btnMessage = "Undo";
             String itemDelete = "Item deleted";
             Gratitude deletedItem = gratitudeList.get(position);
@@ -149,13 +150,19 @@ public class GratitudeActivity extends AppCompatActivity implements OnGratitudeC
             }
 
             if (direction == ItemTouchHelper.RIGHT) {
+                Gratitude deletedGratitude = gratitudeList.get(position);
+                Log.i("INFO/delete", deletedGratitude.getItem());
                 gratitudeList.remove(position);
                 gratitudeRecyclerAdapter.notifyItemRemoved(position);
+                db.child("gratitude").child(user.toString()).child(deletedGratitude.getKeyGratitude()).removeValue();
 
-                Snackbar undoDelete = Snackbar.make(findViewById(R.id.recyclerViewGratitude), itemDelete, Snackbar.LENGTH_SHORT);
+                Snackbar undoDelete = Snackbar.make(findViewById(R.id.recyclerViewGratitude),
+                        itemDelete, Snackbar.LENGTH_SHORT);
                 undoDelete.setAction(btnMessage, view -> {
                     gratitudeList.add(position, deletedItem);
                     gratitudeRecyclerAdapter.notifyItemInserted(position);
+                    db.child("gratitude").child(user.toString()).child(deletedGratitude.getKeyGratitude())
+                            .child("item").setValue(deletedGratitude.getItem());
                 });
                 undoDelete.show();
             }
