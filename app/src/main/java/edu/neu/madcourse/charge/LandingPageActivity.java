@@ -23,6 +23,7 @@ public class LandingPageActivity extends AppCompatActivity {
 
         ImageView account = findViewById(R.id.accountImageView);
         ImageView gratitude = findViewById(R.id.imageViewGratitude);
+        ImageView doodle = findViewById(R.id.imageViewDoodle);
 
         account.setOnClickListener(view -> startActivity(new Intent(
                 LandingPageActivity.this, AccountActivity.class
@@ -30,6 +31,10 @@ public class LandingPageActivity extends AppCompatActivity {
 
         gratitude.setOnClickListener(view -> startActivity(new Intent(
                 LandingPageActivity.this, GratitudeActivity.class
+        )));
+
+        doodle.setOnClickListener(view -> startActivity(new Intent(
+                LandingPageActivity.this, DoodleActivity.class
         )));
     }
 }
