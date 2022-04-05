@@ -1,5 +1,13 @@
 package edu.neu.madcourse.charge;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.speech.RecognizerIntent;
+import android.widget.TextView;
+
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -13,22 +21,14 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.Manifest;
-import android.app.Activity;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Bundle;
-import android.speech.RecognizerIntent;
-import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -75,8 +75,8 @@ public class GratitudeActivity extends AppCompatActivity implements OnGratitudeC
                         if (result.getResultCode() == Activity.RESULT_OK && result.getData()!=null) {
                             ArrayList<String> d=result.getData().getStringArrayListExtra(
                                     RecognizerIntent.EXTRA_RESULTS);
-                            gratitudeList.add(new Gratitude(d.get(0)));
-                            gratitudeRecyclerAdapter.notifyItemInserted(gratitudeList.size()-1);
+                            //gratitudeList.add(new Gratitude(d.get(0)));
+                            //gratitudeRecyclerAdapter.notifyItemInserted(gratitudeList.size()-1);
                             db.child("gratitude").child(user).push().setValue(new Gratitude(d.get(0)));
                         }
                     }
@@ -90,10 +90,6 @@ public class GratitudeActivity extends AppCompatActivity implements OnGratitudeC
             activityResultLauncher.launch(intent);
         });
 
-        // Test data to be deleted
-        gratitudeList.add(new Gratitude("you"));
-        gratitudeList.add(new Gratitude("family"));
-
         gratitudeRecyclerView = findViewById(R.id.recyclerViewGratitude);
         gratitudeRecyclerAdapter = new GratitudeRecyclerAdapter(gratitudeList, this);
         gratitudeRecyclerView.setHasFixedSize(true);
@@ -101,6 +97,22 @@ public class GratitudeActivity extends AppCompatActivity implements OnGratitudeC
         gratitudeRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         new ItemTouchHelper(itemTouchHelper).attachToRecyclerView(gratitudeRecyclerView);
         gratitudeRecyclerView.setAdapter(gratitudeRecyclerAdapter);
+
+        db.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot snap : snapshot.child("gratitude").child(user.toString()).getChildren()) {
+                    Gratitude gratitude = new Gratitude(snap.child("item").getValue().toString());
+                    gratitudeList.add(gratitude);
+                }
+                gratitudeRecyclerAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     @Override

@@ -12,6 +12,14 @@ public class GratitudeViewHolder extends RecyclerView.ViewHolder implements View
     private final OnGratitudeClickListener onGratitudeClickListener;
     protected TextView gratitudeItem;
 
+    /*
+    public GratitudeViewHolder(@NonNull View itemView) {
+        super(itemView);
+
+        gratitudeItem = itemView.findViewById(R.id.textViewGratitudeItem);
+    }
+     */
+
     public GratitudeViewHolder(@NonNull View itemView, OnGratitudeClickListener onGratitudeClickListener) {
         super(itemView);
         this.onGratitudeClickListener = onGratitudeClickListener;

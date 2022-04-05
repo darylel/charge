@@ -3,6 +3,8 @@ package edu.neu.madcourse.charge;
 public class Gratitude {
     private String item;
 
+    public Gratitude() {};
+
     public Gratitude(String item) {
         this.item = item;
     }
