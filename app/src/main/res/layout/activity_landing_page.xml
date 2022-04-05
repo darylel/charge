@@ -212,11 +212,11 @@
                     android:src="@drawable/sample" />
 
                 <ImageView
-                    android:id="@+id/imageView28"
+                    android:id="@+id/imageViewDoodle"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:padding="4dp"
-                    android:src="@drawable/sample" />
+                    android:src="@drawable/doodle_120" />
 
                 <ImageView
                     android:id="@+id/imageViewGratitude"

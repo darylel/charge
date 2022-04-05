@@ -77,7 +77,6 @@ public class GratitudeActivity extends AppCompatActivity implements OnGratitudeC
                             ArrayList<String> d=result.getData().getStringArrayListExtra(
                                     RecognizerIntent.EXTRA_RESULTS);
                             String newKey = db.child("gratitude").child("user").push().getKey();
-                            Log.i("LOG/Key", newKey);
                             db.child("gratitude").child(user).child(newKey).setValue(new Gratitude(d.get(0)));
                             Gratitude gratitude = new Gratitude(d.get(0));
                             gratitude.setKey(newKey);
