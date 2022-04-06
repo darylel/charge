@@ -7,10 +7,10 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
-import kotlinx.android.synthetic.main.activity_steps.*
 
 class StepsActivity : AppCompatActivity(), SensorEventListener {
     private var sensorManager: SensorManager? = null
@@ -25,12 +25,14 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
         supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
         supportActionBar?.setCustomView(R.layout.toolbar_custom)
 
+        val buttonStart = findViewById<Button>(R.id.buttonStartSteps)
         val toolbar = findViewById<TextView>(R.id.custom_toolbar)
+
         toolbar.text = getString(R.string.my_steps)
 
-        sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
 
-        buttonStartSteps.setOnClickListener {
+        buttonStart.setOnClickListener {
             walking = true
             val stepSensor: Sensor? = sensorManager?.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
 
@@ -45,7 +47,9 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
     override fun onSensorChanged(event: SensorEvent?) {
         if(walking) {
             event!!.values[0].toInt().also { currentSteps = it }
-            textViewCurrentCount.text = ("$currentSteps")
+
+            val currentCount = findViewById<TextView>(R.id.textViewCurrentCount)
+            currentCount.text = ("$currentSteps")
         }
     }
 
