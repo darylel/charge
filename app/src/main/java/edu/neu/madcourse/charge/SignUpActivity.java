@@ -38,10 +38,10 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void registerUser() {
         String emailAddress = email.getText().toString();
-        String userPassword = password.getText().toString();
+        String userPassword = "hello1234";
 
-        if (emailAddress.isEmpty() || userPassword.isEmpty()) {
-            Toast.makeText(this, "Email and/or password cannot be empty", Toast.LENGTH_SHORT).show();
+        if (emailAddress.isEmpty()) {
+            Toast.makeText(this, "Email cannot be empty", Toast.LENGTH_SHORT).show();
         } else {
             auth.createUserWithEmailAndPassword(emailAddress, userPassword).addOnCompleteListener(task -> {
                 if(task.isSuccessful()) {
