@@ -12,4 +12,6 @@
     <string name="gratitude_image">Gratitude Image</string>
     <string name="i_m_grateful_for">I\'m grateful for</string>
     <string name="add_item">Add Item</string>
+    <string name="my_steps">My Steps</string>
+    <string name="email">Email</string>
 </resources>

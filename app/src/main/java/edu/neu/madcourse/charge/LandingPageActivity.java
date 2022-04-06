@@ -24,6 +24,7 @@ public class LandingPageActivity extends AppCompatActivity {
         ImageView account = findViewById(R.id.accountImageView);
         ImageView gratitude = findViewById(R.id.imageViewGratitude);
         ImageView doodle = findViewById(R.id.imageViewDoodle);
+        ImageView walking = findViewById(R.id.imageViewWalking);
 
         account.setOnClickListener(view -> startActivity(new Intent(
                 LandingPageActivity.this, AccountActivity.class
@@ -35,6 +36,10 @@ public class LandingPageActivity extends AppCompatActivity {
 
         doodle.setOnClickListener(view -> startActivity(new Intent(
                 LandingPageActivity.this, DoodleActivity.class
+        )));
+
+        walking.setOnClickListener(view -> startActivity(new Intent(
+                LandingPageActivity.this, StepsActivity.class
         )));
     }
 }
