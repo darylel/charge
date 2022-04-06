@@ -10,7 +10,7 @@
         android:id="@+id/textViewTotalSteps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total Steps (Lifetime)"
+        android:text="@string/total_steps_lifetime"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@color/charge_purple"
         android:textStyle="bold"
@@ -22,21 +22,21 @@
         android:id="@+id/textViewTotalCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginBottom="32dp"
-        android:text="0"
+        android:text="@string/_0"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         android:textColor="@color/charge_green"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/textViewCurrentSteps"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/textViewCurrentSteps" />
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/textViewCurrentSteps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Current Steps"
+        android:text="@string/current_steps"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@color/charge_purple"
         android:textStyle="bold"
@@ -50,13 +50,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="0"
+        android:text="@string/_0"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         android:textColor="@color/charge_green"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewCurrentSteps" />
+        app:layout_constraintTop_toBottomOf="@id/textViewCurrentSteps"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/buttonStartSteps"
@@ -66,10 +67,11 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/charge_green"
-        android:text="Start Steps"
+        android:text="@string/start_steps"
         app:layout_constraintBottom_toTopOf="@id/buttonSaveSteps"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/buttonSaveSteps"
@@ -78,8 +80,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:text="Save Steps"
+        android:text="@string/save_steps"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextContrastCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>
