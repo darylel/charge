@@ -135,8 +135,12 @@ public class GratitudeActivity extends AppCompatActivity implements OnGratitudeC
             Gratitude first = gratitudeList.get(startMove);
             Gratitude second = gratitudeList.get(endMove);
 
-            db.child("gratitude").child(user).child(first.getKeyGratitude()).child("item").setValue(second.getItem());
-            db.child("gratitude").child(user).child(second.getKeyGratitude()).child("item").setValue(first.getItem());
+            Log.i("INFO/Swap 1", String.valueOf(startMove));
+            Log.i("INFO/Swap 1", String.valueOf(endMove));
+            // FIX THIS SWAP LOGIC FOR THE DATABASE
+            //db.child("gratitude").child(user).child(first.getKeyGratitude()).child("item").setValue(second.getItem());
+            //db.child("gratitude").child(user).child(second.getKeyGratitude()).child("item").setValue(first.getItem());
+
             Collections.swap(gratitudeList, startMove, endMove);
 
             Objects.requireNonNull(recyclerView.getAdapter()).notifyItemMoved(startMove, endMove);

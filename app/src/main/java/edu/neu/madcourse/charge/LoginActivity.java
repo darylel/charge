@@ -41,10 +41,10 @@ public class LoginActivity extends AppCompatActivity {
 
     private void signInUser() {
         String emailRegister = email.getText().toString();
-        String passwordRegister = password.getText().toString();
+        String passwordRegister = "hello1234";
 
         if (emailRegister.isEmpty() || passwordRegister.isEmpty()) {
-            Toast.makeText(this, "Email and/or password cannot be empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Email password cannot be empty", Toast.LENGTH_SHORT).show();
         } else {
             auth.signInWithEmailAndPassword(emailRegister, passwordRegister)
                     .addOnCompleteListener(task -> {
