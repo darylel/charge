@@ -9,8 +9,6 @@ import android.speech.RecognizerIntent;
 import android.util.Log;
 import android.widget.TextView;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -33,14 +31,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Locale;
 import java.util.Objects;
 
 public class GratitudeActivity extends AppCompatActivity implements OnGratitudeClickListener {
     private GratitudeRecyclerAdapter gratitudeRecyclerAdapter;
-    private FloatingActionButton addItem;
-    private ArrayList<Gratitude> gratitudeList = new ArrayList<>();
-    private FirebaseAuth auth;
+    private final ArrayList<Gratitude> gratitudeList = new ArrayList<>();
     private String user;
     private DatabaseReference db;
 
@@ -54,35 +49,33 @@ public class GratitudeActivity extends AppCompatActivity implements OnGratitudeC
         getSupportActionBar().setCustomView(R.layout.toolbar_custom);
 
         TextView toolbar = findViewById(R.id.custom_toolbar);
-        toolbar.setText("Gratitude List");
+        toolbar.setText(R.string.gratitude_list);
 
-        if(ContextCompat.checkSelfPermission(GratitudeActivity.this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(GratitudeActivity.this, new String[] {
-                    Manifest.permission.RECORD_AUDIO
-            }, 100);
-        }
+        if(ContextCompat.checkSelfPermission(GratitudeActivity.this,
+                Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(GratitudeActivity.this, new String[] {
+                        Manifest.permission.RECORD_AUDIO
+                    }, 100);
+                }
 
-        auth = FirebaseAuth.getInstance();
+        FirebaseAuth auth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance().getReference();
-        user = auth.getCurrentUser().getUid();
+        user = Objects.requireNonNull(auth.getCurrentUser()).getUid();
 
-        addItem = findViewById(R.id.fabAddItem);
+        FloatingActionButton addItem = findViewById(R.id.fabAddItem);
 
         ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(ActivityResult result) {
-                        if (result.getResultCode() == Activity.RESULT_OK && result.getData()!=null) {
-                            ArrayList<String> d=result.getData().getStringArrayListExtra(
-                                    RecognizerIntent.EXTRA_RESULTS);
-                            String newKey = db.child("gratitude").child("user").push().getKey();
-                            db.child("gratitude").child(user).child(newKey).setValue(new Gratitude(d.get(0)));
-                            Gratitude gratitude = new Gratitude(d.get(0));
-                            gratitude.setKey(newKey);
-                            gratitudeList.add(gratitude);
-                            gratitudeRecyclerAdapter.notifyItemInserted(gratitudeList.size()-1);
-                        }
+                result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK && result.getData()!=null) {
+                        ArrayList<String> d=result.getData().getStringArrayListExtra(
+                                RecognizerIntent.EXTRA_RESULTS);
+                        String newKey = db.child("gratitude").child("user").push().getKey();
+                        db.child("gratitude").child(user).child(newKey).setValue(new Gratitude(d.get(0)));
+                        Gratitude gratitude = new Gratitude(d.get(0));
+                        gratitude.setKey(newKey);
+                        gratitudeList.add(gratitude);
+                        gratitudeRecyclerAdapter.notifyItemInserted(gratitudeList.size()-1);
                     }
                 });
 
@@ -105,8 +98,9 @@ public class GratitudeActivity extends AppCompatActivity implements OnGratitudeC
         db.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot snap : snapshot.child("gratitude").child(user.toString()).getChildren()) {
-                    Gratitude gratitude = new Gratitude(snap.child("item").getValue().toString());
+                for(DataSnapshot snap : snapshot.child("gratitude").child(user).getChildren()) {
+                    Gratitude gratitude = new Gratitude(Objects.requireNonNull(snap.child("item")
+                            .getValue()).toString());
                     gratitude.setKey(snap.getKey());
                     gratitudeList.add(gratitude);
                 }
@@ -167,14 +161,14 @@ public class GratitudeActivity extends AppCompatActivity implements OnGratitudeC
                 Log.i("INFO/delete", deletedGratitude.getItem());
                 gratitudeList.remove(position);
                 gratitudeRecyclerAdapter.notifyItemRemoved(position);
-                db.child("gratitude").child(user.toString()).child(deletedGratitude.getKeyGratitude()).removeValue();
+                db.child("gratitude").child(user).child(deletedGratitude.getKeyGratitude()).removeValue();
 
                 Snackbar undoDelete = Snackbar.make(findViewById(R.id.recyclerViewGratitude),
                         itemDelete, Snackbar.LENGTH_SHORT);
                 undoDelete.setAction(btnMessage, view -> {
                     gratitudeList.add(position, deletedItem);
                     gratitudeRecyclerAdapter.notifyItemInserted(position);
-                    db.child("gratitude").child(user.toString()).child(deletedGratitude.getKeyGratitude())
+                    db.child("gratitude").child(user).child(deletedGratitude.getKeyGratitude())
                             .child("item").setValue(deletedGratitude.getItem());
                 });
                 undoDelete.show();

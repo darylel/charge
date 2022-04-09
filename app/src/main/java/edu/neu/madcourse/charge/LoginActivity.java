@@ -16,7 +16,6 @@ import java.util.Objects;
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private TextView email;
-    private TextView password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +28,6 @@ public class LoginActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         email = findViewById(R.id.editTextEmailAddress);
-        password = findViewById(R.id.editTextPassword);
         TextView register = findViewById(R.id.textViewRegisterText);
         Button signIn = findViewById(R.id.buttonLogin);
 
@@ -43,8 +41,8 @@ public class LoginActivity extends AppCompatActivity {
         String emailRegister = email.getText().toString();
         String passwordRegister = "hello1234";
 
-        if (emailRegister.isEmpty() || passwordRegister.isEmpty()) {
-            Toast.makeText(this, "Email password cannot be empty", Toast.LENGTH_SHORT).show();
+        if (emailRegister.isEmpty()) {
+            Toast.makeText(this, "Email cannot be empty", Toast.LENGTH_SHORT).show();
         } else {
             auth.signInWithEmailAndPassword(emailRegister, passwordRegister)
                     .addOnCompleteListener(task -> {
