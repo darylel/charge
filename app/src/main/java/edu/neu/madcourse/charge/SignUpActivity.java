@@ -16,7 +16,6 @@ import java.util.Objects;
 public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private EditText email;
-    private EditText password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +29,6 @@ public class SignUpActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
 
         email = findViewById(R.id.editTextEmailAddress);
-        password = findViewById(R.id.editTextPassword);
         Button register = findViewById(R.id.buttonLogin);
 
         register.setOnClickListener(view -> registerUser());
@@ -50,10 +48,10 @@ public class SignUpActivity extends AppCompatActivity {
                     startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
                 } else {
                     Toast.makeText(SignUpActivity.this, "Unable to create user " +
-                                    Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+                                    Objects.requireNonNull(task.getException()).getMessage(),
+                                    Toast.LENGTH_SHORT).show();
                 }
             });
         }
-
     }
 }

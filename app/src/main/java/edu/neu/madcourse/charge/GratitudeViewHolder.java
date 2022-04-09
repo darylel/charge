@@ -6,19 +6,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Text;
-
 public class GratitudeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private final OnGratitudeClickListener onGratitudeClickListener;
     protected TextView gratitudeItem;
-
-    /*
-    public GratitudeViewHolder(@NonNull View itemView) {
-        super(itemView);
-
-        gratitudeItem = itemView.findViewById(R.id.textViewGratitudeItem);
-    }
-     */
 
     public GratitudeViewHolder(@NonNull View itemView, OnGratitudeClickListener onGratitudeClickListener) {
         super(itemView);
@@ -29,6 +19,6 @@ public class GratitudeViewHolder extends RecyclerView.ViewHolder implements View
 
     @Override
     public void onClick(View view) {
-        onGratitudeClickListener.onGratitudeClick(getAdapterPosition());
+        onGratitudeClickListener.onGratitudeClick(getBindingAdapterPosition());
     }
 }

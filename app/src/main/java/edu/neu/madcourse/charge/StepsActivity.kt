@@ -5,7 +5,6 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
-import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
@@ -45,21 +44,12 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
 
         // Start step count
         binding.buttonStartSteps.setOnClickListener {
-            walking = true
-            if(stepSensor == null) {
-                Toast.makeText(this, "Unable to count steps on this device", Toast.LENGTH_SHORT).show()
-            } else {
-                sensorManager?.registerListener(this, stepSensor, SensorManager.SENSOR_DELAY_UI)
-            }
+            startSteps(stepSensor)
         }
 
         // Save and reset step count
         binding.buttonSaveSteps.setOnClickListener {
-            walking = false
-
-            if(stepSensor != null) {
-                sensorManager?.unregisterListener(this, stepSensor)
-            }
+            saveSteps(stepSensor)
         }
     }
 
@@ -72,4 +62,21 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
     }
 
     override fun onAccuracyChanged(p0: Sensor?, p1: Int) { }
+
+    private fun startSteps(stepSensor: Sensor?) {
+        walking = true
+        if(stepSensor == null) {
+            Toast.makeText(this, "Unable to count steps on this device", Toast.LENGTH_SHORT).show()
+        } else {
+            sensorManager?.registerListener(this, stepSensor, SensorManager.SENSOR_DELAY_UI)
+        }
+    }
+
+    private fun saveSteps(stepSensor: Sensor?) {
+        walking = false
+
+        if(stepSensor != null) {
+            sensorManager?.unregisterListener(this, stepSensor)
+        }
+    }
 }

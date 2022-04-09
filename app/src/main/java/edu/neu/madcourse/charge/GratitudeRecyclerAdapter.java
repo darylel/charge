@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class GratitudeRecyclerAdapter extends RecyclerView.Adapter<GratitudeViewHolder> {
-    private ArrayList<Gratitude> gratitudeItems;
+    private final ArrayList<Gratitude> gratitudeItems;
     private final OnGratitudeClickListener onGratitudeClickListener;
 
     public GratitudeRecyclerAdapter(ArrayList<Gratitude> gratitudeItems, OnGratitudeClickListener onGratitudeClickListener) {
