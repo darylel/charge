@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 import edu.neu.madcourse.charge.databinding.ActivityStepsBinding
 
 class StepsActivity : AppCompatActivity(), SensorEventListener {
@@ -19,6 +20,7 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
     private var lifetimeSteps = 0
     private var deviceSteps = 0
     private var currentSteps = 0
+    private lateinit var db: DatabaseReference
     private lateinit var auth: FirebaseAuth
     private lateinit var user : String
 
@@ -36,7 +38,7 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
 
         // Get current user
         auth = FirebaseAuth.getInstance()
-        user = auth.currentUser.toString()
+        user = auth.currentUser!!.uid
 
         // Set up the sensor using STEP_COUNTER
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
@@ -74,6 +76,8 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
 
     private fun saveSteps(stepSensor: Sensor?) {
         walking = false
+
+
 
         if(stepSensor != null) {
             sensorManager?.unregisterListener(this, stepSensor)
