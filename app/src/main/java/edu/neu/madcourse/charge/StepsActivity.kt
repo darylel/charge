@@ -5,6 +5,7 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
@@ -39,6 +40,19 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
         // Get current user
         auth = FirebaseAuth.getInstance()
         user = auth.currentUser!!.uid
+        Log.i("INFO/User", user)
+
+        // Load lifetime steps from database
+        db = FirebaseDatabase.getInstance().reference
+        db.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Log.i("INFO/Lifetime", snapshot.toString())
+                //lifetimeSteps = snapshot.child("steps").child(user).child("total").value as Int
+                //binding.textViewTotalCount.text = ("$lifetimeSteps")
+            }
+
+            override fun onCancelled(error: DatabaseError) {}
+        })
 
         // Set up the sensor using STEP_COUNTER
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
@@ -59,6 +73,7 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
         if(walking) {
             step!!.values[0].toInt().also { currentSteps = it }
 
+            // Update the current steps count in the display
             binding.textViewCurrentCount.text = ("$currentSteps")
         }
     }
@@ -77,7 +92,10 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
     private fun saveSteps(stepSensor: Sensor?) {
         walking = false
 
-
+        /*
+        db.child("steps").child(user).child("total").setValue(ServerValue
+                .increment(currentSteps as Long))
+         */
 
         if(stepSensor != null) {
             sensorManager?.unregisterListener(this, stepSensor)

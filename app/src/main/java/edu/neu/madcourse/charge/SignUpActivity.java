@@ -50,7 +50,8 @@ public class SignUpActivity extends AppCompatActivity {
                 if(task.isSuccessful()) {
                     user = task.getResult().getUser().getUid();
                     // Set the default value of steps to 0 when a user first registers
-                    db.child("steps").child(user).child("total").setValue(0);
+                    db.child(user).child("steps").child("total").setValue(0);
+                    db.child(user).child("steps").child("previous").setValue(0);
 
                     Toast.makeText(SignUpActivity.this, "New user successfully created",
                             Toast.LENGTH_SHORT).show();
