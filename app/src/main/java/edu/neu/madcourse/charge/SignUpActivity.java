@@ -10,12 +10,16 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
 
 public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth auth;
+    private DatabaseReference db;
     private EditText email;
+    private String user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +31,7 @@ public class SignUpActivity extends AppCompatActivity {
         getSupportActionBar().setCustomView(R.layout.toolbar_custom);
 
         auth = FirebaseAuth.getInstance();
+        db = FirebaseDatabase.getInstance().getReference();
 
         email = findViewById(R.id.editTextEmailAddress);
         Button register = findViewById(R.id.buttonLogin);
@@ -43,8 +48,13 @@ public class SignUpActivity extends AppCompatActivity {
         } else {
             auth.createUserWithEmailAndPassword(emailAddress, userPassword).addOnCompleteListener(task -> {
                 if(task.isSuccessful()) {
+                    user = task.getResult().getUser().getUid();
+                    // Set the default value of steps to 0 when a user first registers
+                    db.child("steps").child(user).child("total").setValue(0);
+
                     Toast.makeText(SignUpActivity.this, "New user successfully created",
                             Toast.LENGTH_SHORT).show();
+
                     startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
                 } else {
                     Toast.makeText(SignUpActivity.this, "Unable to create user " +
