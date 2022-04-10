@@ -51,14 +51,13 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
                     if(snap.key.equals("total")) {
                         Log.i("INFO/Lifetime", snap.value.toString())
                         lifetimeSteps = snap.value.toString().toInt()
-                        //binding.textViewTotalCount.setText(lifetimeSteps as String)
                     }
 
                     if(snap.key.equals("previous")) {
                         Log.i("INFO/LIFETIME", snap.value.toString())
                     }
-                    //lifetimeSteps = snapshot.child("total").value as Int
-                    //binding.textViewTotalCount.text = ("$lifetimeSteps")
+                    // Display lifetime steps in the activity
+                    binding.textViewTotalCount.text = ("$lifetimeSteps")
                 }
             }
 
