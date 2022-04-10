@@ -81,12 +81,13 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
     override fun onSensorChanged(step: SensorEvent?) {
         if(walking) {
             Log.i("INFO/Step Value", step!!.values[0].toInt().toString())
-            previousSteps = step!!.values[0].toInt()
+            previousSteps = step.values[0].toInt()
 
-            if(previousSteps > 0) {
-                currentSteps = previousSteps - deviceSteps
+            // Handle 0 in previous steps if sensor has been rebooted to 0 since last activity
+            currentSteps = if(previousSteps > 0) {
+                previousSteps - deviceSteps
             } else {
-                currentSteps = previousSteps
+                previousSteps
             }
 
             // Update the current steps count in the display
@@ -110,7 +111,20 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
 
         // Increment total steps with the current steps amount from this "session"
         db.child("total").setValue(ServerValue.increment(currentSteps.toLong()))
+                .addOnCompleteListener { task ->
+                    if(!task.isSuccessful) {
+                        Toast.makeText(this@StepsActivity, "Unable to add steps",
+                                    Toast.LENGTH_SHORT).show()
+                    }
+                }
+        // Save current steps in sensor for next time activity is used
         db.child("previous").setValue(previousSteps.toLong())
+                .addOnCompleteListener { task ->
+                    if(!task.isSuccessful) {
+                        Toast.makeText(this@StepsActivity, "Unable to add steps",
+                                Toast.LENGTH_SHORT).show()
+                    }
+                }
 
         if(stepSensor != null) {
             sensorManager?.unregisterListener(this, stepSensor)
