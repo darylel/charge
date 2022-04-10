@@ -99,10 +99,8 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
     private fun saveSteps(stepSensor: Sensor?) {
         walking = false
 
-        /*
-        db.child("steps").child(user).child("total").setValue(ServerValue
-                .increment(currentSteps as Long))
-         */
+        // Increment total steps with the current steps amount from this "session"
+        db.child("total").setValue(ServerValue.increment(currentSteps.toLong()))
 
         if(stepSensor != null) {
             sensorManager?.unregisterListener(this, stepSensor)
