@@ -52,6 +52,7 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
 
                     if(snap.key.equals("previous")) {
                         Log.i("INFO/LIFETIME", snap.value.toString())
+                        deviceSteps = snap.value.toString().toInt()
                     }
                     // Display lifetime steps in the activity
                     binding.textViewTotalCount.text = ("$lifetimeSteps")
@@ -78,7 +79,8 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
 
     override fun onSensorChanged(step: SensorEvent?) {
         if(walking) {
-            step!!.values[0].toInt().also { currentSteps = it }
+            currentSteps = step!!.values[0].toInt() - deviceSteps
+            //step!!.values[0].toInt().also { currentSteps = it }
 
             // Update the current steps count in the display
             binding.textViewCurrentCount.text = ("$currentSteps")
