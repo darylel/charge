@@ -40,16 +40,13 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
         // Get current user
         auth = FirebaseAuth.getInstance()
         user = auth.currentUser!!.uid
-        Log.i("INFO/User", user)
 
         // Load lifetime steps from database
         db = FirebaseDatabase.getInstance().getReference(user).child("steps")
         db.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                Log.i("INFO/snap", snapshot.value.toString())
                 for(snap: DataSnapshot in snapshot.children) {
                     if(snap.key.equals("total")) {
-                        Log.i("INFO/Lifetime", snap.value.toString())
                         lifetimeSteps = snap.value.toString().toInt()
                     }
 
