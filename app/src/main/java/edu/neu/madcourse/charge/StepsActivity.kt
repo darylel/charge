@@ -56,7 +56,7 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
                         deviceSteps = snap.value.toString().toInt()
                     }
                     // Display lifetime steps in the activity
-                    binding.textViewTotalCount.text = ("$lifetimeSteps")
+                    binding.textViewTotalCount?.text= ("$lifetimeSteps")
                 }
             }
 
@@ -68,12 +68,12 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
         val stepSensor: Sensor? = sensorManager?.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
 
         // Start step count
-        binding.buttonStartSteps.setOnClickListener {
+        binding.buttonStartSteps?.setOnClickListener {
             startSteps(stepSensor)
         }
 
         // Save and reset step count
-        binding.buttonSaveSteps.setOnClickListener {
+        binding.buttonSaveSteps?.setOnClickListener {
             saveSteps(stepSensor)
         }
     }
@@ -91,7 +91,7 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
             }
 
             // Update the current steps count in the display
-            binding.textViewCurrentCount.text = ("$currentSteps")
+            binding.textViewCurrentCount?.text = ("$currentSteps")
         }
     }
 
@@ -126,16 +126,11 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
                     }
                 }
 
-        // Reset display to 0 for current step count
-        binding.textViewCurrentCount.text = "0"
+
+        binding.textViewCurrentCount?.text = "0"
 
         if(stepSensor != null) {
             sensorManager?.unregisterListener(this, stepSensor)
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-
     }
 }
