@@ -126,8 +126,16 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
                     }
                 }
 
+        // Reset display to 0 for current step count
+        binding.textViewCurrentCount.text = "0"
+
         if(stepSensor != null) {
             sensorManager?.unregisterListener(this, stepSensor)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
     }
 }
