@@ -19,6 +19,7 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
     private var sensorManager: SensorManager? = null
     private var walking = false
     private var lifetimeSteps = 0
+    private var previousSteps = 0
     private var deviceSteps = 0
     private var currentSteps = 0
     private lateinit var db: DatabaseReference
@@ -79,8 +80,14 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
 
     override fun onSensorChanged(step: SensorEvent?) {
         if(walking) {
-            currentSteps = step!!.values[0].toInt() - deviceSteps
-            //step!!.values[0].toInt().also { currentSteps = it }
+            Log.i("INFO/Step Value", step!!.values[0].toInt().toString())
+            previousSteps = step!!.values[0].toInt()
+
+            if(previousSteps > 0) {
+                currentSteps = previousSteps - deviceSteps
+            } else {
+                currentSteps = previousSteps
+            }
 
             // Update the current steps count in the display
             binding.textViewCurrentCount.text = ("$currentSteps")
@@ -103,6 +110,7 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
 
         // Increment total steps with the current steps amount from this "session"
         db.child("total").setValue(ServerValue.increment(currentSteps.toLong()))
+        db.child("previous").setValue(previousSteps.toLong())
 
         if(stepSensor != null) {
             sensorManager?.unregisterListener(this, stepSensor)
