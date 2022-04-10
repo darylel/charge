@@ -43,12 +43,22 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
         Log.i("INFO/User", user)
 
         // Load lifetime steps from database
-        db = FirebaseDatabase.getInstance().reference
+        db = FirebaseDatabase.getInstance().getReference(user).child("steps")
         db.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                Log.i("INFO/Lifetime", snapshot.toString())
-                //lifetimeSteps = snapshot.child("steps").child(user).child("total").value as Int
-                //binding.textViewTotalCount.text = ("$lifetimeSteps")
+                Log.i("INFO/snap", snapshot.value.toString())
+                for(snap: DataSnapshot in snapshot.children) {
+                    if(snap.key.equals("total")) {
+                        Log.i("INFO/Lifetime", snap.value.toString())
+                        lifetimeSteps = snap.value.toString().toInt()
+                    }
+
+                    if(snap.key.equals("previous")) {
+                        Log.i("INFO/LIFETIME", snap.value.toString())
+                    }
+                    // Display lifetime steps in the activity
+                    binding.textViewTotalCount.text = ("$lifetimeSteps")
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {}

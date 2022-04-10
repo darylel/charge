@@ -70,8 +70,8 @@ public class GratitudeActivity extends AppCompatActivity implements OnGratitudeC
                     if (result.getResultCode() == Activity.RESULT_OK && result.getData()!=null) {
                         ArrayList<String> d=result.getData().getStringArrayListExtra(
                                 RecognizerIntent.EXTRA_RESULTS);
-                        String newKey = db.child(user).child("gratitude").push().getKey();
-                        db.child(user).child("gratitude").child(newKey).setValue(new Gratitude(d.get(0)));
+                        String newKey = db.child("gratitude").child("user").push().getKey();
+                        db.child("gratitude").child(user).child(newKey).setValue(new Gratitude(d.get(0)));
                         Gratitude gratitude = new Gratitude(d.get(0));
                         gratitude.setKey(newKey);
                         gratitudeList.add(gratitude);
@@ -98,7 +98,7 @@ public class GratitudeActivity extends AppCompatActivity implements OnGratitudeC
         db.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot snap : snapshot.child(user).child("gratitude").getChildren()) {
+                for(DataSnapshot snap : snapshot.child("gratitude").child(user).getChildren()) {
                     Gratitude gratitude = new Gratitude(Objects.requireNonNull(snap.child("item")
                             .getValue()).toString());
                     gratitude.setKey(snap.getKey());
@@ -160,14 +160,14 @@ public class GratitudeActivity extends AppCompatActivity implements OnGratitudeC
                 Log.i("INFO/delete", deletedGratitude.getItem());
                 gratitudeList.remove(position);
                 gratitudeRecyclerAdapter.notifyItemRemoved(position);
-                db.child(user).child("gratitude").child(deletedGratitude.getKeyGratitude()).removeValue();
+                db.child("gratitude").child(user).child(deletedGratitude.getKeyGratitude()).removeValue();
 
                 Snackbar undoDelete = Snackbar.make(findViewById(R.id.recyclerViewGratitude),
                         itemDelete, Snackbar.LENGTH_SHORT);
                 undoDelete.setAction(btnMessage, view -> {
                     gratitudeList.add(position, deletedItem);
                     gratitudeRecyclerAdapter.notifyItemInserted(position);
-                    db.child(user).child("gratitude").child(deletedGratitude.getKeyGratitude())
+                    db.child("gratitude").child(user).child(deletedGratitude.getKeyGratitude())
                             .child("item").setValue(deletedGratitude.getItem());
                 });
                 undoDelete.show();
