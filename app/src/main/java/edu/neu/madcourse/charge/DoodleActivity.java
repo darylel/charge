@@ -2,13 +2,17 @@ package edu.neu.madcourse.charge;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Objects;
 
@@ -30,9 +34,19 @@ public class DoodleActivity extends AppCompatActivity {
         // Set the custom app bar view
         Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.toolbar_custom);
-
         TextView toolbar = findViewById(R.id.custom_toolbar);
         toolbar.setText("Doodle");
+
+        // Snackbar to let users know to shake to erase
+        Snackbar.make(doodleCanvas, "Shake to erase your doodle", Snackbar.LENGTH_INDEFINITE)
+                .setAction("OK", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Dismiss SnackBar
+                    }
+                })
+                .setActionTextColor(ContextCompat.getColor(this, R.color.charge_off_white))
+                .show();
 
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
