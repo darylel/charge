@@ -15,6 +15,8 @@ import java.util.Objects;
 
 public class LandingPageActivity extends AppCompatActivity {
     private ColorMatrixColorFilter filter;
+    private int mind;
+    private int body;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,10 @@ public class LandingPageActivity extends AppCompatActivity {
         ImageView doodle = findViewById(R.id.imageViewDoodle);
         ImageView walking = findViewById(R.id.imageViewWalking);
         ImageView stretching = findViewById(R.id.imageViewStretching);
+
+        // Initialize mind and body values
+        mind = 0;
+        body = 0;
 
         // Initiate grayscale color matrix
         ColorMatrix grayscale = new ColorMatrix();
@@ -59,6 +65,7 @@ public class LandingPageActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
+        int tagValue = (int) view.getTag();
         switch (view.getTag().toString())
         {
             case "1":
@@ -66,6 +73,7 @@ public class LandingPageActivity extends AppCompatActivity {
                     ImageView m1 = findViewById(R.id.mind1ImageView);
                     if(m1.getColorFilter() == null) {
                         m1.setColorFilter(filter);
+                        mind = tagValue;
                     } else {
                         m1.clearColorFilter();
                     }
@@ -73,6 +81,7 @@ public class LandingPageActivity extends AppCompatActivity {
                     ImageView b1 = findViewById(R.id.body1ImageView);
                     if(b1.getColorFilter() == null) {
                         b1.setColorFilter(filter);
+                        body = tagValue;
                     } else {
                         b1.clearColorFilter();
                     }
@@ -83,6 +92,7 @@ public class LandingPageActivity extends AppCompatActivity {
                     ImageView m2 = findViewById(R.id.mind2ImageView);
                     if(m2.getColorFilter() == null) {
                         m2.setColorFilter(filter);
+                        mind = tagValue;
                     } else {
                         m2.clearColorFilter();
                     }
@@ -90,6 +100,7 @@ public class LandingPageActivity extends AppCompatActivity {
                     ImageView b2 = findViewById(R.id.body2ImageView);
                     if(b2.getColorFilter() == null) {
                         b2.setColorFilter(filter);
+                        body = tagValue;
                     } else {
                         b2.clearColorFilter();
                     }
@@ -100,6 +111,7 @@ public class LandingPageActivity extends AppCompatActivity {
                     ImageView m3 = findViewById(R.id.mind3ImageView);
                     if(m3.getColorFilter() == null) {
                         m3.setColorFilter(filter);
+                        mind = tagValue;
                     } else {
                         m3.clearColorFilter();
                     }
@@ -107,6 +119,7 @@ public class LandingPageActivity extends AppCompatActivity {
                     ImageView b3 = findViewById(R.id.body3ImageView);
                     if(b3.getColorFilter() == null) {
                         b3.setColorFilter(filter);
+                        body = tagValue;
                     } else {
                         b3.clearColorFilter();
                     }
@@ -117,6 +130,7 @@ public class LandingPageActivity extends AppCompatActivity {
                     ImageView m4 = findViewById(R.id.mind4ImageView);
                     if(m4.getColorFilter() == null) {
                         m4.setColorFilter(filter);
+                        mind = tagValue;
                     } else {
                         m4.clearColorFilter();
                     }
@@ -124,6 +138,7 @@ public class LandingPageActivity extends AppCompatActivity {
                     ImageView b4 = findViewById(R.id.body4ImageView);
                     if(b4.getColorFilter() == null) {
                         b4.setColorFilter(filter);
+                        body = tagValue;
                     } else {
                         b4.clearColorFilter();
                     }
@@ -134,6 +149,7 @@ public class LandingPageActivity extends AppCompatActivity {
                     ImageView m5 = findViewById(R.id.mind5ImageView);
                     if(m5.getColorFilter() == null) {
                         m5.setColorFilter(filter);
+                        mind = tagValue;
                     } else {
                         m5.clearColorFilter();
                     }
@@ -141,6 +157,7 @@ public class LandingPageActivity extends AppCompatActivity {
                     ImageView b5 = findViewById(R.id.body5ImageView);
                     if(b5.getColorFilter() == null) {
                         b5.setColorFilter(filter);
+                        body = tagValue;
                     } else {
                         b5.clearColorFilter();
                     }
