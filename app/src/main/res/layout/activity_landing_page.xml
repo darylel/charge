@@ -178,6 +178,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
             android:backgroundTint="@color/charge_green"
+            android:onClick="suggestActivity"
             android:text="@string/suggest_an_activity"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
