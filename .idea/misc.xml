@@ -16,6 +16,10 @@
         <entry key="..\:/Users/mesfi/AndroidStudioProjects/charge/app/src/main/res/layout/activity_login.xml" value="0.358695652173913" />
         <entry key="..\:/Users/mesfi/AndroidStudioProjects/charge/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
         <entry key="..\:/Users/mesfi/AndroidStudioProjects/charge/app/src/main/res/layout/activity_sign_up.xml" value="0.358695652173913" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.21739130434782608" />
+        <entry key="app/src/main/res/layout/activity_stretch.xml" value="0.21739130434782608" />
+        <entry key="app/src/main/res/layout/activity_stretch_recyclerview.xml" value="0.21739130434782608" />
+        <entry key="app/src/main/res/layout/video_layout.xml" value="0.23641304347826086" />
       </map>
     </option>
   </component>

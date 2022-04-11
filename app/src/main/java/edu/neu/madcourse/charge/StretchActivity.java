@@ -9,7 +9,7 @@ public class StretchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stretch);
+        setContentView(R.layout.activity_stretch_recyclerview);
     }
 
     // RecyclerView of preloaded videos
