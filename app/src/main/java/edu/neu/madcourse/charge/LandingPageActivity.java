@@ -12,6 +12,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
@@ -32,6 +36,9 @@ public class LandingPageActivity extends AppCompatActivity {
     private ImageView b5;
     private int mind;
     private int body;
+    private FirebaseAuth auth;
+    private DatabaseReference db;
+    private String user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +49,10 @@ public class LandingPageActivity extends AppCompatActivity {
         getSupportActionBar().setCustomView(R.layout.toolbar_custom);
 
         setContentView(R.layout.activity_landing_page);
+
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser().getUid();
+        db = FirebaseDatabase.getInstance().getReference(user);
 
         ImageView account = findViewById(R.id.accountImageView);
         ImageView gratitude = findViewById(R.id.imageViewGratitude);
@@ -101,6 +112,7 @@ public class LandingPageActivity extends AppCompatActivity {
                         mind = 1;
                     } else {
                         m1.clearColorFilter();
+                        mind = 0;
                     }
                 } else {
                     if(b1.getColorFilter() == null) {
@@ -109,6 +121,7 @@ public class LandingPageActivity extends AppCompatActivity {
                         body = 1;
                     } else {
                         b1.clearColorFilter();
+                        body = 0;
                     }
                 }
                 break;
@@ -120,6 +133,7 @@ public class LandingPageActivity extends AppCompatActivity {
                         mind = 2;
                     } else {
                         m2.clearColorFilter();
+                        mind = 0;
                     }
                 } else {
                     if(b2.getColorFilter() == null) {
@@ -128,6 +142,7 @@ public class LandingPageActivity extends AppCompatActivity {
                         body = 2;
                     } else {
                         b2.clearColorFilter();
+                        body = 0;
                     }
                 }
                 break;
@@ -139,6 +154,7 @@ public class LandingPageActivity extends AppCompatActivity {
                         mind = 3;
                     } else {
                         m3.clearColorFilter();
+                        mind = 0;
                     }
                 } else {
                     if(b3.getColorFilter() == null) {
@@ -147,6 +163,7 @@ public class LandingPageActivity extends AppCompatActivity {
                         body = 3;
                     } else {
                         b3.clearColorFilter();
+                        body = 0;
                     }
                 }
                 break;
@@ -158,6 +175,7 @@ public class LandingPageActivity extends AppCompatActivity {
                         mind = 4;
                     } else {
                         m4.clearColorFilter();
+                        mind = 0;
                     }
                 } else {
                     if(b4.getColorFilter() == null) {
@@ -166,6 +184,7 @@ public class LandingPageActivity extends AppCompatActivity {
                         body = 4;
                     } else {
                         b4.clearColorFilter();
+                        body = 0;
                     }
                 }
                 break;
@@ -177,6 +196,7 @@ public class LandingPageActivity extends AppCompatActivity {
                         mind = 5;
                     } else {
                         m5.clearColorFilter();
+                        mind = 0;
                     }
                 } else {
                     if(b5.getColorFilter() == null) {
@@ -185,6 +205,7 @@ public class LandingPageActivity extends AppCompatActivity {
                         body = 5;
                     } else {
                         b5.clearColorFilter();
+                        body = 0;
                     }
                 }
                 break;
@@ -202,10 +223,12 @@ public class LandingPageActivity extends AppCompatActivity {
             for(ImageView x : mindEmoticons) {
                 x.clearColorFilter();
             }
+            mind = 0;
         } else {
             for(ImageView x : bodyEmoticons) {
                 x.clearColorFilter();
             }
+            body = 0;
         }
     }
 
