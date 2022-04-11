@@ -236,8 +236,13 @@ public class LandingPageActivity extends AppCompatActivity {
         String newKey = db.child("feelings").push().getKey();
 
         if(mind != 0 && body != 0) {
+            // Save values to database
             db.child("feelings").child(newKey).child("mind").setValue(mind);
             db.child("feelings").child(newKey).child("body").setValue(body);
+
+            // Reset emoticon state and values
+            resetColor("body");
+            resetColor("mind");
         } else {
             Toast.makeText(this, "Mind and body must be selected",
                     Toast.LENGTH_SHORT).show();
