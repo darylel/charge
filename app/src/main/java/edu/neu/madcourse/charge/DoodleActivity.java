@@ -23,7 +23,6 @@ public class DoodleActivity extends AppCompatActivity {
     private double currentAcceleration;
     private double previousAcceleration;
     private DoodleCanvas doodleCanvas;
-    private static final String KEY_PAINT = "paint_object";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

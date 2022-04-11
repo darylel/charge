@@ -4,7 +4,7 @@ public class Gratitude {
     private String item;
     private String keyGratitude;
 
-    public Gratitude() {};
+    public Gratitude() {}
 
     public Gratitude(String item) {
         this.item = item;

@@ -20,16 +20,16 @@ import edu.neu.madcourse.charge.stretch.StretchActivity;
 
 public class LandingPageActivity extends AppCompatActivity {
     private ColorMatrixColorFilter filter;
-    ImageView m1;
-    ImageView m2;
-    ImageView m3;
-    ImageView m4;
-    ImageView m5;
-    ImageView b1;
-    ImageView b2;
-    ImageView b3;
-    ImageView b4;
-    ImageView b5;
+    private ImageView m1;
+    private ImageView m2;
+    private ImageView m3;
+    private ImageView m4;
+    private ImageView m5;
+    private ImageView b1;
+    private ImageView b2;
+    private ImageView b3;
+    private ImageView b4;
+    private ImageView b5;
     private int mind;
     private int body;
 
@@ -189,7 +189,6 @@ public class LandingPageActivity extends AppCompatActivity {
                 }
                 break;
             default:
-                Toast.makeText(this, "This works default", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
