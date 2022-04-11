@@ -12,10 +12,22 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class LandingPageActivity extends AppCompatActivity {
     private ColorMatrixColorFilter filter;
+    ImageView m1;
+    ImageView m2;
+    ImageView m3;
+    ImageView m4;
+    ImageView m5;
+    ImageView b1;
+    ImageView b2;
+    ImageView b3;
+    ImageView b4;
+    ImageView b5;
     private int mind;
     private int body;
 
@@ -35,6 +47,16 @@ public class LandingPageActivity extends AppCompatActivity {
         ImageView walking = findViewById(R.id.imageViewWalking);
         ImageView stretching = findViewById(R.id.imageViewStretching);
         Button feelings = findViewById(R.id.suggestButton);
+        m1 = findViewById(R.id.mind1ImageView);
+        m2 = findViewById(R.id.mind2ImageView);
+        m3 = findViewById(R.id.mind3ImageView);
+        m4 = findViewById(R.id.mind4ImageView);
+        m5 = findViewById(R.id.mind5ImageView);
+        b1 = findViewById(R.id.body1ImageView);
+        b2 = findViewById(R.id.body2ImageView);
+        b3 = findViewById(R.id.body3ImageView);
+        b4 = findViewById(R.id.body4ImageView);
+        b5 = findViewById(R.id.body5ImageView);
 
         // Initialize mind and body values
         mind = 0;
@@ -71,16 +93,16 @@ public class LandingPageActivity extends AppCompatActivity {
         {
             case "1":
                 if(view.getId() == R.id.mind1ImageView) {
-                    ImageView m1 = findViewById(R.id.mind1ImageView);
                     if(m1.getColorFilter() == null) {
+                        resetColor("mind");
                         m1.setColorFilter(filter);
                         mind = 1;
                     } else {
                         m1.clearColorFilter();
                     }
                 } else {
-                    ImageView b1 = findViewById(R.id.body1ImageView);
                     if(b1.getColorFilter() == null) {
+                        resetColor("body");
                         b1.setColorFilter(filter);
                         body = 1;
                     } else {
@@ -90,16 +112,16 @@ public class LandingPageActivity extends AppCompatActivity {
                 break;
             case "2":
                 if(view.getId() == R.id.mind2ImageView) {
-                    ImageView m2 = findViewById(R.id.mind2ImageView);
                     if(m2.getColorFilter() == null) {
+                        resetColor("mind");
                         m2.setColorFilter(filter);
                         mind = 2;
                     } else {
                         m2.clearColorFilter();
                     }
                 } else {
-                    ImageView b2 = findViewById(R.id.body2ImageView);
                     if(b2.getColorFilter() == null) {
+                        resetColor("body");
                         b2.setColorFilter(filter);
                         body = 2;
                     } else {
@@ -109,16 +131,16 @@ public class LandingPageActivity extends AppCompatActivity {
                 break;
             case "3":
                 if(view.getId() == R.id.mind3ImageView) {
-                    ImageView m3 = findViewById(R.id.mind3ImageView);
                     if(m3.getColorFilter() == null) {
+                        resetColor("mind");
                         m3.setColorFilter(filter);
                         mind = 3;
                     } else {
                         m3.clearColorFilter();
                     }
                 } else {
-                    ImageView b3 = findViewById(R.id.body3ImageView);
                     if(b3.getColorFilter() == null) {
+                        resetColor("body");
                         b3.setColorFilter(filter);
                         body = 3;
                     } else {
@@ -128,16 +150,16 @@ public class LandingPageActivity extends AppCompatActivity {
                 break;
             case "4":
                 if(view.getId() == R.id.mind4ImageView) {
-                    ImageView m4 = findViewById(R.id.mind4ImageView);
                     if(m4.getColorFilter() == null) {
+                        resetColor("mind");
                         m4.setColorFilter(filter);
                         mind = 4;
                     } else {
                         m4.clearColorFilter();
                     }
                 } else {
-                    ImageView b4 = findViewById(R.id.body4ImageView);
                     if(b4.getColorFilter() == null) {
+                        resetColor("body");
                         b4.setColorFilter(filter);
                         body = 4;
                     } else {
@@ -147,16 +169,16 @@ public class LandingPageActivity extends AppCompatActivity {
                 break;
             case "5":
                 if(view.getId() == R.id.mind5ImageView) {
-                    ImageView m5 = findViewById(R.id.mind5ImageView);
                     if(m5.getColorFilter() == null) {
+                        resetColor("mind");
                         m5.setColorFilter(filter);
                         mind = 5;
                     } else {
                         m5.clearColorFilter();
                     }
                 } else {
-                    ImageView b5 = findViewById(R.id.body5ImageView);
                     if(b5.getColorFilter() == null) {
+                        resetColor("body");
                         b5.setColorFilter(filter);
                         body = 5;
                     } else {
@@ -167,6 +189,22 @@ public class LandingPageActivity extends AppCompatActivity {
             default:
                 Toast.makeText(this, "This works default", Toast.LENGTH_SHORT).show();
                 break;
+        }
+    }
+
+    public void resetColor(String type) {
+        ArrayList<ImageView> mindEmoticons = new ArrayList<>(Arrays.asList(m1,m2,m3,m4,m5));
+        ArrayList<ImageView> bodyEmoticons = new ArrayList<>(Arrays.asList(b1,b2,b3,b4,b5));
+
+        // Reset all the emoticons of a single type to full color
+        if(type.equals("mind")) {
+            for(ImageView x : mindEmoticons) {
+                x.clearColorFilter();
+            }
+        } else {
+            for(ImageView x : bodyEmoticons) {
+                x.clearColorFilter();
+            }
         }
     }
 
