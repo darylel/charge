@@ -55,6 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
+                    android:tag="1"
                     app:srcCompat="@drawable/e1" />
 
                 <ImageView
@@ -62,6 +63,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
+                    android:tag="2"
                     app:srcCompat="@drawable/e2" />
 
                 <ImageView
@@ -69,6 +71,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
+                    android:tag="3"
                     app:srcCompat="@drawable/e3" />
 
                 <ImageView
@@ -76,6 +79,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
+                    android:tag="4"
                     app:srcCompat="@drawable/e4" />
 
                 <ImageView
@@ -83,6 +87,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
+                    android:tag="5"
                     app:srcCompat="@drawable/e5" />
             </TableRow>
 
@@ -107,6 +112,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
+                    android:tag="1"
                     app:srcCompat="@drawable/e1" />
 
                 <ImageView
@@ -114,6 +120,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
+                    android:tag="2"
                     app:srcCompat="@drawable/e2" />
 
                 <ImageView
@@ -121,6 +128,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
+                    android:tag="3"
                     app:srcCompat="@drawable/e3" />
 
                 <ImageView
@@ -128,6 +136,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
+                    android:tag="4"
                     app:srcCompat="@drawable/e4" />
 
                 <ImageView
@@ -135,6 +144,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
+                    android:tag="5"
                     app:srcCompat="@drawable/e5" />
             </TableRow>
         </TableLayout>

@@ -1,6 +1,11 @@
 package edu.neu.madcourse.charge;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -27,6 +32,7 @@ public class LandingPageActivity extends AppCompatActivity {
         ImageView doodle = findViewById(R.id.imageViewDoodle);
         ImageView walking = findViewById(R.id.imageViewWalking);
         ImageView stretching = findViewById(R.id.imageViewStretching);
+        ImageView mind1 = findViewById(R.id.mind1ImageView);
 
         account.setOnClickListener(view -> startActivity(new Intent(
                 LandingPageActivity.this, AccountActivity.class
