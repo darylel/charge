@@ -2,9 +2,10 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_centerInParent="true"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_centerInParent="true"
+    android:onClick="onClick">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -54,41 +55,51 @@
                     android:id="@+id/mind1ImageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="onClick"
                     android:padding="8dp"
                     android:tag="1"
-                    app:srcCompat="@drawable/e1" />
+                    app:srcCompat="@drawable/e1"
+                    tools:ignore="SpeakableTextPresentCheck" />
 
                 <ImageView
                     android:id="@+id/mind2ImageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="onClick"
                     android:padding="8dp"
                     android:tag="2"
-                    app:srcCompat="@drawable/e2" />
+                    app:srcCompat="@drawable/e2"
+                    tools:ignore="SpeakableTextPresentCheck" />
 
                 <ImageView
                     android:id="@+id/mind3ImageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="onClick"
                     android:padding="8dp"
                     android:tag="3"
-                    app:srcCompat="@drawable/e3" />
+                    app:srcCompat="@drawable/e3"
+                    tools:ignore="SpeakableTextPresentCheck" />
 
                 <ImageView
                     android:id="@+id/mind4ImageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="onClick"
                     android:padding="8dp"
                     android:tag="4"
-                    app:srcCompat="@drawable/e4" />
+                    app:srcCompat="@drawable/e4"
+                    tools:ignore="SpeakableTextPresentCheck" />
 
                 <ImageView
                     android:id="@+id/mind5ImageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="onClick"
                     android:padding="8dp"
                     android:tag="5"
-                    app:srcCompat="@drawable/e5" />
+                    app:srcCompat="@drawable/e5"
+                    tools:ignore="SpeakableTextPresentCheck" />
             </TableRow>
 
             <TableRow
@@ -111,41 +122,51 @@
                     android:id="@+id/body1ImageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="onClick"
                     android:padding="8dp"
                     android:tag="1"
-                    app:srcCompat="@drawable/e1" />
+                    app:srcCompat="@drawable/e1"
+                    tools:ignore="SpeakableTextPresentCheck" />
 
                 <ImageView
                     android:id="@+id/body2ImageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="onClick"
                     android:padding="8dp"
                     android:tag="2"
-                    app:srcCompat="@drawable/e2" />
+                    app:srcCompat="@drawable/e2"
+                    tools:ignore="SpeakableTextPresentCheck" />
 
                 <ImageView
                     android:id="@+id/body3ImageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="onClick"
                     android:padding="8dp"
                     android:tag="3"
-                    app:srcCompat="@drawable/e3" />
+                    app:srcCompat="@drawable/e3"
+                    tools:ignore="SpeakableTextPresentCheck" />
 
                 <ImageView
                     android:id="@+id/body4ImageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="onClick"
                     android:padding="8dp"
                     android:tag="4"
-                    app:srcCompat="@drawable/e4" />
+                    app:srcCompat="@drawable/e4"
+                    tools:ignore="SpeakableTextPresentCheck" />
 
                 <ImageView
                     android:id="@+id/body5ImageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="onClick"
                     android:padding="8dp"
                     android:tag="5"
-                    app:srcCompat="@drawable/e5" />
+                    app:srcCompat="@drawable/e5"
+                    tools:ignore="SpeakableTextPresentCheck" />
             </TableRow>
         </TableLayout>
 
@@ -160,7 +181,8 @@
             android:text="@string/suggest_an_activity"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/feelingsTable" />
+            app:layout_constraintTop_toBottomOf="@id/feelingsTable"
+            tools:ignore="TextContrastCheck" />
 
         <TextView
             android:id="@+id/orTextView"
@@ -180,10 +202,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@id/orTextView"
             app:layout_constraintBottom_toTopOf="@id/accountImageView"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" >
+            app:layout_constraintTop_toBottomOf="@id/orTextView">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -194,14 +216,16 @@
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:padding="4dp"
-                    android:src="@drawable/sample" />
+                    android:src="@drawable/sample"
+                    tools:ignore="ImageContrastCheck" />
 
                 <ImageView
                     android:id="@+id/imageView25"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:padding="4dp"
-                    android:src="@drawable/sample" />
+                    android:src="@drawable/sample"
+                    tools:ignore="ImageContrastCheck" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -212,20 +236,21 @@
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:padding="4dp"
-                        android:src="@drawable/stretching" />
+                        android:src="@drawable/stretching"
+                        tools:ignore="ImageContrastCheck" />
 
                     <TextView
+                        android:id="@id/textViewWalking"
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
-                        android:id="@id/textViewWalking"
-                        android:text="Stretching"
                         android:layout_marginTop="8dp"
+                        android:text="@string/stretching"
+                        android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textStyle="bold"
-                        android:textSize="18dp"
-                        android:textAlignment="center" />
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
-            </RelativeLayout>
+                </RelativeLayout>
             </TableRow>
 
             <TableRow
@@ -249,10 +274,10 @@
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Walking"
+                        android:text="@string/walking"
                         android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="18dp"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
 
@@ -265,18 +290,20 @@
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:padding="4dp"
-                        android:src="@drawable/doodle_120_g" />
+                        android:src="@drawable/doodle_120_g"
+                        tools:ignore="ImageContrastCheck" />
 
                     <TextView
                         android:id="@+id/textViewDoodle"
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Doodle"
-                        android:textSize="18dp"
+                        android:text="@string/doodle"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textStyle="bold" />
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        tools:ignore="TextContrastCheck" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -295,10 +322,10 @@
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Gratitude"
+                        android:text="@string/gratitude"
                         android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="18dp"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
             </TableRow>
@@ -308,13 +335,12 @@
             android:id="@+id/accountImageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            app:srcCompat="@drawable/ic_baseline_account_circle_24"
+            android:contentDescription="@string/account_link"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:contentDescription="@string/account_link" />
+            app:srcCompat="@drawable/ic_baseline_account_circle_24"
+            tools:ignore="ImageContrastCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

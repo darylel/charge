@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -53,5 +54,29 @@ public class LandingPageActivity extends AppCompatActivity {
         stretching.setOnClickListener(view -> startActivity(new Intent(
                 LandingPageActivity.this, StretchActivity.class
         )));
+    }
+
+    public void onClick(View view) {
+        switch (view.getTag().toString())
+        {
+            case "1":
+                Toast.makeText(this, "This works 1", Toast.LENGTH_SHORT).show();
+                break;
+            case "2":
+                Toast.makeText(this, "This works 2", Toast.LENGTH_SHORT).show();
+                break;
+            case "3":
+                Toast.makeText(this, "This works 3", Toast.LENGTH_SHORT).show();
+                break;
+            case "4":
+                Toast.makeText(this, "This works 4", Toast.LENGTH_SHORT).show();
+                break;
+            case "5":
+                Toast.makeText(this, "This works 5", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                Toast.makeText(this, "This works default", Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
 }
