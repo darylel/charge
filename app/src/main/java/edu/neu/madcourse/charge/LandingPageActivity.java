@@ -233,6 +233,14 @@ public class LandingPageActivity extends AppCompatActivity {
     }
 
     public void suggestActivity(View view) {
-        Toast.makeText(this, "Suggest click works", Toast.LENGTH_SHORT).show();
+        String newKey = db.child("feelings").push().getKey();
+
+        if(mind != 0 && body != 0) {
+            db.child("feelings").child(newKey).child("mind").setValue(mind);
+            db.child("feelings").child(newKey).child("body").setValue(body);
+        } else {
+            Toast.makeText(this, "Mind and body must be selected",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 }
