@@ -1,8 +1,10 @@
-package edu.neu.madcourse.charge;
+package edu.neu.madcourse.charge.stretch;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import edu.neu.madcourse.charge.R;
 
 public class StretchActivity extends AppCompatActivity {
 

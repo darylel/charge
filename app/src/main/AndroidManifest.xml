@@ -17,7 +17,7 @@
             android:name=".JournalingActivity"
             android:exported="false" />
         <activity
-            android:name=".StretchActivity"
+            android:name=".stretch.StretchActivity"
             android:exported="false" />
         <activity
             android:name=".StepsActivity"

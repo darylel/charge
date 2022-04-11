@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
+import edu.neu.madcourse.charge.stretch.StretchActivity;
+
 public class LandingPageActivity extends AppCompatActivity {
     private ColorMatrixColorFilter filter;
     ImageView m1;
