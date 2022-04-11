@@ -33,5 +33,5 @@
     <string name="walking">Walking</string>
     <string name="gratitude">Gratitude</string>
     <string name="stretching">Stretching</string>
-    <string name="video_name">Video name</string>
+    <string name="Title">Video title</string>
 </resources>

@@ -1,10 +1,10 @@
 package edu.neu.madcourse.charge.stretch;
 
-public class Video {
+public class Stretch {
     private String title;
     private String url;
 
-    public Video(String title, String url) {
+    public Stretch(String title, String url) {
         this.title = title;
         this.url = url;
     }
