@@ -14,10 +14,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Charge">
         <activity
+            android:name=".StretchActivity"
+            android:exported="false" />
+        <activity
             android:name=".StepsActivity"
             android:exported="false" />
         <activity
             android:name=".DoodleActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".GratitudeActivity"

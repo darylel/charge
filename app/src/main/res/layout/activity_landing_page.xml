@@ -2,11 +2,12 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_centerInParent="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context=".LandingPageActivity">
 
@@ -192,12 +193,29 @@
                     android:padding="4dp"
                     android:src="@drawable/sample" />
 
-                <ImageView
-                    android:id="@+id/imageView26"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:padding="4dp"
-                    android:src="@drawable/sample" />
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/imageViewStretching"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:padding="4dp"
+                        android:src="@drawable/stretching" />
+
+                    <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:id="@id/textViewWalking"
+                        android:text="Stretching"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textSize="18dp"
+                        android:textAlignment="center" />
+
+            </RelativeLayout>
             </TableRow>
 
             <TableRow

@@ -2,6 +2,7 @@ package edu.neu.madcourse.charge;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.ActionBar;
@@ -25,6 +26,7 @@ public class LandingPageActivity extends AppCompatActivity {
         ImageView gratitude = findViewById(R.id.imageViewGratitude);
         ImageView doodle = findViewById(R.id.imageViewDoodle);
         ImageView walking = findViewById(R.id.imageViewWalking);
+        ImageView stretching = findViewById(R.id.imageViewStretching);
 
         account.setOnClickListener(view -> startActivity(new Intent(
                 LandingPageActivity.this, AccountActivity.class
@@ -40,6 +42,10 @@ public class LandingPageActivity extends AppCompatActivity {
 
         walking.setOnClickListener(view -> startActivity(new Intent(
                 LandingPageActivity.this, StepsActivity.class
+        )));
+
+        stretching.setOnClickListener(view -> startActivity(new Intent(
+                LandingPageActivity.this, StretchActivity.class
         )));
     }
 }

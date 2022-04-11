@@ -19,6 +19,7 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
     private var sensorManager: SensorManager? = null
     private var walking = false
     private var lifetimeSteps = 0
+    private var previousSteps = 0
     private var deviceSteps = 0
     private var currentSteps = 0
     private lateinit var db: DatabaseReference
@@ -40,15 +41,23 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
         // Get current user
         auth = FirebaseAuth.getInstance()
         user = auth.currentUser!!.uid
-        Log.i("INFO/User", user)
 
         // Load lifetime steps from database
-        db = FirebaseDatabase.getInstance().reference
+        db = FirebaseDatabase.getInstance().getReference(user).child("steps")
         db.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                Log.i("INFO/Lifetime", snapshot.toString())
-                //lifetimeSteps = snapshot.child("steps").child(user).child("total").value as Int
-                //binding.textViewTotalCount.text = ("$lifetimeSteps")
+                for(snap: DataSnapshot in snapshot.children) {
+                    if(snap.key.equals("total")) {
+                        lifetimeSteps = snap.value.toString().toInt()
+                    }
+
+                    if(snap.key.equals("previous")) {
+                        Log.i("INFO/LIFETIME", snap.value.toString())
+                        deviceSteps = snap.value.toString().toInt()
+                    }
+                    // Display lifetime steps in the activity
+                    binding.textViewTotalCount?.text= ("$lifetimeSteps")
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {}
@@ -59,22 +68,30 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
         val stepSensor: Sensor? = sensorManager?.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
 
         // Start step count
-        binding.buttonStartSteps.setOnClickListener {
+        binding.buttonStartSteps?.setOnClickListener {
             startSteps(stepSensor)
         }
 
         // Save and reset step count
-        binding.buttonSaveSteps.setOnClickListener {
+        binding.buttonSaveSteps?.setOnClickListener {
             saveSteps(stepSensor)
         }
     }
 
     override fun onSensorChanged(step: SensorEvent?) {
         if(walking) {
-            step!!.values[0].toInt().also { currentSteps = it }
+            Log.i("INFO/Step Value", step!!.values[0].toInt().toString())
+            previousSteps = step.values[0].toInt()
+
+            // Handle 0 in previous steps if sensor has been rebooted to 0 since last activity
+            currentSteps = if(previousSteps > 0) {
+                previousSteps - deviceSteps
+            } else {
+                previousSteps
+            }
 
             // Update the current steps count in the display
-            binding.textViewCurrentCount.text = ("$currentSteps")
+            binding.textViewCurrentCount?.text = ("$currentSteps")
         }
     }
 
@@ -92,10 +109,25 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
     private fun saveSteps(stepSensor: Sensor?) {
         walking = false
 
-        /*
-        db.child("steps").child(user).child("total").setValue(ServerValue
-                .increment(currentSteps as Long))
-         */
+        // Increment total steps with the current steps amount from this "session"
+        db.child("total").setValue(ServerValue.increment(currentSteps.toLong()))
+                .addOnCompleteListener { task ->
+                    if(!task.isSuccessful) {
+                        Toast.makeText(this@StepsActivity, "Unable to add steps",
+                                    Toast.LENGTH_SHORT).show()
+                    }
+                }
+        // Save current steps in sensor for next time activity is used
+        db.child("previous").setValue(previousSteps.toLong())
+                .addOnCompleteListener { task ->
+                    if(!task.isSuccessful) {
+                        Toast.makeText(this@StepsActivity, "Unable to add steps",
+                                Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+
+        binding.textViewCurrentCount?.text = "0"
 
         if(stepSensor != null) {
             sensorManager?.unregisterListener(this, stepSensor)
