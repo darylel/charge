@@ -20,4 +20,13 @@
     <string name="start_steps">Start Steps</string>
     <string name="save_steps">Save Steps</string>
     <string name="gratitude_list">Gratitude List</string>
+    <string name="title_activity_journaling">JournalingActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>
