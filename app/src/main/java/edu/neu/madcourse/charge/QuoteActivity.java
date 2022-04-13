@@ -4,9 +4,15 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,11 +22,13 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.Map;
 import java.util.Objects;
 
 public class QuoteActivity extends AppCompatActivity {
     private TextView quote;
     private TextView author;
+    private Quote myQuote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +44,7 @@ public class QuoteActivity extends AppCompatActivity {
         Button inspireMe = findViewById(R.id.buttonNewQuote);
         quote = findViewById(R.id.textViewQuote);
         author = findViewById(R.id.textViewAuthor);
+        myQuote = new Quote();
 
         inspireMe.setOnClickListener(view -> {
             new Thread(() -> {
@@ -44,16 +53,24 @@ public class QuoteActivity extends AppCompatActivity {
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                     Toast.makeText(this,"Unable to retrieve quote", Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
+
+                runOnUiThread(() -> {
+                    quote.setText(myQuote.getQuotation());
+                    author.setText(myQuote.getAuthor());
+                });
             }).start();
 
             Toast.makeText(this, "Quote click worked", Toast.LENGTH_SHORT).show();
         });
     }
 
-    private void getInspired() throws MalformedURLException {
+    private void getInspired() throws MalformedURLException, JSONException {
         String line;
         StringBuilder quoteDetails = new StringBuilder();
+        JSONObject objectQuote = new JSONObject();
         String key = "f07cbcf0971fbc180333bc776edf6a404210eb62";
 
         try {
@@ -71,6 +88,16 @@ public class QuoteActivity extends AppCompatActivity {
             while ((line = in.readLine()) != null) {
                 quoteDetails.append(line);
             }
+
+            JSONArray jsonQuote = new JSONArray(quoteDetails.toString());
+            objectQuote = jsonQuote.getJSONObject(0);
+
+            Log.i("LOG/quote", objectQuote.getString("q"));
+            Log.i("LOG/quote", objectQuote.getString("a"));
+
+            myQuote.setQuotation(objectQuote.getString("q"));
+            myQuote.setAuthor(objectQuote.getString("a"));
+
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (ProtocolException e) {
