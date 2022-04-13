@@ -13,7 +13,7 @@ public class StretchViewHolder extends RecyclerView.ViewHolder {
     public StretchViewHolder(View itemView, final StretchClickListener stretchClickListener) {
         super(itemView);
         videoTitle = itemView.findViewById(R.id.video_title);
-        itemView.setOnClickListener(v -> stretchClickListener.onClick(getLayoutPosition()));
+        itemView.setOnClickListener(v -> stretchClickListener.onStretchClick(getLayoutPosition()));
     }
 
 }
