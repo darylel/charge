@@ -38,12 +38,16 @@ public class QuoteActivity extends AppCompatActivity {
         author = findViewById(R.id.textViewAuthor);
 
         inspireMe.setOnClickListener(view -> {
-            try {
-                getInspired();
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-                Toast.makeText(this,"Unable to retrieve quote", Toast.LENGTH_SHORT).show();
-            }
+            new Thread(() -> {
+                try {
+                    getInspired();
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                    Toast.makeText(this,"Unable to retrieve quote", Toast.LENGTH_SHORT).show();
+                }
+            }).start();
+
+            Toast.makeText(this, "Quote click worked", Toast.LENGTH_SHORT).show();
         });
     }
 
