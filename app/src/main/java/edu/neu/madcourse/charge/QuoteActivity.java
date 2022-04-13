@@ -29,6 +29,7 @@ public class QuoteActivity extends AppCompatActivity {
     private TextView quote;
     private TextView author;
     private Quote myQuote;
+    private static final String KEY_QUOTE = "object_quote";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +40,19 @@ public class QuoteActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.toolbar_custom);
         TextView toolbar = findViewById(R.id.custom_toolbar);
-        toolbar.setText("Quotations");
+        toolbar.setText(R.string.title_inspiration);
 
         Button inspireMe = findViewById(R.id.buttonNewQuote);
         quote = findViewById(R.id.textViewQuote);
         author = findViewById(R.id.textViewAuthor);
         myQuote = new Quote();
+
+        if(savedInstanceState != null) {
+            myQuote = savedInstanceState.getParcelable(KEY_QUOTE);
+
+            quote.setText(myQuote.getQuotation());
+            author.setText(myQuote.getAuthor());
+        }
 
         inspireMe.setOnClickListener(view -> {
             new Thread(() -> {
@@ -105,5 +113,12 @@ public class QuoteActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putParcelable(KEY_QUOTE,myQuote);
+
+        super.onSaveInstanceState(savedInstanceState);
     }
 }
