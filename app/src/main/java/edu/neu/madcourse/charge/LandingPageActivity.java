@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.concurrent.ThreadLocalRandom;
 
 import edu.neu.madcourse.charge.stretch.StretchActivity;
 
@@ -252,5 +253,12 @@ public class LandingPageActivity extends AppCompatActivity {
             Toast.makeText(this, "Mind and body must be selected",
                     Toast.LENGTH_SHORT).show();
         }
+
+        ArrayList<Class<?>> pages = new ArrayList<>(Arrays.asList(StretchActivity.class,
+                DoodleActivity.class, GratitudeActivity.class, JournalingActivity.class,
+                StepsActivity.class, QuoteActivity.class));
+
+        startActivity(new Intent(LandingPageActivity.this, pages.get(ThreadLocalRandom.current()
+                .nextInt(0, 7))));
     }
 }
