@@ -53,7 +53,7 @@ public class LandingPageActivity extends AppCompatActivity {
         String user = Objects.requireNonNull(auth.getCurrentUser()).getUid();
         db = FirebaseDatabase.getInstance().getReference(user);
 
-        ImageView account = findViewById(R.id.accountImageView);
+        ImageView account = findViewById(R.id.exitImageView);
         ImageView gratitude = findViewById(R.id.imageViewGratitude);
         ImageView doodle = findViewById(R.id.imageViewDoodle);
         ImageView walking = findViewById(R.id.imageViewWalking);
@@ -80,9 +80,15 @@ public class LandingPageActivity extends AppCompatActivity {
         grayscale.setSaturation(0f);
         filter = new ColorMatrixColorFilter(grayscale);
 
+        /*
         account.setOnClickListener(view -> startActivity(new Intent(
                 LandingPageActivity.this, AccountActivity.class
         )));
+        */
+        account.setOnClickListener((view -> {
+            auth.signOut();
+            startActivity(new Intent(LandingPageActivity.this, LoginActivity.class));
+        }));
 
         gratitude.setOnClickListener(view -> startActivity(new Intent(
                 LandingPageActivity.this, GratitudeActivity.class
