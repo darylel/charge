@@ -70,8 +70,6 @@ public class QuoteActivity extends AppCompatActivity {
                     author.setText(myQuote.getAuthor());
                 });
             }).start();
-
-            Toast.makeText(this, "Quote click worked", Toast.LENGTH_SHORT).show();
         });
     }
 
