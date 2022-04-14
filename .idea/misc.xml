@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Daryle/OneDrive/Documents/northeastern/cs5520/Charge/app/src/main/res/layout-land/activity_quote.xml" value="0.1728395061728395" />
         <entry key="..\:/Users/Daryle/OneDrive/Documents/northeastern/cs5520/Charge/app/src/main/res/layout-land/activity_steps.xml" value="0.1728395061728395" />
         <entry key="..\:/Users/Daryle/OneDrive/Documents/northeastern/cs5520/Charge/app/src/main/res/layout/activity_account.xml" value="0.1816123188405797" />
         <entry key="..\:/Users/Daryle/OneDrive/Documents/northeastern/cs5520/Charge/app/src/main/res/layout/activity_gratitude.xml" value="0.1816123188405797" />
@@ -14,7 +15,6 @@
         <entry key="..\:/Users/Daryle/OneDrive/Documents/northeastern/cs5520/Charge/app/src/main/res/layout/activity_steps.xml" value="0.1" />
         <entry key="..\:/Users/Daryle/OneDrive/Documents/northeastern/cs5520/Charge/app/src/main/res/layout/gratitude_card.xml" value="0.25" />
         <entry key="..\:/Users/Daryle/OneDrive/Documents/northeastern/cs5520/Charge/app/src/main/res/layout/toolbar_custom.xml" value="0.12047101449275362" />
-        <entry key="app/src/main/res/layout/stretch_layout.xml" value="0.38697916666666665" />
       </map>
     </option>
   </component>
