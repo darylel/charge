@@ -5,7 +5,6 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
-import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
@@ -52,7 +51,6 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
                     }
 
                     if(snap.key.equals("previous")) {
-                        Log.i("INFO/LIFETIME", snap.value.toString())
                         deviceSteps = snap.value.toString().toInt()
                     }
 
@@ -81,8 +79,7 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
 
     override fun onSensorChanged(step: SensorEvent?) {
         if(walking) {
-            Log.i("INFO/Step Value", step!!.values[0].toInt().toString())
-            previousSteps = step.values[0].toInt()
+            previousSteps = step!!.values[0].toInt()
 
             // Handle 0 in previous steps if sensor has been rebooted to 0 since last activity
             if(previousSteps < deviceSteps) {
