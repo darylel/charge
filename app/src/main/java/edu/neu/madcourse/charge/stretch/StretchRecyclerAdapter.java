@@ -1,11 +1,15 @@
 package edu.neu.madcourse.charge.stretch;
 
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+
+import edu.neu.madcourse.charge.R;
 
 public class StretchRecyclerAdapter extends RecyclerView.Adapter<StretchViewHolder> {
 
@@ -23,16 +27,18 @@ public class StretchRecyclerAdapter extends RecyclerView.Adapter<StretchViewHold
     @NonNull
     @Override
     public StretchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.stretch_layout, parent, false);
+        return new StretchViewHolder(view, stretchClickListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull StretchViewHolder holder, int position) {
-
+        Stretch currentStretch = stretchList.get(position);
+        holder.videoTitle.setText(currentStretch.getTitle());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return stretchList.size();
     }
 }
