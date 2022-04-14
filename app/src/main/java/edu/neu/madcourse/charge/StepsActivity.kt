@@ -55,8 +55,9 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
                         Log.i("INFO/LIFETIME", snap.value.toString())
                         deviceSteps = snap.value.toString().toInt()
                     }
+
                     // Display lifetime steps in the activity
-                    binding.textViewTotalCount?.text= ("$lifetimeSteps")
+                    binding.textViewTotalCount.text= ("$lifetimeSteps")
                 }
             }
 
@@ -68,12 +69,12 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
         val stepSensor: Sensor? = sensorManager?.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
 
         // Start step count
-        binding.buttonStartSteps?.setOnClickListener {
+        binding.buttonStartSteps.setOnClickListener {
             startSteps(stepSensor)
         }
 
         // Save and reset step count
-        binding.buttonSaveSteps?.setOnClickListener {
+        binding.buttonSaveSteps.setOnClickListener {
             saveSteps(stepSensor)
         }
     }
@@ -84,14 +85,15 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
             previousSteps = step.values[0].toInt()
 
             // Handle 0 in previous steps if sensor has been rebooted to 0 since last activity
-            currentSteps = if(previousSteps > 0) {
-                previousSteps - deviceSteps
-            } else {
-                previousSteps
+            if(previousSteps < deviceSteps) {
+                db.child("previous").setValue(0)
+                deviceSteps = 0
             }
 
+            currentSteps = previousSteps - deviceSteps
+
             // Update the current steps count in the display
-            binding.textViewCurrentCount?.text = ("$currentSteps")
+            binding.textViewCurrentCount.text = ("$currentSteps")
         }
     }
 
@@ -126,8 +128,7 @@ class StepsActivity : AppCompatActivity(), SensorEventListener {
                     }
                 }
 
-
-        binding.textViewCurrentCount?.text = "0"
+        binding.textViewCurrentCount.text = "0"
 
         if(stepSensor != null) {
             sensorManager?.unregisterListener(this, stepSensor)
