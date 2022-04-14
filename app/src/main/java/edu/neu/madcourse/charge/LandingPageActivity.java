@@ -37,9 +37,7 @@ public class LandingPageActivity extends AppCompatActivity {
     private ImageView b5;
     private int mind;
     private int body;
-    private FirebaseAuth auth;
     private DatabaseReference db;
-    private String user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +49,8 @@ public class LandingPageActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_landing_page);
 
-        auth = FirebaseAuth.getInstance();
-        user = auth.getCurrentUser().getUid();
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        String user = Objects.requireNonNull(auth.getCurrentUser()).getUid();
         db = FirebaseDatabase.getInstance().getReference(user);
 
         ImageView account = findViewById(R.id.accountImageView);
@@ -241,7 +239,7 @@ public class LandingPageActivity extends AppCompatActivity {
     public void suggestActivity(View view) {
         String newKey = db.child("feelings").push().getKey();
 
-        if(mind != 0 && body != 0) {
+        if(mind != 0 && body != 0 && newKey != null) {
             // Save values to database
             db.child("feelings").child(newKey).child("mind").setValue(mind);
             db.child("feelings").child(newKey).child("body").setValue(body);
