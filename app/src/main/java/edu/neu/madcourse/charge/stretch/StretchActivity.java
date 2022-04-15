@@ -32,6 +32,6 @@ public class StretchActivity extends AppCompatActivity {
         stretchVideos.add(new StretchVideo("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/MVLQm9zr_uE\" frameborder=\"0\" allowfullscreen></iframe>"));
         stretchVideos.add(new StretchVideo("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/veLQ2cdyBBo\" frameborder=\"0\" allowfullscreen></iframe>"));
         StretchAdaptor stretchAdaptor = new StretchAdaptor(stretchVideos);
-        recyclerView.setAdapter(stretchAdaptor);
+        recyclerView.setAdapter(stretchAdaptor); //
     }
 }
