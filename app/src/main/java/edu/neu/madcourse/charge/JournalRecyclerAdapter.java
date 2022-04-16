@@ -38,6 +38,9 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
         return 20;
     }
 
+
+    //TODO: Display current date and time with Calendar instance https://www.youtube.com/watch?v=Le47R9H3qow
+    //TODO: Display Journal title from saved entry
     class JournalViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
         TextView entryTitle, entryDate;
