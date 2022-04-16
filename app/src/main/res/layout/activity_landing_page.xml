@@ -217,7 +217,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:id="@+id/imageView24"
+                        android:id="@+id/imageViewJournaling"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:padding="4dp"

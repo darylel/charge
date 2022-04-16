@@ -34,6 +34,7 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
     @Override
     public int getItemCount() {
         //Number of rows in RecyclerView
+        //TODO: reset back to 0 --> set to 20 to test aesthetics
         return 20;
     }
 
