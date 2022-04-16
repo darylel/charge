@@ -1,7 +1,10 @@
 package edu.neu.madcourse.charge;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,7 +18,12 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
     @NonNull
     @Override
     public JournalViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        //individual row to display items in RecyclerView
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        View view = layoutInflater.inflate(R.layout.journal_entry_card, parent, false);
+
+        //Create instance of journalViewHolder class
+        return new JournalViewHolder(view);
     }
 
     @Override
@@ -26,12 +34,18 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
     @Override
     public int getItemCount() {
         //Number of rows in RecyclerView
-        return 0;
+        return 20;
     }
 
-    class JournalViewHolder extends RecyclerView.ViewHolder{
+    class JournalViewHolder extends RecyclerView.ViewHolder {
+        ImageView imageView;
+        TextView entryTitle, entryDate;
+
         public JournalViewHolder(@NonNull View itemView) {
             super(itemView);
+            imageView = itemView.findViewById(R.id.journal_image_view);
+            entryTitle = itemView.findViewById(R.id.journal_title);
+            entryDate = itemView.findViewById(R.id.journalEntryDate);
         }
     }
 }
