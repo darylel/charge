@@ -1,5 +1,6 @@
 package edu.neu.madcourse.charge;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,6 +33,12 @@ public class JournalingActivity extends AppCompatActivity {
         JournalRecyclerAdapter journalRecyclerAdapter = new JournalRecyclerAdapter();
         journalRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         journalRecyclerView.setAdapter(journalRecyclerAdapter);
+
+        //Customize app bar view
+        Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.toolbar_custom);
+        TextView toolbar = findViewById(R.id.custom_toolbar);
+        toolbar.setText(R.string.MyJournal);
 
         //Retrieve user information
         FirebaseAuth auth = FirebaseAuth.getInstance();
