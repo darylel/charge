@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -32,5 +35,15 @@ public class JournalingActivity extends AppCompatActivity {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         user = Objects.requireNonNull(auth.getCurrentUser()).getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference(user);
+
+        //FAB Button to add new journal entry (new activity)
+        FloatingActionButton addEntry = findViewById(R.id.fabAddEntry);
+
+        addEntry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(JournalingActivity.this, NewJournalEntry.class));
+            }
+        });
     }
 }
