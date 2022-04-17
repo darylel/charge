@@ -53,6 +53,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginBottom="657dp"
         android:clickable="true"
+        android:onClick="onDeleteClick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/trash_can" />

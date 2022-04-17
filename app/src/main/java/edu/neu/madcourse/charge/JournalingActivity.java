@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -21,6 +22,7 @@ import java.util.Objects;
 public class JournalingActivity extends AppCompatActivity {
     RecyclerView journalRecyclerView;
     private DatabaseReference databaseReference;
+    Button deleteEntry;
     String user;
 
     @Override
@@ -48,6 +50,7 @@ public class JournalingActivity extends AppCompatActivity {
         //FAB Button to add new journal entry (new activity)
         FloatingActionButton addEntry = findViewById(R.id.fabAddEntry);
 
+
         addEntry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,4 +58,5 @@ public class JournalingActivity extends AppCompatActivity {
             }
         });
     }
+
 }
