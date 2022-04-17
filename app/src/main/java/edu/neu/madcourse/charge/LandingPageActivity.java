@@ -59,6 +59,7 @@ public class LandingPageActivity extends AppCompatActivity {
         ImageView walking = findViewById(R.id.imageViewWalking);
         ImageView stretching = findViewById(R.id.imageViewStretching);
         ImageView quotes = findViewById(R.id.imageViewQuote);
+        ImageView journaling = findViewById(R.id.imageViewJournaling);
         Button feelings = findViewById(R.id.suggestButton);
         m1 = findViewById(R.id.mind1ImageView);
         m2 = findViewById(R.id.mind2ImageView);
@@ -108,6 +109,10 @@ public class LandingPageActivity extends AppCompatActivity {
 
         quotes.setOnClickListener(view -> startActivity(new Intent(
                 LandingPageActivity.this, QuoteActivity.class
+        )));
+
+        journaling.setOnClickListener(view -> startActivity(new Intent(
+                LandingPageActivity.this, JournalingActivity.class
         )));
     }
 
