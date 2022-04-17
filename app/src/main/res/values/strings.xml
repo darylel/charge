@@ -36,6 +36,8 @@
     <string name="stretching">Stretching</string>
     <string name="journaling">Journaling</string>
     <string name="MyJournal">My Journal</string>
+    <string name="JournalTitle">Journal Title</string>
+    <string name="JournalEntry">Write down your thoughts and feelings for today…</string>
     <string name="Title">Video title</string>
     <string name="inspire_me">Inspire Me</string>
     <string name="title_inspiration">Inspiration</string>
