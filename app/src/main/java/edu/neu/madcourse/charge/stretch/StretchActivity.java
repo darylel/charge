@@ -1,16 +1,11 @@
 package edu.neu.madcourse.charge.stretch;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Vector;
 
 import edu.neu.madcourse.charge.R;
@@ -22,7 +17,7 @@ public class StretchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Vector<StretchVideo> stretchVideos = new Vector<>();
-        setContentView(R.layout.activity_stretch_recyclerview);
+        setContentView(R.layout.activity_stretch);
         RecyclerView recyclerView = findViewById(R.id.stretch_recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

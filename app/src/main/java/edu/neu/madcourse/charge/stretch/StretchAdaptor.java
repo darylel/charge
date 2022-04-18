@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import edu.neu.madcourse.charge.R;
@@ -31,7 +30,7 @@ public class StretchAdaptor extends RecyclerView.Adapter<StretchHolder> {
     @NonNull
     @Override
     public StretchHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.stretch_layout, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.stretch_video_layout, parent, false);
         return new StretchHolder(view, stretchClickListener);
     }
 
