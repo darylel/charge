@@ -42,4 +42,5 @@
     <string name="Title">Video title</string>
     <string name="inspire_me">Inspire Me</string>
     <string name="title_inspiration">Inspiration</string>
+    <string name="title">Title</string>
 </resources>

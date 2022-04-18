@@ -3,7 +3,6 @@ package edu.neu.madcourse.charge.stretch;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
-import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,7 +13,7 @@ public class StretchHolder extends RecyclerView.ViewHolder {
 
     public StretchHolder(View itemView, final StretchClickListener stretchClickListener) {
         super(itemView);
-        stretchWebView = itemView.findViewById(R.id.stretch_video);
+        stretchWebView = itemView.findViewById(R.id.stretch_imageview);
 //        itemView.setOnClickListener(v -> stretchClickListener.onStretchClick(getLayoutPosition()));
         stretchWebView.getSettings().setJavaScriptEnabled(true);
         stretchWebView.setWebChromeClient(new WebChromeClient());
