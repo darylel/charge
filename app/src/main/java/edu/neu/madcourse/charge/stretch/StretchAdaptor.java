@@ -44,8 +44,8 @@ public class StretchAdaptor extends RecyclerView.Adapter<StretchHolder> {
     @Override
     public void onBindViewHolder(@NonNull StretchHolder holder, int position) {
         StretchVideo currentStretchVideo = stretchVideoVideoList.get(position);
-        holder.textView.setText(currentStretchVideo.getTitle());
-        Picasso.get().load(currentStretchVideo.getLink()).into(holder.imageView);
+        holder.stretchTextView.setText(currentStretchVideo.getTitle());
+        Picasso.get().load(currentStretchVideo.getLink()).into(holder.stretchImageView);
     }
 
     @Override
