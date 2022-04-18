@@ -22,8 +22,8 @@ import java.util.Objects;
 public class JournalingActivity extends AppCompatActivity {
     RecyclerView journalRecyclerView;
     private DatabaseReference databaseReference;
-    Button deleteEntry;
     String user;
+    //TODO: List of journal entry titles
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
