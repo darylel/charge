@@ -15,10 +15,10 @@ public class StretchHolder extends RecyclerView.ViewHolder {
     protected TextView textView;
     protected ImageView imageView;
 
-    public StretchHolder(View itemView, final StretchClickListener stretchClickListener) {
+    public StretchHolder(View itemView) {
         super(itemView);
-        imageView = itemView.findViewById(R.id.stretch_imageview);
         textView = itemView.findViewById(R.id.stretch_textview);
+        imageView = itemView.findViewById(R.id.stretch_imageview);
 //        stretchWebView = itemView.findViewById(R.id.stretch_imageview);
 ////        itemView.setOnClickListener(v -> stretchClickListener.onStretchClick(getLayoutPosition()));
 //        stretchWebView.getSettings().setJavaScriptEnabled(true);
