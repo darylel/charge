@@ -18,7 +18,6 @@ public class StretchAdaptor extends RecyclerView.Adapter<StretchHolder> {
 
     private List<StretchVideo> stretchVideoVideoList;
     private Context context;
-    private StretchClickListener stretchClickListener;
 
     public StretchAdaptor() {}
 
@@ -28,15 +27,10 @@ public class StretchAdaptor extends RecyclerView.Adapter<StretchHolder> {
     }
 
 
-//    public void setStretchClickListener(StretchClickListener stretchClickListener) {
-//        this.stretchClickListener = stretchClickListener;
-//    }
-
     @NonNull
     @Override
     public StretchHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.stretch_video_layout, parent, false);
-//        return new StretchHolder(view, stretchClickListener);
         StretchHolder stretchHolder = new StretchHolder(view);
         return stretchHolder;
     }
