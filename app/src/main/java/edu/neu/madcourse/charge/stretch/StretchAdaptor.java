@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import edu.neu.madcourse.charge.R;
@@ -43,6 +45,7 @@ public class StretchAdaptor extends RecyclerView.Adapter<StretchHolder> {
     public void onBindViewHolder(@NonNull StretchHolder holder, int position) {
         StretchVideo currentStretchVideo = stretchVideoVideoList.get(position);
         holder.textView.setText(currentStretchVideo.getTitle());
+        Picasso.get().load(currentStretchVideo.getLink()).into(holder.imageView);
     }
 
     @Override
