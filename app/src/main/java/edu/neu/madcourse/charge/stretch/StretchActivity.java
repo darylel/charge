@@ -19,6 +19,7 @@ public class StretchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_stretch);
         recyclerView = findViewById(R.id.stretch_recycler_view);
 
+
 //        Vector<StretchVideo> stretchVideos = new Vector<>();
 //        setContentView(R.layout.activity_stretch);
 //        RecyclerView recyclerView = findViewById(R.id.stretch_recycler_view);

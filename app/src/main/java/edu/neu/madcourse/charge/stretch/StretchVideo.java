@@ -2,16 +2,16 @@ package edu.neu.madcourse.charge.stretch;
 
 public class StretchVideo {
     private String title;
-    private String url;
+    private String link;
     private String video;
 
     public StretchVideo() {
 
     }
 
-    public StretchVideo(String title, String url, String video) {
+    public StretchVideo(String title, String link, String video) {
         this.title = title;
-        this.url = url;
+        this.link = link;
         this.video = video;
     }
 
@@ -23,12 +23,12 @@ public class StretchVideo {
         this.title = title;
     }
 
-    public String getUrl() {
-        return url;
+    public String getLink() {
+        return link;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setLink(String link) {
+        this.link = link;
     }
 
     public String getVideo() {

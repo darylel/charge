@@ -37,7 +37,7 @@ public class StretchAdaptor extends RecyclerView.Adapter<StretchHolder> {
     @Override
     public void onBindViewHolder(@NonNull StretchHolder holder, int position) {
         StretchVideo currentStretchVideo = stretchVideoVideoList.get(position);
-        holder.stretchWebView.loadData(currentStretchVideo.getUrl(), "text/html", "utf-8");
+        holder.stretchWebView.loadData(currentStretchVideo.getLink(), "text/html", "utf-8");
     }
 
     @Override
