@@ -10,18 +10,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.neu.madcourse.charge.R;
 
-public class StretchAdaptor extends RecyclerView.Adapter<StretchHolder> {
+public class StretchAdapter extends RecyclerView.Adapter<StretchHolder> {
 
-    private List<StretchVideo> stretchVideoVideoList;
+    private ArrayList<StretchVideo> stretchVideoVideoList;
     private Context context;
 
-    public StretchAdaptor() {}
+    public StretchAdapter() {}
 
-    public StretchAdaptor(List<StretchVideo> stretchVideoVideoList, Context context) {
+    public StretchAdapter(ArrayList<StretchVideo> stretchVideoVideoList, Context context) {
         this.stretchVideoVideoList = stretchVideoVideoList;
         this.context = context;
     }

@@ -6,17 +6,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 import edu.neu.madcourse.charge.R;
 
 public class StretchActivity extends AppCompatActivity {
-    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stretch);
-        recyclerView = findViewById(R.id.stretch_recycler_view);
+        RecyclerView stretchRecyclerView = findViewById(R.id.stretch_recycler_view);
+        ArrayList<StretchVideo> stretchVideoArrayList = new ArrayList<>();
+        StretchAdapter stretchAdapter = new StretchAdapter(stretchVideoArrayList, StretchActivity.this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        stretchRecyclerView.setLayoutManager(layoutManager);
+        stretchRecyclerView.setAdapter(stretchAdapter);
     }
 }
