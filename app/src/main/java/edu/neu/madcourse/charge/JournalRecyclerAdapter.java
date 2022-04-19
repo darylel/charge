@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 
 /**
@@ -16,12 +17,16 @@ import java.util.ArrayList;
  * Creates the rows and will map the items inside list to the created rows
  */
 public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecyclerAdapter.JournalViewHolder> {
+    private final ArrayList<Journal> journalEntries;
+
+    public JournalRecyclerAdapter(ArrayList<Journal> journalEntries) {
+        this.journalEntries = journalEntries;
+    }
 
     @NonNull
     @Override
     public JournalViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //individual row to display items in RecyclerView
-        //Inflate the min # of rows to prevent slow down
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.journal_entry_card, parent, false);
 
@@ -33,24 +38,24 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
     //Map data for each individual row
     @Override
     public void onBindViewHolder(@NonNull JournalViewHolder holder, int position) {
+
+        Journal currentJournalEntry = journalEntries.get(position);
         //TODO: Set imageView
+        //holder.imageView.setImageIcon();
 
-        //This will be set from the list values to the first TextView
         //TODO: Set textView -- entryTitle from list
+        holder.entryTitle.setText(currentJournalEntry.getJournalTitle());
 
-
-        //This will be set from the stored value
-        //String formatted Date = Dateformat.getDateTimeInstance.().format( 
-        //holder.entryDate.setText(
         //TODO: Set textView -- (timestamp) entryDate
+        //TODO: HOW DO I STORE THE TIME FOR THE ENTRY?
+        String formattedDate = DateFormat.getDateTimeInstance().format(currentJournalEntry.getJournalDate());
+        holder.entryDate.setText(formattedDate);
+
     }
 
     @Override
     public int getItemCount() {
-        //Number of rows in RecyclerView
-        //TODO: reset back to 0 --> set to 1 to test aesthetics
-        return 1;
-        //TODO: return list.size()
+        return journalEntries.size();
     }
 
 
