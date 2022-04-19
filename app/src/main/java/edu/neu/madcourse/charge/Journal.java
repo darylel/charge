@@ -11,7 +11,7 @@ public class Journal {
 
     public Journal(String journalTitle, String journalDate) {
         this.journalTitle = journalTitle;
-
+        this.journalDate = journalDate;
     }
 
     public String getJournalTitle() {
