@@ -34,7 +34,14 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
     @Override
     public void onBindViewHolder(@NonNull JournalViewHolder holder, int position) {
         //TODO: Set imageView
+
+        //This will be set from the list values to the first TextView
         //TODO: Set textView -- entryTitle from list
+
+
+        //This will be set from the stored value
+        //String formatted Date = Dateformat.getDateTimeInstance.().format( 
+        //holder.entryDate.setText(
         //TODO: Set textView -- (timestamp) entryDate
     }
 

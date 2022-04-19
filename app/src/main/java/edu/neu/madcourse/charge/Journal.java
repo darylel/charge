@@ -1,24 +1,24 @@
 package edu.neu.madcourse.charge;
 
 public class Journal {
-    private String entry;
-    private String keyJournal;
+    private String journalTitle;
+    private String journalDate;
 
     public Journal() {}
 
     public Journal(String item) {
-        this.entry = item;
+        this.journalTitle = item;
     }
 
-    public String getEntry() {
-        return entry;
+    public String getJournalTitle() {
+        return journalTitle;
     }
 
-    public void setEntry(String entry) {
-        this.entry = entry;
+    public void setJournalTitle(String journalTitle) {
+        this.journalTitle = journalTitle;
     }
 
-    public String getKeyJournal() { return keyJournal; }
+    public String getJournalDate() { return journalDate; }
 
-    public void setKey(String keyJournal) { this.keyJournal = keyJournal; }
+    public void setJournalDate(String journalDate) { this.journalDate = journalDate; }
 }
