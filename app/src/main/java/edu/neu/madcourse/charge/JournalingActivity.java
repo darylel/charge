@@ -25,18 +25,10 @@ public class JournalingActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     String user;
 
-    //TODO: List of journal entry titles
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_journaling);
-
-        //RecyclerView and LayoutManager setup
-        journalRecyclerView = findViewById(R.id.journalRecyclerView);
-        JournalRecyclerAdapter journalRecyclerAdapter = new JournalRecyclerAdapter(journalEntries);
-        journalRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        journalRecyclerView.setAdapter(journalRecyclerAdapter);
 
         //Customize app bar view
         Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -51,6 +43,12 @@ public class JournalingActivity extends AppCompatActivity {
 
         //FAB Button to add new journal entry (new activity)
         FloatingActionButton addEntry = findViewById(R.id.fabAddEntry);
+
+        //RecyclerView, Adapter, and LayoutManager setup
+        journalRecyclerView = findViewById(R.id.journalRecyclerView);
+        journalRecyclerAdapter = new JournalRecyclerAdapter(journalEntries);
+        journalRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        journalRecyclerView.setAdapter(journalRecyclerAdapter);
 
 
         addEntry.setOnClickListener(new View.OnClickListener() {

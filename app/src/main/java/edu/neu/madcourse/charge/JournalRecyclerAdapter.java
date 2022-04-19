@@ -40,9 +40,6 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
     public void onBindViewHolder(@NonNull JournalViewHolder holder, int position) {
 
         Journal currentJournalEntry = journalEntries.get(position);
-        //TODO: Set imageView
-        //holder.imageView.setImageIcon();
-
         //TODO: Set textView -- entryTitle from list
         holder.entryTitle.setText(currentJournalEntry.getJournalTitle());
 
@@ -68,7 +65,7 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
         public JournalViewHolder(@NonNull View itemView) {
             super(itemView);
             //TODO: Need timestamp for the entryDate textview
-            imageView = itemView.findViewById(R.id.journal_image_view);
+            imageView = (ImageView) itemView.findViewById(R.id.journal_image_view);
             entryTitle = itemView.findViewById(R.id.journal_title);
             entryDate = itemView.findViewById(R.id.journalEntryDate);
 

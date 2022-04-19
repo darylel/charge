@@ -9,8 +9,9 @@ public class Journal {
 
     public Journal() {}
 
-    public Journal(String item) {
-        this.journalTitle = item;
+    public Journal(String journalTitle, String journalDate) {
+        this.journalTitle = journalTitle;
+        this.journalDate = journalDate;
     }
 
     public String getJournalTitle() {
