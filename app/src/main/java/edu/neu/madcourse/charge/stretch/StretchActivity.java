@@ -23,4 +23,8 @@ public class StretchActivity extends AppCompatActivity {
         stretchRecyclerView.setLayoutManager(layoutManager);
         stretchRecyclerView.setAdapter(stretchAdapter);
     }
+
+    private void getVideo() {
+
+    }
 }
