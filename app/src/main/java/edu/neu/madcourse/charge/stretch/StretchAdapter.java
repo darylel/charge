@@ -39,7 +39,7 @@ public class StretchAdapter extends RecyclerView.Adapter<StretchHolder> {
         StretchVideo currentStretchVideo = stretchVideoVideoList.get(position);
         holder.stretchTextView.setText(currentStretchVideo.getTitle());
         Picasso.get().load(currentStretchVideo.getLink()).into(holder.stretchImageView);
-        holder.stretchTextView.setOnClickListener(v -> {
+        holder.stretchImageView.setOnClickListener(v -> {
             StretchVideo stretchVideo1 = stretchVideoVideoList.get(position);
             Intent videoIntent = new Intent(view.getContext(), YouTube.class).putExtra("videoId", stretchVideo1.getVideo());
             view.getContext().startActivity(videoIntent);
