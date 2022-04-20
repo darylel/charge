@@ -44,7 +44,7 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
         holder.entryTitle.setText(currentJournalEntry.getJournalTitle());
 
         //TODO: Set textView -- (timestamp) entryDate
-        //TODO: HOW DO I STORE THE TIME FOR THE ENTRY?
+        //TODO: Formatted Entry Date
         String formattedDate = DateFormat.getDateTimeInstance().format(currentJournalEntry.getJournalDate());
         holder.entryDate.setText(formattedDate);
 
