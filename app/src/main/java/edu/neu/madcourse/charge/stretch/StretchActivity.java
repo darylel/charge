@@ -13,11 +13,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import edu.neu.madcourse.charge.R;
 
@@ -57,7 +59,8 @@ public class StretchActivity extends AppCompatActivity {
                     "channelId=UCBINFWq52ShSgUFEoynfSwg&maxResults=10&key=AIzaSyCgyiPkLYH0j" +
                     "QI0wrZlhzZscbMCPnJmSt4";
             String GET = "GET";
-            String jsonVideos = "videos";
+
+            String jsonItems = "items";
             String jsonId = "id";
             String jsonSnippet = "snippet";
             String jsonThumbnails = "thumbnails";
@@ -74,14 +77,16 @@ public class StretchActivity extends AppCompatActivity {
                 connection.setDoInput(true);
                 connection.connect();
 
-                String inputStream = connection.getInputStream().toString();
-                JSONObject jsonObject = new JSONObject(inputStream);
-                JSONArray videos = jsonObject.getJSONArray(jsonVideos);
+                InputStream inputStream = connection.getInputStream();
+                final String response = convertStringToStream(inputStream);
 
-                for (int i = 0; i < videos.length(); i++) {
-                    JSONObject video = videos.getJSONObject(i);
+                JSONObject jsonObject = new JSONObject(response);
+                JSONArray videoArray = jsonObject.getJSONArray(jsonItems);
+
+                for (int i = 0; i < videoArray.length(); i++) {
+                    JSONObject video = videoArray.getJSONObject(i);
                     JSONObject videoId = video.getJSONObject(jsonId);
-                    JSONObject snippet = jsonObject.getJSONObject(jsonSnippet);
+                        JSONObject snippet = video.getJSONObject(jsonSnippet);
                     JSONObject thumbnails = snippet.getJSONObject(jsonThumbnails).getJSONObject(jsonMedium);
 
                     StretchVideo stretchVideo = new StretchVideo();
@@ -107,6 +112,16 @@ public class StretchActivity extends AppCompatActivity {
                 Log.e(TAG, "JSON Exception thrown");
                 e.printStackTrace();
             }
+        }
+        private String convertStringToStream(InputStream inputStream) {
+            Scanner scanner = new Scanner(inputStream).useDelimiter("\\A");
+            String stream;
+            if (scanner.hasNext()) {
+                stream = scanner.next().replace(",", ",\n");
+            } else {
+                stream = "";
+            }
+            return stream;
         }
     }
 }
