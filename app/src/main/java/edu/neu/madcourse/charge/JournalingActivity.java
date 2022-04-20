@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -28,6 +29,7 @@ public class JournalingActivity extends AppCompatActivity {
     private final ArrayList<Journal> journalEntries = new ArrayList<>();
     private DatabaseReference databaseReference;
     String user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,36 +53,35 @@ public class JournalingActivity extends AppCompatActivity {
         //RecyclerView, Adapter, and LayoutManager setup
         journalRecyclerView = findViewById(R.id.journalRecyclerView);
         journalRecyclerAdapter = new JournalRecyclerAdapter(journalEntries);
+        journalRecyclerView.setHasFixedSize(true);
         journalRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         journalRecyclerView.setAdapter(journalRecyclerAdapter);
 
-        //DB add
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        //TODO: Update Journal Entry in UI
+        //TODO: Update Journal Entry in DB
+        addEntry.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot snap : snapshot.child("Journal").getChildren()){
-                    Journal journal = snap.getValue(Journal.class);
-                    journalEntries.add(journal);
-                }
-                journalRecyclerAdapter.notifyDataSetChanged();
-            }
+            public void onClick(View view) {
+                startActivity(new Intent(JournalingActivity.this, NewJournalEntry.class));
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                //Firebase DB: Retrieve updated data for user's journal entries
+                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot snap : snapshot.child("Journal").getChildren()) {
+                            Journal journal = snap.getValue(Journal.class);
+                            journalEntries.add(journal);
+                        }
+                        journalRecyclerAdapter.notifyDataSetChanged();
+                    }
 
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
-
-
-
-
-
-//        addEntry.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(JournalingActivity.this, NewJournalEntry.class));
-//            }
-//        });
     }
 
 }
