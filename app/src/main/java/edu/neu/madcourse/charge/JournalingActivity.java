@@ -62,8 +62,6 @@ public class JournalingActivity extends AppCompatActivity {
         addEntry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(JournalingActivity.this, NewJournalEntry.class));
-
                 //Firebase DB: Retrieve updated data for user's journal entries
                 databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -80,8 +78,11 @@ public class JournalingActivity extends AppCompatActivity {
 
                     }
                 });
+                startActivity(new Intent(JournalingActivity.this, NewJournalEntry.class));
+
             }
         });
+
     }
 
 }

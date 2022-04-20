@@ -22,9 +22,9 @@ public class NewJournalEntry extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.putExtra("newEntry", journalTitle.getText().toString());
-                setResult(1, intent);
+                //Write to the database
+                //Add to the list
+                //Notify the adapter that data has changed
                 finish();
             }
         });
