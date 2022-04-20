@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -53,13 +56,18 @@ public class StretchActivity extends AppCompatActivity {
 
     class RunnableThread implements Runnable {
 
+        private DatabaseReference databaseReference;
+        private DatabaseReference videoDatabaseReference;
+
         @SuppressLint("NotifyDataSetChanged")
         @Override
         public void run() {
+
+            databaseReference = FirebaseDatabase.getInstance().getReference().child("YouTubeAPI");
+
             URL url;
-            String youTubeURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&" +
-                    "channelId=UCBINFWq52ShSgUFEoynfSwg&maxResults=10&key=AIzaSyCgyiPkLYH0j" +
-                    "QI0wrZlhzZscbMCPnJmSt4";
+            String youTubeURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCBINFWq52ShSgUFEoynfSwg&maxResults=10&key=AIzaSyDoSLl3iQJVeRphG7GdF32pL4LAZmhQzjk";
+//            String youTube = String.valueOf(databaseReference);
             String GET = "GET";
 
             String jsonItems = "items";
