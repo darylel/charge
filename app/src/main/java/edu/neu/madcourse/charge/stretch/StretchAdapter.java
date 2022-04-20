@@ -17,6 +17,7 @@ public class StretchAdapter extends RecyclerView.Adapter<StretchHolder> {
 
     private ArrayList<StretchVideo> stretchVideoVideoList;
     private View view;
+    private String videoId = "videoId";
 
     public StretchAdapter() {}
 
@@ -40,8 +41,8 @@ public class StretchAdapter extends RecyclerView.Adapter<StretchHolder> {
         holder.stretchTextView.setText(currentStretchVideo.getTitle());
         Picasso.get().load(currentStretchVideo.getLink()).into(holder.stretchImageView);
         holder.stretchImageView.setOnClickListener(v -> {
-            StretchVideo stretchVideo1 = stretchVideoVideoList.get(position);
-            Intent videoIntent = new Intent(view.getContext(), YouTube.class).putExtra("videoId", stretchVideo1.getVideo());
+            StretchVideo stretchVideo = stretchVideoVideoList.get(position);
+            Intent videoIntent = new Intent(view.getContext(), YouTube.class).putExtra(videoId, stretchVideo.getVideo());
             view.getContext().startActivity(videoIntent);
         });
     }
