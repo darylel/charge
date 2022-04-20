@@ -79,7 +79,6 @@ public class JournalingActivity extends AppCompatActivity {
                     }
                 });
                 startActivity(new Intent(JournalingActivity.this, NewJournalEntry.class));
-
             }
         });
 

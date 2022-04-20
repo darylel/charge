@@ -18,6 +18,7 @@ public class NewJournalEntry extends AppCompatActivity {
         setContentView(R.layout.activity_new_journal_entry);
 
         journalTitle = findViewById(R.id.journal_title);
+        saveButton = findViewById(R.id.saveEntry_button);
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
