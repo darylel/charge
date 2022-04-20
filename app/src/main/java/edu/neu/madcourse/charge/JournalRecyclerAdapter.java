@@ -9,11 +9,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DateFormat;
+import java.util.ArrayList;
+
 /**
  * Responsible for displaying items in the Journal RecyclerView
  * Creates the rows and will map the items inside list to the created rows
  */
 public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecyclerAdapter.JournalViewHolder> {
+    private final ArrayList<Journal> journalEntries;
+
+    public JournalRecyclerAdapter(ArrayList<Journal> journalEntries) {
+        this.journalEntries = journalEntries;
+    }
 
     @NonNull
     @Override
@@ -26,30 +34,47 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
         return new JournalViewHolder(view);
     }
 
+    //onBindViewHolder called for each row in RecyclerView
+    //Map data for each individual row
     @Override
     public void onBindViewHolder(@NonNull JournalViewHolder holder, int position) {
+
+        Journal currentJournalEntry = journalEntries.get(position);
+        //TODO: Set textView -- entryTitle from list
+        holder.entryTitle.setText(currentJournalEntry.getJournalTitle());
+
+        //TODO: Set textView -- (timestamp) entryDate
+        //TODO: Formatted Entry Date
+        String formattedDate = DateFormat.getDateTimeInstance().format(currentJournalEntry.getJournalDate());
+        holder.entryDate.setText(formattedDate);
 
     }
 
     @Override
     public int getItemCount() {
-        //Number of rows in RecyclerView
-        //TODO: reset back to 0 --> set to 20 to test aesthetics
-        return 20;
+        return journalEntries.size();
     }
 
 
     //TODO: Display current date and time with Calendar instance https://www.youtube.com/watch?v=Le47R9H3qow
     //TODO: Display Journal title from saved entry
-    class JournalViewHolder extends RecyclerView.ViewHolder {
+    class JournalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imageView;
         TextView entryTitle, entryDate;
 
         public JournalViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.journal_image_view);
+            //TODO: Need timestamp for the entryDate textview
+            imageView = (ImageView) itemView.findViewById(R.id.journal_image_view);
             entryTitle = itemView.findViewById(R.id.journal_title);
             entryDate = itemView.findViewById(R.id.journalEntryDate);
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+
         }
     }
 }
