@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -52,6 +53,7 @@ public class StretchActivity extends AppCompatActivity {
 
     class RunnableThread implements Runnable {
 
+        @SuppressLint("NotifyDataSetChanged")
         @Override
         public void run() {
             URL url;
