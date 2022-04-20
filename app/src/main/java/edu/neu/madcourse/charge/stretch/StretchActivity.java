@@ -36,7 +36,7 @@ public class StretchActivity extends AppCompatActivity {
         RecyclerView stretchRecyclerView = findViewById(R.id.stretch_recycler_view);
         TAG = "StretchActivity";
         stretchVideoList = new ArrayList<>();
-        stretchAdapter = new StretchAdapter(stretchVideoList, StretchActivity.this);
+        stretchAdapter = new StretchAdapter(stretchVideoList, stretchRecyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         stretchRecyclerView.setLayoutManager(layoutManager);
         stretchRecyclerView.setAdapter(stretchAdapter);
@@ -86,7 +86,7 @@ public class StretchActivity extends AppCompatActivity {
                 for (int i = 0; i < videoArray.length(); i++) {
                     JSONObject video = videoArray.getJSONObject(i);
                     JSONObject videoId = video.getJSONObject(jsonId);
-                        JSONObject snippet = video.getJSONObject(jsonSnippet);
+                    JSONObject snippet = video.getJSONObject(jsonSnippet);
                     JSONObject thumbnails = snippet.getJSONObject(jsonThumbnails).getJSONObject(jsonMedium);
 
                     StretchVideo stretchVideo = new StretchVideo();

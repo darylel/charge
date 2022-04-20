@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import edu.neu.madcourse.charge.R;
 
 public class StretchHolder extends RecyclerView.ViewHolder {
-//    protected WebView stretchWebView;
     protected TextView stretchTextView;
     protected ImageView stretchImageView;
 
@@ -17,10 +16,6 @@ public class StretchHolder extends RecyclerView.ViewHolder {
         super(itemView);
         stretchTextView = itemView.findViewById(R.id.stretch_textview);
         stretchImageView = itemView.findViewById(R.id.stretch_imageview);
-//        stretchWebView = itemView.findViewById(R.id.stretch_imageview);
-////        itemView.setOnClickListener(v -> stretchClickListener.onStretchClick(getLayoutPosition()));
-//        stretchWebView.getSettings().setJavaScriptEnabled(true);
-//        stretchWebView.setWebChromeClient(new WebChromeClient());
     }
 
 }

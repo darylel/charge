@@ -1,6 +1,5 @@
 package edu.neu.madcourse.charge.stretch;
-
-import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,22 +9,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 import edu.neu.madcourse.charge.R;
 
 public class StretchAdapter extends RecyclerView.Adapter<StretchHolder> {
 
     private ArrayList<StretchVideo> stretchVideoVideoList;
-    private Context context;
+    private View view;
 
     public StretchAdapter() {}
 
-    public StretchAdapter(ArrayList<StretchVideo> stretchVideoVideoList, Context context) {
+    public StretchAdapter(ArrayList<StretchVideo> stretchVideoVideoList, View view) {
         this.stretchVideoVideoList = stretchVideoVideoList;
-        this.context = context;
+        this.view = view;
     }
 
 
@@ -42,6 +39,11 @@ public class StretchAdapter extends RecyclerView.Adapter<StretchHolder> {
         StretchVideo currentStretchVideo = stretchVideoVideoList.get(position);
         holder.stretchTextView.setText(currentStretchVideo.getTitle());
         Picasso.get().load(currentStretchVideo.getLink()).into(holder.stretchImageView);
+        holder.stretchTextView.setOnClickListener(v -> {
+            StretchVideo stretchVideo1 = stretchVideoVideoList.get(position);
+            Intent videoIntent = new Intent(view.getContext(), YouTube.class).putExtra("videoId", stretchVideo1.getVideo());
+            view.getContext().startActivity(videoIntent);
+        });
     }
 
     @Override
