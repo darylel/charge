@@ -23,21 +23,19 @@ import edu.neu.madcourse.charge.R;
 
 public class StretchActivity extends AppCompatActivity {
     private String TAG;
-    private RecyclerView stretchRecyclerView;
     private StretchAdapter stretchAdapter;
     private ArrayList<StretchVideo> stretchVideoList;
-    RecyclerView.LayoutManager layoutManager;
-    Handler handler;
+    private Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stretch);
-        stretchRecyclerView = findViewById(R.id.stretch_recycler_view);
+        RecyclerView stretchRecyclerView = findViewById(R.id.stretch_recycler_view);
         TAG = "StretchActivity";
         stretchVideoList = new ArrayList<>();
         stretchAdapter = new StretchAdapter(stretchVideoList, StretchActivity.this);
-        layoutManager = new LinearLayoutManager(getApplicationContext());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         stretchRecyclerView.setLayoutManager(layoutManager);
         stretchRecyclerView.setAdapter(stretchAdapter);
         handler = new Handler();
@@ -51,9 +49,9 @@ public class StretchActivity extends AppCompatActivity {
     }
 
     class RunnableThread implements Runnable {
+
         @Override
         public void run() {
-
             URL url;
             String youTubeURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&" +
                     "channelId=UCBINFWq52ShSgUFEoynfSwg&maxResults=10&key=AIzaSyCgyiPkLYH0j" +
@@ -79,7 +77,6 @@ public class StretchActivity extends AppCompatActivity {
                 String inputStream = connection.getInputStream().toString();
                 JSONObject jsonObject = new JSONObject(inputStream);
                 JSONArray videos = jsonObject.getJSONArray(jsonVideos);
-
 
                 for (int i = 0; i < videos.length(); i++) {
                     JSONObject video = videos.getJSONObject(i);
