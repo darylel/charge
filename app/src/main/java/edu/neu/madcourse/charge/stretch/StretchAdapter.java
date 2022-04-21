@@ -15,9 +15,9 @@ import edu.neu.madcourse.charge.R;
 
 public class StretchAdapter extends RecyclerView.Adapter<StretchHolder> {
 
-    private ArrayList<StretchVideo> stretchVideoVideoList;
-    private View view;
-    private String videoId = "videoId";
+    private final ArrayList<StretchVideo> stretchVideoVideoList;
+    private final View view;
+    private final String videoId = "videoId";
 
     public StretchAdapter(ArrayList<StretchVideo> stretchVideoVideoList, View view) {
         this.stretchVideoVideoList = stretchVideoVideoList;
