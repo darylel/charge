@@ -19,13 +19,10 @@ public class StretchAdapter extends RecyclerView.Adapter<StretchHolder> {
     private View view;
     private String videoId = "videoId";
 
-    public StretchAdapter() {}
-
     public StretchAdapter(ArrayList<StretchVideo> stretchVideoVideoList, View view) {
         this.stretchVideoVideoList = stretchVideoVideoList;
         this.view = view;
     }
-
 
     @NonNull
     @Override
