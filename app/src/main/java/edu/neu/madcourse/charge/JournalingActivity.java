@@ -57,12 +57,19 @@ public class JournalingActivity extends AppCompatActivity {
         journalRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         journalRecyclerView.setAdapter(journalRecyclerAdapter);
 
-        //TODO: Update Journal Entry in UI
         //TODO: Update Journal Entry in DB
         addEntry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Firebase DB: Retrieve updated data for user's journal entries
+
+                //db.child('journal').child(new_key).setValue...
+                //...setValue(new Journal(title, entry, id))
+                //-key
+                //--- journal title
+                //       --- journal entry
+                //       --- journal id
+                //journal id = new_key
                 databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {

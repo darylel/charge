@@ -6,6 +6,7 @@ package edu.neu.madcourse.charge;
 public class Journal {
     private String journalTitle;
     private String journalDate;
+    //TODO: add the unique ID
 
     public Journal() {}
 

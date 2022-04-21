@@ -20,12 +20,22 @@ public class NewJournalEntry extends AppCompatActivity {
         journalTitle = findViewById(R.id.journal_title);
         saveButton = findViewById(R.id.saveEntry_button);
 
+        //TODO: Create condition to check for unique ID
+            //for loop in journal entries and look for ID
+            //If it does find it,
+                //db.child('journal').child('key').getValue('title')
+
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Write to the database
-                //Add to the list
-                //Notify the adapter that data has changed
+                //TODO: Write to the database
+                //TODO: if Key != null vs key == null -->>>> writes to the DB
+                    //if key == null{
+                        //generate a key}
+                    //Continue --> set the values
+                //Example : Generate the key and set the values of the Journal object
+                // String newKey = db.child("gratitude").push().getKey();
+                // db.child("gratitude").child(newKey).setValue(new Gratitude(d.get(0)));
                 finish();
             }
         });
