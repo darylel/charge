@@ -60,14 +60,16 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
     //TODO: Display Journal title from saved entry
     class JournalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imageView;
-        TextView entryTitle, entryDate;
+        TextView entryTitle, entryDate, entryDescription;
 
         public JournalViewHolder(@NonNull View itemView) {
             super(itemView);
-            //TODO: Need timestamp for the entryDate textview
+
+            //Journal Items
             imageView = (ImageView) itemView.findViewById(R.id.journal_image_view);
             entryTitle = itemView.findViewById(R.id.journal_title);
             entryDate = itemView.findViewById(R.id.journalEntryDate);
+            entryDescription = itemView.findViewById(R.id.journalEntryText);
 
             itemView.setOnClickListener(this);
         }

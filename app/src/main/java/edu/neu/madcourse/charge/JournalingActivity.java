@@ -87,19 +87,34 @@ public class JournalingActivity extends AppCompatActivity implements Serializabl
 
                     }
                 });
-                //Source: https://www.youtube.com/watch?v=OUZcjZkJrvY
-                Intent intent = new Intent(JournalingActivity.this, NewJournalEntry.class);
-                intent.putExtra("entries_list", (Serializable) journalEntries);
-//                intent.putParcelableArrayListExtra("entries", (ArrayList<? extends Parcelable>) journalEntries);
-                startActivity(intent);
-//                startActivity(new Intent(JournalingActivity.this, NewJournalEntry.class));
+                createNewEntry();
             }
         });
 
-        //EDIT EXISTING JOURNAL ENTRY
-        //TODO: Update existing entry
+        //TODO: Actions -- Edit or Delete Entry
+        //If Swipe Left,
+        editEntry();
 
+        //if Swipe Right
+            //Delete entry
 
+    }
+
+    /**
+     * Opens a new Journal Entry
+     */
+    private void createNewEntry() {
+        startActivity(new Intent(JournalingActivity.this, NewJournalEntry.class));
+    }
+
+    /**
+     * Opens an already existing Journal Entry
+     */
+    private void editEntry() {
+        //Source: https://www.youtube.com/watch?v=OUZcjZkJrvY
+        Intent intent = new Intent(JournalingActivity.this, EditJournalActivity.class);
+        intent.putExtra("entries_list", (Serializable) journalEntries);
+        startActivity(intent);
     }
 
 }
