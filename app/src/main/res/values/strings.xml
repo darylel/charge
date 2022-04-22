@@ -47,4 +47,5 @@
     <string name="edit_username">Edit Username</string>
     <string name="update_username">Update Username</string>
     <string name="youtube_video_stills">YouTube video stills</string>
+    <string name="youtube_url">https://www.googleapis.com/youtube/v3/search?part=snippet&amp;channelId=UCBINFWq52ShSgUFEoynfSwg&amp;maxResults=10&amp;key=AIzaSyDoSLl3iQJVeRphG7GdF32pL4LAZmhQzjk</string>
 </resources>
