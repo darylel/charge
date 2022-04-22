@@ -5,9 +5,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -32,6 +34,7 @@ public class StretchActivity extends AppCompatActivity {
     private StretchAdapter stretchAdapter;
     private ArrayList<StretchVideo> stretchVideoList;
     private Handler handler;
+    private View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,7 @@ public class StretchActivity extends AppCompatActivity {
         stretchRecyclerView.setLayoutManager(layoutManager);
         stretchRecyclerView.setAdapter(stretchAdapter);
         handler = new Handler();
+
         getVideos();
     }
 
@@ -60,11 +64,11 @@ public class StretchActivity extends AppCompatActivity {
         @Override
         public void run() {
 
-            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("YouTubeAPI");
-            DatabaseReference videoDatabaseReference;
+//            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("YouTubeURL");
+//            DatabaseReference videoDatabaseReference = FirebaseDatabase.getInstance().getReference().child("YouTubeURL");
 
             URL url;
-            String youTubeURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCBINFWq52ShSgUFEoynfSwg&maxResults=10&key=AIzaSyDoSLl3iQJVeRphG7GdF32pL4LAZmhQzjk";
+            String youTubeURL = view.getContext().getResources().getString(R.string.youtube_url);
 //            String youTube = String.valueOf(databaseReference);
             String GET = "GET";
 
@@ -79,7 +83,7 @@ public class StretchActivity extends AppCompatActivity {
             String stringVideoId = "videoId";
 
             try {
-                url = new URL(youTubeURL);
+                url = new URL(String.valueOf(youTubeURL));
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod(GET);
                 connection.setDoInput(true);
