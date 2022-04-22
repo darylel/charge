@@ -44,7 +44,7 @@ public class StretchActivity extends AppCompatActivity {
         TAG = "StretchActivity";
         stretchVideoList = new ArrayList<>();
         stretchAdapter = new StretchAdapter(stretchVideoList, stretchRecyclerView);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext()); //
         stretchRecyclerView.setLayoutManager(layoutManager);
         stretchRecyclerView.setAdapter(stretchAdapter);
         handler = new Handler();
