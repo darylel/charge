@@ -21,10 +21,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class JournalingActivity extends AppCompatActivity {
+public class JournalingActivity extends AppCompatActivity implements Serializable {
     RecyclerView journalRecyclerView;
     private JournalRecyclerAdapter journalRecyclerAdapter;
     public final ArrayList<Journal> journalEntries = new ArrayList<>();
@@ -58,12 +59,7 @@ public class JournalingActivity extends AppCompatActivity {
         journalRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         journalRecyclerView.setAdapter(journalRecyclerAdapter);
 
-        //Update Journal Entry in DB
-
-        //STEP 1: When FAB is clicked, I need to pass the journalEntries ArrayList to my newJournalEntry Activity
-        //STEP 2: In the newJournalEntryActivity I will loop through the list of Journal objects, and see if the journal ID exists
-        //STEP 3: In the newJournalEntryActivity, I will generate an ID (if not there), and set the values for each Journal object
-
+        //UPDATES DB AFTER NEW ENTRY ADDED
         addEntry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,12 +88,17 @@ public class JournalingActivity extends AppCompatActivity {
                     }
                 });
                 //Source: https://www.youtube.com/watch?v=OUZcjZkJrvY
-//                Intent intent = new Intent(JournalingActivity.this, NewJournalEntry.class);
+                Intent intent = new Intent(JournalingActivity.this, NewJournalEntry.class);
+                intent.putExtra("entries_list", (Serializable) journalEntries);
 //                intent.putParcelableArrayListExtra("entries", (ArrayList<? extends Parcelable>) journalEntries);
-//                startActivity(intent);
-                startActivity(new Intent(JournalingActivity.this, NewJournalEntry.class));
+                startActivity(intent);
+//                startActivity(new Intent(JournalingActivity.this, NewJournalEntry.class));
             }
         });
+
+        //EDIT EXISTING JOURNAL ENTRY
+        //TODO: Update existing entry
+
 
     }
 
