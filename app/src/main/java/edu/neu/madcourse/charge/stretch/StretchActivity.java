@@ -56,14 +56,12 @@ public class StretchActivity extends AppCompatActivity {
 
     class RunnableThread implements Runnable {
 
-        private DatabaseReference databaseReference;
-        private DatabaseReference videoDatabaseReference;
-
         @SuppressLint("NotifyDataSetChanged")
         @Override
         public void run() {
 
-            databaseReference = FirebaseDatabase.getInstance().getReference().child("YouTubeAPI");
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("YouTubeAPI");
+            DatabaseReference videoDatabaseReference;
 
             URL url;
             String youTubeURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCBINFWq52ShSgUFEoynfSwg&maxResults=10&key=AIzaSyDoSLl3iQJVeRphG7GdF32pL4LAZmhQzjk";
@@ -99,10 +97,11 @@ public class StretchActivity extends AppCompatActivity {
                     JSONObject snippet = video.getJSONObject(jsonSnippet);
                     JSONObject thumbnails = snippet.getJSONObject(jsonThumbnails).getJSONObject(jsonMedium);
 
-                    StretchVideo stretchVideo = new StretchVideo();
-                    stretchVideo.setLink(thumbnails.getString(stringURL));
-                    stretchVideo.setVideo(videoId.getString(stringVideoId));
-                    stretchVideo.setTitle(snippet.getString(stringTitle));
+                    String link = thumbnails.getString(stringURL);
+                    String videoIdString = videoId.getString(stringVideoId);
+                    String title = snippet.getString(stringTitle);
+
+                    StretchVideo stretchVideo = new StretchVideo(title, link, videoIdString);
                     stretchVideoList.add(stretchVideo);
                 }
 
