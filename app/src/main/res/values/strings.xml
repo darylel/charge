@@ -43,4 +43,7 @@
     <string name="inspire_me">Inspire Me</string>
     <string name="title_inspiration">Inspiration</string>
     <string name="title">Title</string>
+    <string name="username">Username</string>
+    <string name="edit_username">Edit Username</string>
+    <string name="update_username">Update Username</string>
 </resources>

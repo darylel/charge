@@ -15,17 +15,14 @@ import edu.neu.madcourse.charge.R;
 
 public class StretchAdapter extends RecyclerView.Adapter<StretchHolder> {
 
-    private ArrayList<StretchVideo> stretchVideoVideoList;
-    private View view;
-    private String videoId = "videoId";
+    private final ArrayList<StretchVideo> stretchVideoList;
+    private final View view;
+    private final String videoId = "videoId";
 
-    public StretchAdapter() {}
-
-    public StretchAdapter(ArrayList<StretchVideo> stretchVideoVideoList, View view) {
-        this.stretchVideoVideoList = stretchVideoVideoList;
+    public StretchAdapter(ArrayList<StretchVideo> stretchVideoList, View view) {
+        this.stretchVideoList = stretchVideoList;
         this.view = view;
     }
-
 
     @NonNull
     @Override
@@ -37,11 +34,11 @@ public class StretchAdapter extends RecyclerView.Adapter<StretchHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull StretchHolder holder, int position) {
-        StretchVideo currentStretchVideo = stretchVideoVideoList.get(position);
+        StretchVideo currentStretchVideo = stretchVideoList.get(position);
         holder.stretchTextView.setText(currentStretchVideo.getTitle());
         Picasso.get().load(currentStretchVideo.getLink()).into(holder.stretchImageView);
         holder.stretchImageView.setOnClickListener(v -> {
-            StretchVideo stretchVideo = stretchVideoVideoList.get(position);
+            StretchVideo stretchVideo = stretchVideoList.get(position);
             Intent videoIntent = new Intent(view.getContext(), YouTube.class).putExtra(videoId, stretchVideo.getVideo());
             view.getContext().startActivity(videoIntent);
         });
@@ -49,6 +46,6 @@ public class StretchAdapter extends RecyclerView.Adapter<StretchHolder> {
 
     @Override
     public int getItemCount() {
-        return stretchVideoVideoList.size();
+        return stretchVideoList.size();
     }
 }

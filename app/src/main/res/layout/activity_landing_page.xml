@@ -203,7 +203,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:layout_constraintBottom_toTopOf="@id/exitImageView"
+            app:layout_constraintBottom_toTopOf="@id/accountImageView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/orTextView">
@@ -376,14 +376,14 @@
         </TableLayout>
 
         <ImageView
-            android:id="@+id/exitImageView"
+            android:id="@+id/accountImageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:contentDescription="@string/account_link"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:srcCompat="@drawable/ic_baseline_exit_to_app_24"
+            app:srcCompat="@drawable/ic_baseline_account_circle_24"
             tools:ignore="ImageContrastCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
