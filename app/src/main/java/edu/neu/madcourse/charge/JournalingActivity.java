@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,7 +27,7 @@ import java.util.Objects;
 public class JournalingActivity extends AppCompatActivity {
     RecyclerView journalRecyclerView;
     private JournalRecyclerAdapter journalRecyclerAdapter;
-    private final ArrayList<Journal> journalEntries = new ArrayList<>();
+    public final ArrayList<Journal> journalEntries = new ArrayList<>();
     private DatabaseReference databaseReference;
     String user;
 
@@ -57,7 +58,12 @@ public class JournalingActivity extends AppCompatActivity {
         journalRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         journalRecyclerView.setAdapter(journalRecyclerAdapter);
 
-        //TODO: Update Journal Entry in DB
+        //Update Journal Entry in DB
+
+        //STEP 1: When FAB is clicked, I need to pass the journalEntries ArrayList to my newJournalEntry Activity
+        //STEP 2: In the newJournalEntryActivity I will loop through the list of Journal objects, and see if the journal ID exists
+        //STEP 3: In the newJournalEntryActivity, I will generate an ID (if not there), and set the values for each Journal object
+
         addEntry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,6 +91,10 @@ public class JournalingActivity extends AppCompatActivity {
 
                     }
                 });
+                //Source: https://www.youtube.com/watch?v=OUZcjZkJrvY
+//                Intent intent = new Intent(JournalingActivity.this, NewJournalEntry.class);
+//                intent.putParcelableArrayListExtra("entries", (ArrayList<? extends Parcelable>) journalEntries);
+//                startActivity(intent);
                 startActivity(new Intent(JournalingActivity.this, NewJournalEntry.class));
             }
         });
