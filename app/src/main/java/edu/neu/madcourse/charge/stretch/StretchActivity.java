@@ -9,10 +9,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.View;
-
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,7 +30,7 @@ public class StretchActivity extends AppCompatActivity {
     private StretchAdapter stretchAdapter;
     private ArrayList<StretchVideo> stretchVideoList;
     private Handler handler;
-    private View view;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +40,11 @@ public class StretchActivity extends AppCompatActivity {
         TAG = "StretchActivity";
         stretchVideoList = new ArrayList<>();
         stretchAdapter = new StretchAdapter(stretchVideoList, stretchRecyclerView);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext()); //
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         stretchRecyclerView.setLayoutManager(layoutManager);
         stretchRecyclerView.setAdapter(stretchAdapter);
         handler = new Handler();
-
+        context = StretchActivity.this;
         getVideos();
     }
 
@@ -64,12 +60,8 @@ public class StretchActivity extends AppCompatActivity {
         @Override
         public void run() {
 
-//            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("YouTubeURL");
-//            DatabaseReference videoDatabaseReference = FirebaseDatabase.getInstance().getReference().child("YouTubeURL");
-
             URL url;
-            String youTubeURL = view.getContext().getResources().getString(R.string.youtube_url);
-//            String youTube = String.valueOf(databaseReference);
+            String youTubeURL = context.getResources().getString(R.string.youtube_url);
             String GET = "GET";
 
             String jsonItems = "items";
