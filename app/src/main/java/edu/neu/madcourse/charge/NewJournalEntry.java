@@ -8,11 +8,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class NewJournalEntry extends AppCompatActivity {
     Button saveButton;
-    TextView journalTitle;
+    TextView journalTitle, journalDescrip;
+    private DatabaseReference databaseReference;
+    String user;
+
 
 
     @Override
@@ -20,19 +28,28 @@ public class NewJournalEntry extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_journal_entry);
 
-        journalTitle = findViewById(R.id.journal_title);
+        journalTitle = findViewById(R.id.entryTitleInput);
+        journalDescrip = findViewById(R.id.journalEntryText);
         saveButton = findViewById(R.id.saveEntry_button);
+
+        //Retrieve user information
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        user = Objects.requireNonNull(auth.getCurrentUser()).getUid();
+        databaseReference = FirebaseDatabase.getInstance().getReference(user);
+
+        String text = journalTitle.getText().toString();
+       // Journal journal = new Journal();
+
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //TODO: Write to the database
                 //STEP 1: Generate  new key and store
+                String newKey = databaseReference.child("Journal").push().getKey();
                 //STEP 2: setValue for Title, Description, and Date
 
-                //Example : Generate the key and set the values of the Journal object
-                // String newKey = db.child("gratitude").push().getKey();
-                // db.child("gratitude").child(newKey).setValue(new Gratitude(d.get(0)));
+                databaseReference.child("Journal").child(newKey).setValue(new Journal());
                 finish();
             }
         });

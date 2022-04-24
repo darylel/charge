@@ -61,6 +61,7 @@ public class JournalingActivity extends AppCompatActivity implements Serializabl
 
         //UPDATES DB AFTER NEW ENTRY ADDED
         addEntry.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 //Firebase DB: Retrieve updated data for user's journal entries
@@ -72,6 +73,8 @@ public class JournalingActivity extends AppCompatActivity implements Serializabl
                 //       --- journal entry
                 //       --- journal id
                 //journal id = new_key
+
+                createNewEntry();
                 databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -87,13 +90,14 @@ public class JournalingActivity extends AppCompatActivity implements Serializabl
 
                     }
                 });
-                createNewEntry();
+
+//                createNewEntry();
             }
         });
 
         //TODO: Actions -- Edit or Delete Entry
         //If Swipe Left,
-        editEntry();
+//        editEntry();
 
         //if Swipe Right
             //Delete entry
@@ -103,14 +107,14 @@ public class JournalingActivity extends AppCompatActivity implements Serializabl
     /**
      * Opens a new Journal Entry
      */
-    private void createNewEntry() {
+    public void createNewEntry() {
         startActivity(new Intent(JournalingActivity.this, NewJournalEntry.class));
     }
 
     /**
      * Opens an already existing Journal Entry
      */
-    private void editEntry() {
+    public void editEntry() {
         //Source: https://www.youtube.com/watch?v=OUZcjZkJrvY
         Intent intent = new Intent(JournalingActivity.this, EditJournalActivity.class);
         intent.putExtra("entries_list", (Serializable) journalEntries);
