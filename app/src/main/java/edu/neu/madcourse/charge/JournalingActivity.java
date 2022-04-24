@@ -74,10 +74,16 @@ public class JournalingActivity extends AppCompatActivity implements Serializabl
                 //       --- journal id
                 //journal id = new_key
 
+
+                //TITLE: ENTRY 1 --> LIST = ENTRY 1
+                //TITLE: ENTRY 2  --> LIST = ENTRY 1, ENTRY 1, ENTRY 2
+
+
                 createNewEntry();
                 databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        journalEntries.clear();
                         for (DataSnapshot snap : snapshot.child("Journal").getChildren()) {
                             Journal journal = snap.getValue(Journal.class);
                             journalEntries.add(journal);
@@ -90,8 +96,6 @@ public class JournalingActivity extends AppCompatActivity implements Serializabl
 
                     }
                 });
-
-//                createNewEntry();
             }
         });
 

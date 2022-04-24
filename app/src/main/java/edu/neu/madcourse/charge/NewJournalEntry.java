@@ -28,6 +28,7 @@ public class NewJournalEntry extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_journal_entry);
 
+        ////USE THE RIGHT ID'S!!!
         journalTitle = findViewById(R.id.entryTitleInput);
         journalDescrip = findViewById(R.id.journalEntryText);
         saveButton = findViewById(R.id.saveEntry_button);
@@ -37,19 +38,22 @@ public class NewJournalEntry extends AppCompatActivity {
         user = Objects.requireNonNull(auth.getCurrentUser()).getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference(user);
 
-        String text = journalTitle.getText().toString();
-       // Journal journal = new Journal();
-
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //STORE EACH STRING AND THEN I CAN PUT INTO MY JOURNAL OBJECT
+                // Journal journal = new Journal();
+                String text = journalTitle.getText().toString();
+
                 //TODO: Write to the database
                 //STEP 1: Generate  new key and store
                 String newKey = databaseReference.child("Journal").push().getKey();
                 //STEP 2: setValue for Title, Description, and Date
 
-                databaseReference.child("Journal").child(newKey).setValue(new Journal());
+                //TODO:Add new journal object
+                //databaseReference.child("Journal").child(newKey).setValue(new Journal());
                 finish();
             }
         });
