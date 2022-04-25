@@ -1,9 +1,5 @@
 package edu.neu.madcourse.charge;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,11 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.EmailAuthProvider;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthRecentLoginRequiredException;
 import com.google.firebase.auth.FirebaseUser;
@@ -54,36 +48,30 @@ public class AccountActivity extends AppCompatActivity {
         });
 
         update.setOnClickListener(view -> {
-            if(newUsername.getText() == null || newUsername.getText().equals("")) {
+            if(newUsername.getText() == null || newUsername.getText().toString().equals("")) {
                 Toast.makeText(this, "Username cannot be blank", Toast.LENGTH_SHORT).show();
             } else {
                 user.updateEmail(newUsername.getText().toString())
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful()) {
-                                    Toast.makeText(AccountActivity.this,
-                                            "Username successfully update",
-                                            Toast.LENGTH_SHORT).show();
+                        .addOnCompleteListener(task -> {
+                            if(task.isSuccessful()) {
+                                Toast.makeText(AccountActivity.this,
+                                        "Username successfully update",
+                                        Toast.LENGTH_SHORT).show();
 
-                                    username.setText(user.getEmail());
-                                    newUsername.setVisibility(View.INVISIBLE);
-                                    update.setVisibility(View.INVISIBLE);
-                                } else {
-                                    Toast.makeText(AccountActivity.this,
-                                            "Unable to update username",
-                                            Toast.LENGTH_SHORT).show();
-                                }
+                                username.setText(user.getEmail());
+                                newUsername.setVisibility(View.INVISIBLE);
+                                update.setVisibility(View.INVISIBLE);
+                            } else {
+                                Toast.makeText(AccountActivity.this,
+                                        "Unable to update username",
+                                        Toast.LENGTH_SHORT).show();
                             }
-                        }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        if (e instanceof FirebaseAuthRecentLoginRequiredException) {
-                            Toast.makeText(AccountActivity.this, "Please logout and sign in to update username",
-                                Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                        }).addOnFailureListener(e -> {
+                            if (e instanceof FirebaseAuthRecentLoginRequiredException) {
+                                Toast.makeText(AccountActivity.this, "Please logout and sign in to update username",
+                                    Toast.LENGTH_SHORT).show();
+                            }
+                        });
             }
         });
 
