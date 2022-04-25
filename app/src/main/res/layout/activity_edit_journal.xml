@@ -59,7 +59,7 @@
         app:srcCompat="@drawable/trash_can" />
 
     <Button
-        android:id="@+id/saveEntry_button"
+        android:id="@+id/overrideSave_button"
         android:textSize="15sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

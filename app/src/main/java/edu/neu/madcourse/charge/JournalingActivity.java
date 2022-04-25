@@ -59,7 +59,7 @@ public class JournalingActivity extends AppCompatActivity implements Serializabl
         journalRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         journalRecyclerView.setAdapter(journalRecyclerAdapter);
 
-        //UPDATES DB AFTER NEW ENTRY ADDED
+        //Create new Journal Entry and save to DB
         addEntry.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -78,8 +78,9 @@ public class JournalingActivity extends AppCompatActivity implements Serializabl
                 //TITLE: ENTRY 1 --> LIST = ENTRY 1
                 //TITLE: ENTRY 2  --> LIST = ENTRY 1, ENTRY 1, ENTRY 2
 
-
                 createNewEntry();
+
+                //DB and adapter are updated with the new entry
                 databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -99,7 +100,7 @@ public class JournalingActivity extends AppCompatActivity implements Serializabl
             }
         });
 
-        //TODO: Actions -- Edit or Delete Entry
+        //TODO: Actions -- Edit or Delete Entry -- PT 2
         //If Swipe Left,
 //        editEntry();
 

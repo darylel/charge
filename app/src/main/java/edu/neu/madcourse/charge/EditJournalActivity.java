@@ -20,7 +20,7 @@ public class EditJournalActivity extends AppCompatActivity {
 
         //Items (Save Button, Title, Description)
         journalTitle = findViewById(R.id.journal_title);
-        saveButton = findViewById(R.id.saveEntry_button);
+        saveButton = findViewById(R.id.overrideSave_button);
         entryDescription = findViewById(R.id.journalEntryText);
 
         //TODO: Set the TextViews to the values of the current Journal object

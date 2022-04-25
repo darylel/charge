@@ -17,7 +17,7 @@ import java.util.Objects;
 
 public class NewJournalEntry extends AppCompatActivity {
     Button saveButton;
-    TextView journalTitle, journalDescrip;
+    TextView journalTitle, journalDescrip, journalEntryDate;
     private DatabaseReference databaseReference;
     String user;
 
@@ -28,9 +28,10 @@ public class NewJournalEntry extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_journal_entry);
 
-        ////USE THE RIGHT ID'S!!!
+
         journalTitle = findViewById(R.id.entryTitleInput);
         journalDescrip = findViewById(R.id.journalEntryText);
+        journalEntryDate = findViewById(R.id.journalEntryDate);
         saveButton = findViewById(R.id.saveEntry_button);
 
         //Retrieve user information
