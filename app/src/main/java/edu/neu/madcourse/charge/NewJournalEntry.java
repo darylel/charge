@@ -22,7 +22,6 @@ public class NewJournalEntry extends AppCompatActivity {
     String user;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
