@@ -1,5 +1,6 @@
 package edu.neu.madcourse.charge;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,11 +43,13 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
         Journal currentJournalEntry = journalEntries.get(position);
         //TODO: Set textView -- entryTitle from list
         holder.entryTitle.setText(currentJournalEntry.getJournalTitle());
+        Log.e("Journal Title is", holder.entryTitle.toString());
 
         //TODO: Set textView -- (timestamp) entryDate
         //TODO: Formatted Entry Date
-        String formattedDate = DateFormat.getDateTimeInstance().format(currentJournalEntry.getJournalDate());
-        holder.entryDate.setText(formattedDate);
+        //String formattedDate = DateFormat.getDateTimeInstance().format(currentJournalEntry.getJournalDate());
+        holder.entryDate.setText(currentJournalEntry.getJournalDate());
+        Log.e("Journal Date is", holder.entryDate.toString());
 
     }
 
@@ -60,14 +63,16 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
     //TODO: Display Journal title from saved entry
     class JournalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imageView;
-        TextView entryTitle, entryDate;
+        TextView entryTitle, entryDate, entryDescription;
 
         public JournalViewHolder(@NonNull View itemView) {
             super(itemView);
-            //TODO: Need timestamp for the entryDate textview
+
+            //Journal Items
             imageView = (ImageView) itemView.findViewById(R.id.journal_image_view);
             entryTitle = itemView.findViewById(R.id.journal_title);
             entryDate = itemView.findViewById(R.id.journalEntryDate);
+            entryDescription = itemView.findViewById(R.id.journalEntryText);
 
             itemView.setOnClickListener(this);
         }

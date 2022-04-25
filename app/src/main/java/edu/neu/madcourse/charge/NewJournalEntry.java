@@ -2,42 +2,67 @@ package edu.neu.madcourse.charge;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Objects;
+
 public class NewJournalEntry extends AppCompatActivity {
     Button saveButton;
-    TextView journalTitle;
+    TextView journalTitle, journalDescrip, journalEntryDate;
+    private DatabaseReference databaseReference;
+    String user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_journal_entry);
 
-        journalTitle = findViewById(R.id.journal_title);
+        //Set IDs
+        journalTitle = findViewById(R.id.entryTitleInput);
+        journalDescrip = findViewById(R.id.journalEntryText);
+        journalEntryDate = findViewById(R.id.journalEntryDate);
         saveButton = findViewById(R.id.saveEntry_button);
 
-        //TODO: Create condition to check for unique ID
-            //for loop in journal entries and look for ID
-            //If it does find it,
-                //db.child('journal').child('key').getValue('title')
+        //Retrieve user information
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        user = Objects.requireNonNull(auth.getCurrentUser()).getUid();
+        databaseReference = FirebaseDatabase.getInstance().getReference(user);
 
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //TODO: Write to the database
-                //TODO: if Key != null vs key == null -->>>> writes to the DB
-                    //if key == null{
-                        //generate a key}
-                    //Continue --> set the values
-                //Example : Generate the key and set the values of the Journal object
-                // String newKey = db.child("gratitude").push().getKey();
-                // db.child("gratitude").child(newKey).setValue(new Gratitude(d.get(0)));
-                finish();
-            }
+        //Save provided information
+        saveButton.setOnClickListener(view -> {
+            //Get Date
+            SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+            Date today = new Date(System.currentTimeMillis());
+
+            //Create, set, and store EACH STRING AND THEN I CAN PUT INTO MY JOURNAL OBJECT
+            Journal addedJournalEntry = new Journal();
+
+            //Get the values
+            String title = journalTitle.getText().toString();
+            String description = journalDescrip.getText().toString();
+            String uniqueID = databaseReference.child("Journal").push().getKey();
+
+            //Set the values
+            addedJournalEntry.setJournalTitle(title);
+            addedJournalEntry.setJournalDescription(description);
+            addedJournalEntry.setJournalID(uniqueID);
+            addedJournalEntry.setJournalDate(formatter.format(today));
+
+            //TODO: Write to the database
+            //setValues with Journal object for Title, Description, and Date
+            databaseReference.child("Journal").child(uniqueID).setValue(addedJournalEntry);
+
+            finish();
         });
     }
 

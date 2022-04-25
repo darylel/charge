@@ -5,12 +5,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,6 +30,7 @@ public class StretchActivity extends AppCompatActivity {
     private StretchAdapter stretchAdapter;
     private ArrayList<StretchVideo> stretchVideoList;
     private Handler handler;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +44,7 @@ public class StretchActivity extends AppCompatActivity {
         stretchRecyclerView.setLayoutManager(layoutManager);
         stretchRecyclerView.setAdapter(stretchAdapter);
         handler = new Handler();
+        context = StretchActivity.this;
         getVideos();
     }
 
@@ -56,18 +56,12 @@ public class StretchActivity extends AppCompatActivity {
 
     class RunnableThread implements Runnable {
 
-        private DatabaseReference databaseReference;
-        private DatabaseReference videoDatabaseReference;
-
         @SuppressLint("NotifyDataSetChanged")
         @Override
         public void run() {
 
-            databaseReference = FirebaseDatabase.getInstance().getReference().child("YouTubeAPI");
-
             URL url;
-            String youTubeURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCBINFWq52ShSgUFEoynfSwg&maxResults=10&key=AIzaSyDoSLl3iQJVeRphG7GdF32pL4LAZmhQzjk";
-//            String youTube = String.valueOf(databaseReference);
+            String youTubeURL = context.getResources().getString(R.string.youtube_url);
             String GET = "GET";
 
             String jsonItems = "items";
@@ -81,7 +75,7 @@ public class StretchActivity extends AppCompatActivity {
             String stringVideoId = "videoId";
 
             try {
-                url = new URL(youTubeURL);
+                url = new URL(String.valueOf(youTubeURL));
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod(GET);
                 connection.setDoInput(true);
@@ -99,10 +93,11 @@ public class StretchActivity extends AppCompatActivity {
                     JSONObject snippet = video.getJSONObject(jsonSnippet);
                     JSONObject thumbnails = snippet.getJSONObject(jsonThumbnails).getJSONObject(jsonMedium);
 
-                    StretchVideo stretchVideo = new StretchVideo();
-                    stretchVideo.setLink(thumbnails.getString(stringURL));
-                    stretchVideo.setVideo(videoId.getString(stringVideoId));
-                    stretchVideo.setTitle(snippet.getString(stringTitle));
+                    String link = thumbnails.getString(stringURL);
+                    String videoIdString = videoId.getString(stringVideoId);
+                    String title = snippet.getString(stringTitle);
+
+                    StretchVideo stretchVideo = new StretchVideo(title, link, videoIdString);
                     stretchVideoList.add(stretchVideo);
                 }
 
