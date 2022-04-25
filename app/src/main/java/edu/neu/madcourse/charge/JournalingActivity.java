@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -85,10 +86,12 @@ public class JournalingActivity extends AppCompatActivity implements Serializabl
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         journalEntries.clear();
+                        Log.e("Size of journal entries", String.valueOf(journalEntries.size()));
                         for (DataSnapshot snap : snapshot.child("Journal").getChildren()) {
                             Journal journal = snap.getValue(Journal.class);
                             journalEntries.add(journal);
                         }
+                        Log.e("Updated size of journal entries", String.valueOf(journalEntries.size()));
                         journalRecyclerAdapter.notifyDataSetChanged();
                     }
 
