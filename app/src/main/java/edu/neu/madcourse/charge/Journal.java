@@ -36,5 +36,5 @@ public class Journal {
 
     public String getJournalDescription() {return journalDescription;}
 
-    public void setJournalDescription() {this.journalDescription = journalDescription;}
+    public void setJournalDescription(String journalDescription) {this.journalDescription = journalDescription;}
 }

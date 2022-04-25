@@ -2,7 +2,6 @@ package edu.neu.madcourse.charge;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,7 +11,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 public class NewJournalEntry extends AppCompatActivity {
@@ -27,7 +27,7 @@ public class NewJournalEntry extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_journal_entry);
 
-
+        //Set IDs
         journalTitle = findViewById(R.id.entryTitleInput);
         journalDescrip = findViewById(R.id.journalEntryText);
         journalEntryDate = findViewById(R.id.journalEntryDate);
@@ -38,24 +38,31 @@ public class NewJournalEntry extends AppCompatActivity {
         user = Objects.requireNonNull(auth.getCurrentUser()).getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference(user);
 
+        //Save provided information
+        saveButton.setOnClickListener(view -> {
+            //Get Date
+            SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+            Date today = new Date(System.currentTimeMillis());
 
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            //Create, set, and store EACH STRING AND THEN I CAN PUT INTO MY JOURNAL OBJECT
+            Journal addedJournalEntry = new Journal();
 
-                //STORE EACH STRING AND THEN I CAN PUT INTO MY JOURNAL OBJECT
-                // Journal journal = new Journal();
-                String text = journalTitle.getText().toString();
+            //Get the values
+            String title = journalTitle.getText().toString();
+            String description = journalDescrip.getText().toString();
+            String uniqueID = databaseReference.child("Journal").push().getKey();
 
-                //TODO: Write to the database
-                //STEP 1: Generate  new key and store
-                String newKey = databaseReference.child("Journal").push().getKey();
-                //STEP 2: setValue for Title, Description, and Date
+            //Set the values
+            addedJournalEntry.setJournalTitle(title);
+            addedJournalEntry.setJournalDescription(description);
+            addedJournalEntry.setJournalID(uniqueID);
+            addedJournalEntry.setJournalDate(formatter.format(today));
 
-                //TODO:Add new journal object
-                //databaseReference.child("Journal").child(newKey).setValue(new Journal());
-                finish();
-            }
+            //TODO: Write to the database
+            //setValues with Journal object for Title, Description, and Date
+            databaseReference.child("Journal").child(uniqueID).setValue(addedJournalEntry);
+
+            finish();
         });
     }
 
