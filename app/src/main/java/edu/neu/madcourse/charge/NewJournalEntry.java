@@ -64,8 +64,6 @@ public class NewJournalEntry extends AppCompatActivity {
             //Set values in DB
             databaseReference.child("Journal").child(uniqueID).setValue(addedJournalEntry);
 
-            //TODO: DO I NEED TO REFRESH DB HERE?
-
             //Close Activity
             finish();
         });

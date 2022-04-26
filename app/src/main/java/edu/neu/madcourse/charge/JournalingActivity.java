@@ -62,8 +62,21 @@ public class JournalingActivity extends AppCompatActivity implements Serializabl
         journalRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         journalRecyclerView.setAdapter(journalRecyclerAdapter);
 
-        //TODO: UI needs to be updated BEFORE the FAB trigger
+        //Initialize list of journal entries
+        initializeEventListener();
 
+        //Create new Journal Entry and save to DB
+        addEntry.setOnClickListener(view -> createNewEntry());
+
+        //Update the UI with newly added journal entry
+        updateUI();
+
+    }
+
+    /**
+     * Initializes the list of journal entries that exist in DB
+     */
+    private void initializeEventListener() {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -81,34 +94,27 @@ public class JournalingActivity extends AppCompatActivity implements Serializabl
 
             }
         });
+    }
 
+    /**
+     * Updates list after new Journal entry is added
+     */
+    private void updateUI() {
 
-        //Create new Journal Entry and save to DB
-        addEntry.setOnClickListener(new View.OnClickListener() {
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                journalEntries.clear();
+                for (DataSnapshot snap : snapshot.child("Journal").getChildren()) {
+                    Journal journal = snap.getValue(Journal.class);
+                    journalEntries.add(journal);
+                }
+                journalRecyclerAdapter.notifyDataSetChanged();
+            }
 
             @Override
-            public void onClick(View view) {
-                createNewEntry();
+            public void onCancelled(@NonNull DatabaseError error) {
 
-                //DB and adapter are updated with the new entry
-                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        journalEntries.clear();
-                        Log.e("Size of journal entries", String.valueOf(journalEntries.size()));
-                        for (DataSnapshot snap : snapshot.child("Journal").getChildren()) {
-                            Journal journal = snap.getValue(Journal.class);
-                            journalEntries.add(journal);
-                        }
-                        Log.e("Updated size of journal entries", String.valueOf(journalEntries.size()));
-                        journalRecyclerAdapter.notifyDataSetChanged();
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
             }
         });
     }
