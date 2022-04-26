@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -16,6 +17,8 @@ public class EditJournalActivity extends AppCompatActivity {
     Button saveButton;
     TextView journalTitle, entryDescription;
 
+    private static final String TAG = "EditJournalActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,20 +29,21 @@ public class EditJournalActivity extends AppCompatActivity {
         saveButton = findViewById(R.id.overrideSave_button);
         entryDescription = findViewById(R.id.journalEntryText);
 
+        //Valid entry has been selected
+        if (getIntent().hasExtra("selectedEntry")) {
+            Journal editJournalEntry = getIntent().getParcelableExtra("selectedEntry");
+            journalTitle.setText(editJournalEntry.getJournalTitle());
+            entryDescription.setText(editJournalEntry.getJournalDescription());
+            Log.d(TAG,"onCreate: " + editJournalEntry.toString());
+        }
+
+
+
         //TODO: Set the TextViews to the values of the current Journal object
 
-
-        //TODO: Create condition to check for journalID
         //TODO: for loop in journalEntries ArrayList and look to see if ID exists
-        //db.child('journal').child('key').getValue('title')
 
-//        Intent intent = getIntent();
-//        ArrayList<Journal> entries = (ArrayList<Journal>) intent.getSerializableExtra("entries_list");
-//
-//        for (Journal journals : entries) {
-//        }
+
     }
 
-
-    //JournalTitle
 }

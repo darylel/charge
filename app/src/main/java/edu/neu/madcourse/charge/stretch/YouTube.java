@@ -11,8 +11,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import edu.neu.madcourse.charge.R;
 
-public class YouTube extends YouTubeBaseActivity implements YouTubePlayer.PlaybackEventListener,
-        YouTubePlayer.OnInitializedListener, YouTubePlayer.PlayerStateChangeListener {
+public class YouTube extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
     private YouTubePlayerView youTubePlayerView;
     private DatabaseReference databaseReference;
     private String API_KEY;
@@ -33,9 +32,6 @@ public class YouTube extends YouTubeBaseActivity implements YouTubePlayer.Playba
 
     @Override
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
-        youTubePlayer.setPlayerStateChangeListener(this);
-        youTubePlayer.setPlaybackEventListener(this);
-
         if (b) {
             return;
         }
@@ -44,61 +40,6 @@ public class YouTube extends YouTubeBaseActivity implements YouTubePlayer.Playba
 
     @Override
     public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
-        // Not implemented
-    }
-
-    @Override
-    public void onPlaying() {
-        // Not implemented
-    }
-
-    @Override
-    public void onPaused() {
-        // Not implemented
-    }
-
-    @Override
-    public void onStopped() {
-        // Not implemented
-    }
-
-    @Override
-    public void onBuffering(boolean b) {
-        // Not implemented
-    }
-
-    @Override
-    public void onSeekTo(int i) {
-        // Not implemented
-    }
-
-    @Override
-    public void onLoading() {
-        // Not implemented
-    }
-
-    @Override
-    public void onLoaded(String s) {
-        // Not implemented
-    }
-
-    @Override
-    public void onAdStarted() {
-        // Not implemented
-    }
-
-    @Override
-    public void onVideoStarted() {
-        // Not implemented
-    }
-
-    @Override
-    public void onVideoEnded() {
-        // Not implemented
-    }
-
-    @Override
-    public void onError(YouTubePlayer.ErrorReason errorReason) {
-        Toast.makeText(this, errorReason.toString(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, youTubeInitializationResult.toString(), Toast.LENGTH_SHORT).show();
     }
 }

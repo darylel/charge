@@ -27,7 +27,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class JournalingActivity extends AppCompatActivity implements Serializable {
+public class JournalingActivity extends AppCompatActivity implements JournalRecyclerAdapter.OnJournalListener {
     RecyclerView journalRecyclerView;
     private JournalRecyclerAdapter journalRecyclerAdapter;
     public final ArrayList<Journal> journalEntries = new ArrayList<>();
@@ -57,13 +57,26 @@ public class JournalingActivity extends AppCompatActivity implements Serializabl
 
         //RecyclerView, Adapter, and LayoutManager setup
         journalRecyclerView = findViewById(R.id.journalRecyclerView);
-        journalRecyclerAdapter = new JournalRecyclerAdapter(journalEntries);
+        journalRecyclerAdapter = new JournalRecyclerAdapter(journalEntries, this);
         journalRecyclerView.setHasFixedSize(true);
         journalRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         journalRecyclerView.setAdapter(journalRecyclerAdapter);
 
-        //TODO: UI needs to be updated BEFORE the FAB trigger
+        //Initialize list of journal entries
+        initializeEventListener();
 
+        //Create new Journal Entry and save to DB
+        addEntry.setOnClickListener(view -> createNewEntry());
+
+        //Update the UI with newly added journal entry
+        updateUI();
+
+    }
+
+    /**
+     * Initializes the list of journal entries that exist in DB
+     */
+    private void initializeEventListener() {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -81,53 +94,29 @@ public class JournalingActivity extends AppCompatActivity implements Serializabl
 
             }
         });
-
-
-        //Create new Journal Entry and save to DB
-        addEntry.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                //Firebase DB: Retrieve updated data for user's journal entries
-
-                //db.child('journal').child(new_key).setValue...
-                //...setValue(new Journal(title, entry, id))
-                //-key
-                //--- journal title
-                //       --- journal entry
-                //       --- journal id
-                //journal id = new_key
-
-                //TITLE: ENTRY 1 --> LIST = ENTRY 1
-                //TITLE: ENTRY 2  --> LIST = ENTRY 1, ENTRY 1, ENTRY 2
-
-                createNewEntry();
-
-                //DB and adapter are updated with the new entry
-                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        journalEntries.clear();
-                        Log.e("Size of journal entries", String.valueOf(journalEntries.size()));
-                        for (DataSnapshot snap : snapshot.child("Journal").getChildren()) {
-                            Journal journal = snap.getValue(Journal.class);
-                            journalEntries.add(journal);
-                        }
-                        Log.e("Updated size of journal entries", String.valueOf(journalEntries.size()));
-                        journalRecyclerAdapter.notifyDataSetChanged();
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-            }
-        });
     }
 
-    public void testAddEntry(FloatingActionButton addEntry){
+    /**
+     * Updates list after new Journal entry is added
+     */
+    private void updateUI() {
 
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                journalEntries.clear();
+                for (DataSnapshot snap : snapshot.child("Journal").getChildren()) {
+                    Journal journal = snap.getValue(Journal.class);
+                    journalEntries.add(journal);
+                }
+                journalRecyclerAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     //Swipe Left to delete Journal Entry
@@ -161,14 +150,21 @@ public class JournalingActivity extends AppCompatActivity implements Serializabl
         startActivity(new Intent(JournalingActivity.this, NewJournalEntry.class));
     }
 
+//    public void editEntry() {
+//        //Source: https://www.youtube.com/watch?v=OUZcjZkJrvY
+//        Intent intent = new Intent(JournalingActivity.this, EditJournalActivity.class);
+//        intent.putExtra("entries_list", (Serializable) journalEntries);
+//        startActivity(intent);
+//    }
+
     /**
      * Opens an already existing Journal Entry
      */
-    public void editEntry() {
-        //Source: https://www.youtube.com/watch?v=OUZcjZkJrvY
+    @Override
+    public void onJournalClick(int position) {
+        journalEntries.get(position);
         Intent intent = new Intent(JournalingActivity.this, EditJournalActivity.class);
-        intent.putExtra("entries_list", (Serializable) journalEntries);
+        intent.putExtra("selectedEntry", journalEntries.get(position));
         startActivity(intent);
     }
-
 }
