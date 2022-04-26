@@ -88,19 +88,6 @@ public class JournalingActivity extends AppCompatActivity implements Serializabl
 
             @Override
             public void onClick(View view) {
-                //Firebase DB: Retrieve updated data for user's journal entries
-
-                //db.child('journal').child(new_key).setValue...
-                //...setValue(new Journal(title, entry, id))
-                //-key
-                //--- journal title
-                //       --- journal entry
-                //       --- journal id
-                //journal id = new_key
-
-                //TITLE: ENTRY 1 --> LIST = ENTRY 1
-                //TITLE: ENTRY 2  --> LIST = ENTRY 1, ENTRY 1, ENTRY 2
-
                 createNewEntry();
 
                 //DB and adapter are updated with the new entry
@@ -124,10 +111,6 @@ public class JournalingActivity extends AppCompatActivity implements Serializabl
                 });
             }
         });
-    }
-
-    public void testAddEntry(FloatingActionButton addEntry){
-
     }
 
     //Swipe Left to delete Journal Entry
