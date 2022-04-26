@@ -1,9 +1,12 @@
 package edu.neu.madcourse.charge;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * The Journal class represents a journal entry object
  */
-public class Journal {
+public class Journal implements Parcelable {
     private String journalTitle;
     private String journalDate;
     private String journalID;
@@ -19,6 +22,25 @@ public class Journal {
         this.journalID = journalID;
         this.journalDescription = journalDescription;
     }
+
+    protected Journal(Parcel in) {
+        journalTitle = in.readString();
+        journalDate = in.readString();
+        journalID = in.readString();
+        journalDescription = in.readString();
+    }
+
+    public static final Creator<Journal> CREATOR = new Creator<Journal>() {
+        @Override
+        public Journal createFromParcel(Parcel in) {
+            return new Journal(in);
+        }
+
+        @Override
+        public Journal[] newArray(int size) {
+            return new Journal[size];
+        }
+    };
 
     public String getJournalTitle() {
         return journalTitle;
@@ -50,5 +72,18 @@ public class Journal {
 
     public void setJournalDescription(String journalDescription) {
         this.journalDescription = journalDescription;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(journalTitle);
+        parcel.writeString(journalDate);
+        parcel.writeString(journalID);
+        parcel.writeString(journalDescription);
     }
 }

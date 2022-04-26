@@ -19,9 +19,11 @@ import java.util.ArrayList;
  */
 public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecyclerAdapter.JournalViewHolder> {
     private final ArrayList<Journal> journalEntries;
+    private OnJournalListener myOnJournalListener;
 
-    public JournalRecyclerAdapter(ArrayList<Journal> journalEntries) {
+    public JournalRecyclerAdapter(ArrayList<Journal> journalEntries, OnJournalListener onJournalListener) {
         this.journalEntries = journalEntries;
+        this.myOnJournalListener = onJournalListener;
     }
 
     @NonNull
@@ -32,7 +34,7 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
         View view = layoutInflater.inflate(R.layout.journal_entry_card, parent, false);
 
         //Create instance of journalViewHolder class
-        return new JournalViewHolder(view);
+        return new JournalViewHolder(view, myOnJournalListener);
     }
 
     //onBindViewHolder called for each row in RecyclerView
@@ -55,11 +57,12 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
         return journalEntries.size();
     }
 
-    class JournalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class JournalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView imageView;
         TextView entryTitle, entryDate, entryDescription;
+        OnJournalListener onJournalListener;
 
-        public JournalViewHolder(@NonNull View itemView) {
+        public JournalViewHolder(@NonNull View itemView, OnJournalListener onJournalListener) {
             super(itemView);
 
             //Journal Items
@@ -67,13 +70,19 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
             entryTitle = itemView.findViewById(R.id.journal_title);
             entryDate = itemView.findViewById(R.id.journalEntryDate);
             entryDescription = itemView.findViewById(R.id.journalEntryText);
+            this.onJournalListener = onJournalListener;
 
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-
+            onJournalListener.onJournalClick(getBindingAdapterPosition());
         }
     }
+
+    public interface OnJournalListener{
+        void onJournalClick(int position);
+    }
 }
+

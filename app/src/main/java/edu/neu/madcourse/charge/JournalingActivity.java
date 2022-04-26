@@ -27,7 +27,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class JournalingActivity extends AppCompatActivity implements Serializable {
+public class JournalingActivity extends AppCompatActivity implements JournalRecyclerAdapter.OnJournalListener {
     RecyclerView journalRecyclerView;
     private JournalRecyclerAdapter journalRecyclerAdapter;
     public final ArrayList<Journal> journalEntries = new ArrayList<>();
@@ -57,7 +57,7 @@ public class JournalingActivity extends AppCompatActivity implements Serializabl
 
         //RecyclerView, Adapter, and LayoutManager setup
         journalRecyclerView = findViewById(R.id.journalRecyclerView);
-        journalRecyclerAdapter = new JournalRecyclerAdapter(journalEntries);
+        journalRecyclerAdapter = new JournalRecyclerAdapter(journalEntries, this);
         journalRecyclerView.setHasFixedSize(true);
         journalRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         journalRecyclerView.setAdapter(journalRecyclerAdapter);
@@ -150,14 +150,21 @@ public class JournalingActivity extends AppCompatActivity implements Serializabl
         startActivity(new Intent(JournalingActivity.this, NewJournalEntry.class));
     }
 
+//    public void editEntry() {
+//        //Source: https://www.youtube.com/watch?v=OUZcjZkJrvY
+//        Intent intent = new Intent(JournalingActivity.this, EditJournalActivity.class);
+//        intent.putExtra("entries_list", (Serializable) journalEntries);
+//        startActivity(intent);
+//    }
+
     /**
      * Opens an already existing Journal Entry
      */
-    public void editEntry() {
-        //Source: https://www.youtube.com/watch?v=OUZcjZkJrvY
+    @Override
+    public void onJournalClick(int position) {
+        journalEntries.get(position);
         Intent intent = new Intent(JournalingActivity.this, EditJournalActivity.class);
-        intent.putExtra("entries_list", (Serializable) journalEntries);
+        intent.putExtra("selectedEntry", journalEntries.get(position));
         startActivity(intent);
     }
-
 }
