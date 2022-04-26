@@ -1,5 +1,6 @@
 package edu.neu.madcourse.charge.stretch;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,6 +10,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,6 +23,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 import edu.neu.madcourse.charge.R;
@@ -36,6 +39,13 @@ public class StretchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stretch);
+
+        // Set the custom app bar view
+        Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.toolbar_custom);
+        TextView toolbar = findViewById(R.id.custom_toolbar);
+        toolbar.setText(R.string.stretching);
+
         RecyclerView stretchRecyclerView = findViewById(R.id.stretch_recycler_view);
         TAG = "StretchActivity";
         stretchVideoList = new ArrayList<>();
