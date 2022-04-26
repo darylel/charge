@@ -1,14 +1,13 @@
 package edu.neu.madcourse.charge;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,9 +19,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
-import java.util.Map;
 import java.util.Objects;
 
 public class QuoteActivity extends AppCompatActivity {
@@ -54,23 +51,21 @@ public class QuoteActivity extends AppCompatActivity {
             author.setText(myQuote.getAuthor());
         }
 
-        inspireMe.setOnClickListener(view -> {
-            new Thread(() -> {
-                try {
-                    getInspired();
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                    Toast.makeText(this,"Unable to retrieve quote", Toast.LENGTH_SHORT).show();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+        inspireMe.setOnClickListener(view -> new Thread(() -> {
+            try {
+                getInspired();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+                Toast.makeText(this,"Unable to retrieve quote", Toast.LENGTH_SHORT).show();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
-                runOnUiThread(() -> {
-                    quote.setText(myQuote.getQuotation());
-                    author.setText(myQuote.getAuthor());
-                });
-            }).start();
-        });
+            runOnUiThread(() -> {
+                quote.setText(myQuote.getQuotation());
+                author.setText(myQuote.getAuthor());
+            });
+        }).start());
     }
 
     private void getInspired() throws MalformedURLException, JSONException {
@@ -104,10 +99,6 @@ public class QuoteActivity extends AppCompatActivity {
             myQuote.setQuotation(objectQuote.getString("q"));
             myQuote.setAuthor(objectQuote.getString("a"));
 
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (ProtocolException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

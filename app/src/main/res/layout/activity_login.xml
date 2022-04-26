@@ -13,12 +13,13 @@
         android:layout_margin="16dp"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:hint="Email"
+        android:hint="@string/email"
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/buttonLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/editTextPassword"
@@ -26,31 +27,33 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword"
         android:minHeight="48dp"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddress"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/buttonLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="@string/login"
         android:backgroundTint="@color/charge_green"
+        android:text="@string/login"
         app:layout_constraintBottom_toTopOf="@id/textViewRegisterText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/textViewRegisterText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="Not registered, click here to Sign Up"
+        android:text="@string/not_registered_click_here_to_sign_up"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/charge_purple"
         android:textStyle="bold"
