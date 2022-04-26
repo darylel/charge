@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+/**
+ * This class represents a populated entry that is to be edited by the user
+ */
 public class EditJournalActivity extends AppCompatActivity {
     Button saveButton;
     TextView journalTitle, entryDescription;
@@ -28,7 +31,7 @@ public class EditJournalActivity extends AppCompatActivity {
 
         //TODO: Create condition to check for journalID
         //TODO: for loop in journalEntries ArrayList and look to see if ID exists
-        ////db.child('journal').child('key').getValue('title')
+        //db.child('journal').child('key').getValue('title')
 
 //        Intent intent = getIntent();
 //        ArrayList<Journal> entries = (ArrayList<Journal>) intent.getSerializableExtra("entries_list");

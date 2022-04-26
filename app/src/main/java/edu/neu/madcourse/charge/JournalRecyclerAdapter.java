@@ -45,9 +45,6 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
         holder.entryTitle.setText(currentJournalEntry.getJournalTitle());
         Log.e("Journal Title is", holder.entryTitle.toString());
 
-        //TODO: Set textView -- (timestamp) entryDate
-        //TODO: Formatted Entry Date
-        //String formattedDate = DateFormat.getDateTimeInstance().format(currentJournalEntry.getJournalDate());
         holder.entryDate.setText(currentJournalEntry.getJournalDate());
         Log.e("Journal Date is", holder.entryDate.toString());
 
@@ -58,9 +55,6 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
         return journalEntries.size();
     }
 
-
-    //TODO: Display current date and time with Calendar instance https://www.youtube.com/watch?v=Le47R9H3qow
-    //TODO: Display Journal title from saved entry
     class JournalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imageView;
         TextView entryTitle, entryDate, entryDescription;

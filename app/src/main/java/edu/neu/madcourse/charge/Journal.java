@@ -9,9 +9,11 @@ public class Journal {
     private String journalID;
     private String journalDescription;
 
-    public Journal() {}
+    public Journal() {
+    }
 
-    public Journal(String journalTitle, String journalDate, String journalID, String journalDescription) {
+    public Journal(String journalTitle, String journalDate, String journalID,
+                   String journalDescription) {
         this.journalTitle = journalTitle;
         this.journalDate = journalDate;
         this.journalID = journalID;
@@ -26,15 +28,27 @@ public class Journal {
         this.journalTitle = journalTitle;
     }
 
-    public String getJournalDate() { return journalDate; }
+    public String getJournalDate() {
+        return journalDate;
+    }
 
-    public void setJournalDate(String journalDate) { this.journalDate = journalDate; }
+    public void setJournalDate(String journalDate) {
+        this.journalDate = journalDate;
+    }
 
-    public String getJournalID() { return journalID; }
+    public String getJournalID() {
+        return journalID;
+    }
 
-    public void setJournalID(String journalID) { this.journalID = journalID; }
+    public void setJournalID(String journalID) {
+        this.journalID = journalID;
+    }
 
-    public String getJournalDescription() {return journalDescription;}
+    public String getJournalDescription() {
+        return journalDescription;
+    }
 
-    public void setJournalDescription(String journalDescription) {this.journalDescription = journalDescription;}
+    public void setJournalDescription(String journalDescription) {
+        this.journalDescription = journalDescription;
+    }
 }
