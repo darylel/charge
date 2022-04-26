@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerInParent="true"
-    android:onClick="onClick">
+    android:contentDescription="@string/journaling"
+    android:onClick="onClick"
+    tools:ignore="DuplicateSpeakableTextCheck">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -55,16 +57,18 @@
                     android:id="@+id/mind1ImageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/emoticon"
                     android:onClick="onClick"
                     android:padding="8dp"
                     android:tag="1"
                     app:srcCompat="@drawable/e1"
-                    tools:ignore="SpeakableTextPresentCheck" />
+                    tools:ignore="SpeakableTextPresentCheck,DuplicateSpeakableTextCheck" />
 
                 <ImageView
                     android:id="@+id/mind2ImageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/emoticon"
                     android:onClick="onClick"
                     android:padding="8dp"
                     android:tag="2"
@@ -75,6 +79,7 @@
                     android:id="@+id/mind3ImageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/emoticon"
                     android:onClick="onClick"
                     android:padding="8dp"
                     android:tag="3"
@@ -85,6 +90,7 @@
                     android:id="@+id/mind4ImageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/emoticon"
                     android:onClick="onClick"
                     android:padding="8dp"
                     android:tag="4"
@@ -95,6 +101,7 @@
                     android:id="@+id/mind5ImageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/emoticon"
                     android:onClick="onClick"
                     android:padding="8dp"
                     android:tag="5"
@@ -122,6 +129,7 @@
                     android:id="@+id/body1ImageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/emoticon"
                     android:onClick="onClick"
                     android:padding="8dp"
                     android:tag="1"
@@ -132,6 +140,7 @@
                     android:id="@+id/body2ImageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/emoticon"
                     android:onClick="onClick"
                     android:padding="8dp"
                     android:tag="2"
@@ -142,6 +151,7 @@
                     android:id="@+id/body3ImageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/emoticon"
                     android:onClick="onClick"
                     android:padding="8dp"
                     android:tag="3"
@@ -152,6 +162,7 @@
                     android:id="@+id/body4ImageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/emoticon"
                     android:onClick="onClick"
                     android:padding="8dp"
                     android:tag="4"
@@ -162,6 +173,7 @@
                     android:id="@+id/body5ImageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/emoticon"
                     android:onClick="onClick"
                     android:padding="8dp"
                     android:tag="5"
@@ -220,6 +232,7 @@
                         android:id="@+id/imageViewJournaling"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
+                        android:contentDescription="@string/journaling"
                         android:padding="4dp"
                         android:src="@drawable/journal_icon"
                         tools:ignore="ImageContrastCheck" />
@@ -244,6 +257,7 @@
                         android:id="@+id/imageViewQuote"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
+                        android:contentDescription="@string/title_inspiration"
                         android:padding="4dp"
                         android:src="@drawable/quotes_120"
                         tools:ignore="ImageContrastCheck" />
@@ -279,6 +293,7 @@
                         android:id="@+id/imageViewStretching"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
+                        android:contentDescription="@string/stretching"
                         android:padding="4dp"
                         android:src="@drawable/stretching"
                         tools:ignore="ImageContrastCheck" />
@@ -310,6 +325,7 @@
                         android:id="@+id/imageViewWalking"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
+                        android:contentDescription="@string/walking"
                         android:padding="4dp"
                         android:src="@drawable/footsteps_120" />
 
@@ -333,6 +349,7 @@
                         android:id="@+id/imageViewDoodle"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
+                        android:contentDescription="@string/doodle"
                         android:padding="4dp"
                         android:src="@drawable/doodle_120_g"
                         tools:ignore="ImageContrastCheck" />
@@ -342,6 +359,7 @@
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:contentDescription="@string/doodle"
                         android:text="@string/doodle"
                         android:textAlignment="center"
                         android:textColor="@color/white"
@@ -358,6 +376,7 @@
                         android:id="@+id/imageViewGratitude"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
+                        android:contentDescription="@string/gratitude"
                         android:padding="4dp"
                         android:src="@drawable/gratitude_125" />
 

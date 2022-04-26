@@ -3,42 +3,30 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Daryle/OneDrive/Documents/northeastern/cs5520/Charge/app/src/main/res/layout-land/activity_quote.xml" value="0.1578125" />
         <entry key="..\:/Users/Daryle/OneDrive/Documents/northeastern/cs5520/Charge/app/src/main/res/layout/activity_account.xml" value="0.22" />
         <entry key="..\:/Users/Daryle/OneDrive/Documents/northeastern/cs5520/Charge/app/src/main/res/layout/activity_gratitude.xml" value="0.1816123188405797" />
         <entry key="..\:/Users/Daryle/OneDrive/Documents/northeastern/cs5520/Charge/app/src/main/res/layout/activity_landing_page.xml" value="0.25" />
         <entry key="..\:/Users/Daryle/OneDrive/Documents/northeastern/cs5520/Charge/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Users/Daryle/OneDrive/Documents/northeastern/cs5520/Charge/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/Daryle/OneDrive/Documents/northeastern/cs5520/Charge/app/src/main/res/layout/activity_new_journal_entry.xml" value="0.13677536231884058" />
-        <entry key="..\:/Users/Daryle/OneDrive/Documents/northeastern/cs5520/Charge/app/src/main/res/layout/activity_sign_up.xml" value="0.33" />
+        <entry key="..\:/Users/Daryle/OneDrive/Documents/northeastern/cs5520/Charge/app/src/main/res/layout/activity_quote.xml" value="0.13722826086956522" />
+        <entry key="..\:/Users/Daryle/OneDrive/Documents/northeastern/cs5520/Charge/app/src/main/res/layout/activity_sign_up.xml" value="0.18" />
+        <entry key="..\:/Users/Daryle/OneDrive/Documents/northeastern/cs5520/Charge/app/src/main/res/layout/activity_steps.xml" value="0.1272644927536232" />
         <entry key="..\:/Users/Daryle/OneDrive/Documents/northeastern/cs5520/Charge/app/src/main/res/layout/gratitude_card.xml" value="0.25" />
-        <entry key="..\:/Users/Daryle/OneDrive/Documents/northeastern/cs5520/Charge/app/src/main/res/layout/stretch_layout.xml" value="0.15307971014492755" />
+        <entry key="..\:/Users/Daryle/OneDrive/Documents/northeastern/cs5520/Charge/app/src/main/res/layout/journal_entry_card.xml" value="0.13677536231884058" />
         <entry key="..\:/Users/Daryle/OneDrive/Documents/northeastern/cs5520/Charge/app/src/main/res/layout/toolbar_custom.xml" value="0.12047101449275362" />
         <entry key="..\:/Users/mesfi/AndroidStudioProjects/charge/app/src/main/res/layout/activity_account.xml" value="0.3625" />
-        <entry key="..\:/Users/mesfi/AndroidStudioProjects/charge/app/src/main/res/layout/activity_edit_journal.xml" value="0.1" />
         <entry key="..\:/Users/mesfi/AndroidStudioProjects/charge/app/src/main/res/layout/activity_gratitude.xml" value="0.3625" />
         <entry key="..\:/Users/mesfi/AndroidStudioProjects/charge/app/src/main/res/layout/activity_journaling.xml" value="0.4" />
         <entry key="..\:/Users/mesfi/AndroidStudioProjects/charge/app/src/main/res/layout/activity_landing_page.xml" value="0.358695652173913" />
         <entry key="..\:/Users/mesfi/AndroidStudioProjects/charge/app/src/main/res/layout/activity_login.xml" value="0.358695652173913" />
         <entry key="..\:/Users/mesfi/AndroidStudioProjects/charge/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/mesfi/AndroidStudioProjects/charge/app/src/main/res/layout/activity_new_journal_entry.xml" value="0.1" />
+        <entry key="..\:/Users/mesfi/AndroidStudioProjects/charge/app/src/main/res/layout/activity_new_journal_entry.xml" value="0.264" />
         <entry key="..\:/Users/mesfi/AndroidStudioProjects/charge/app/src/main/res/layout/activity_sign_up.xml" value="0.358695652173913" />
         <entry key="..\:/Users/mesfi/AndroidStudioProjects/charge/app/src/main/res/layout/gratitude_card.xml" value="0.3625" />
-        <entry key="..\:/Users/mesfi/AndroidStudioProjects/charge/app/src/main/res/layout/journal_entry_card.xml" value="0.4" />
+        <entry key="..\:/Users/mesfi/AndroidStudioProjects/charge/app/src/main/res/layout/journal_entry_card.xml" value="0.536" />
         <entry key="..\:/Users/mesfi/AndroidStudioProjects/charge/app/src/main/res/layout/toolbar_custom.xml" value="0.1762917933130699" />
-        <entry key="app/src/main/res/layout/activity_account.xml" value="0.37604166666666666" />
-        <entry key="app/src/main/res/layout/activity_gratitude.xml" value="0.37604166666666666" />
-        <entry key="app/src/main/res/layout/activity_landing_page.xml" value="0.22192028985507245" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.37604166666666666" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.37604166666666666" />
-        <entry key="app/src/main/res/layout/activity_new_journal_entry.xml" value="0.37604166666666666" />
-        <entry key="app/src/main/res/layout/activity_quote.xml" value="0.37604166666666666" />
-        <entry key="app/src/main/res/layout/activity_steps.xml" value="0.37604166666666666" />
-        <entry key="app/src/main/res/layout/activity_stretch.xml" value="0.37604166666666666" />
-        <entry key="app/src/main/res/layout/activity_you_tube.xml" value="0.37604166666666666" />
-        <entry key="app/src/main/res/layout/gratitude_card.xml" value="0.37604166666666666" />
-        <entry key="app/src/main/res/layout/journal_entry_card.xml" value="0.37604166666666666" />
-        <entry key="app/src/main/res/layout/stretch_video_layout.xml" value="0.22192028985507245" />
-        <entry key="app/src/main/res/layout/toolbar_custom.xml" value="0.37604166666666666" />
       </map>
     </option>
   </component>

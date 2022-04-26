@@ -13,7 +13,6 @@
     <string name="i_m_grateful_for">I\'m grateful for</string>
     <string name="add_item">Add Item</string>
     <string name="my_steps">My Steps</string>
-    <string name="email">Email</string>
     <string name="total_steps_lifetime">Total Steps (Lifetime)</string>
     <string name="current_steps">Current Steps</string>
     <string name="quotes">Inspiration</string>
@@ -22,6 +21,7 @@
     <string name="save_steps">Save Steps</string>
     <string name="gratitude_list">Gratitude List</string>
     <string name="title_activity_journaling">JournalingActivity</string>
+    <string name="emoticon">Emoticon</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -48,4 +48,7 @@
     <string name="update_username">Update Username</string>
     <string name="youtube_video_stills">YouTube video stills</string>
     <string name="youtube_url">https://www.googleapis.com/youtube/v3/search?part=snippet&amp;channelId=UCBINFWq52ShSgUFEoynfSwg&amp;maxResults=10&amp;key=AIzaSyDoSLl3iQJVeRphG7GdF32pL4LAZmhQzjk</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="not_registered_click_here_to_sign_up">Not registered, click here to Sign Up</string>
 </resources>

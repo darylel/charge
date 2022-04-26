@@ -11,6 +11,8 @@ import androidx.core.app.NotificationManagerCompat;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import java.util.Objects;
+
 public class NotificationService extends FirebaseMessagingService {
     @Override
     public void onNewToken(@NonNull String token) {
@@ -20,7 +22,7 @@ public class NotificationService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(@NonNull RemoteMessage message) {
-        String messageTitle = message.getNotification().getTitle();
+        String messageTitle = Objects.requireNonNull(message.getNotification()).getTitle();
         String messageBody = message.getNotification().getBody();
         String channelID = "CHECK_IN";
 
