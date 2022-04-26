@@ -12,6 +12,7 @@
         android:text="@string/title"
         android:textColor="@color/black"
         android:textSize="20sp"
+        android:gravity="center_horizontal"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,7 +22,7 @@
 
     <ImageView
         android:id="@+id/stretch_imageview"
-        android:layout_width="300dp"
+        android:layout_width="400dp"
         android:layout_height="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
