@@ -32,6 +32,7 @@ public class JournalingActivity extends AppCompatActivity implements Serializabl
     private JournalRecyclerAdapter journalRecyclerAdapter;
     public final ArrayList<Journal> journalEntries = new ArrayList<>();
     private DatabaseReference databaseReference;
+    FloatingActionButton addEntry;
     String user;
 
 
@@ -52,7 +53,7 @@ public class JournalingActivity extends AppCompatActivity implements Serializabl
         databaseReference = FirebaseDatabase.getInstance().getReference(user);
 
         //FAB Button to add new journal entry (new activity)
-        FloatingActionButton addEntry = findViewById(R.id.fabAddEntry);
+        addEntry = findViewById(R.id.fabAddEntry);
 
         //RecyclerView, Adapter, and LayoutManager setup
         journalRecyclerView = findViewById(R.id.journalRecyclerView);
@@ -123,6 +124,10 @@ public class JournalingActivity extends AppCompatActivity implements Serializabl
                 });
             }
         });
+    }
+
+    public void testAddEntry(FloatingActionButton addEntry){
+
     }
 
     //Swipe Left to delete Journal Entry
