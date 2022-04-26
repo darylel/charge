@@ -15,6 +15,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
+/**
+ * This class represent a blank new journal entry
+ */
 public class NewJournalEntry extends AppCompatActivity {
     Button saveButton;
     TextView journalTitle, journalDescrip, journalEntryDate;
@@ -52,16 +55,16 @@ public class NewJournalEntry extends AppCompatActivity {
             String description = journalDescrip.getText().toString();
             String uniqueID = databaseReference.child("Journal").push().getKey();
 
-            //Set the values
+            //Set the Object values
             addedJournalEntry.setJournalTitle(title);
             addedJournalEntry.setJournalDescription(description);
             addedJournalEntry.setJournalID(uniqueID);
             addedJournalEntry.setJournalDate(formatter.format(today));
 
-            //TODO: Write to the database
-            //setValues with Journal object for Title, Description, and Date
+            //Set values in DB
             databaseReference.child("Journal").child(uniqueID).setValue(addedJournalEntry);
 
+            //Close Activity
             finish();
         });
     }

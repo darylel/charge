@@ -3,6 +3,7 @@ package edu.neu.madcourse.charge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,6 +32,7 @@ public class JournalingActivity extends AppCompatActivity implements Serializabl
     private JournalRecyclerAdapter journalRecyclerAdapter;
     public final ArrayList<Journal> journalEntries = new ArrayList<>();
     private DatabaseReference databaseReference;
+    FloatingActionButton addEntry;
     String user;
 
 
@@ -51,7 +53,7 @@ public class JournalingActivity extends AppCompatActivity implements Serializabl
         databaseReference = FirebaseDatabase.getInstance().getReference(user);
 
         //FAB Button to add new journal entry (new activity)
-        FloatingActionButton addEntry = findViewById(R.id.fabAddEntry);
+        addEntry = findViewById(R.id.fabAddEntry);
 
         //RecyclerView, Adapter, and LayoutManager setup
         journalRecyclerView = findViewById(R.id.journalRecyclerView);
@@ -59,6 +61,27 @@ public class JournalingActivity extends AppCompatActivity implements Serializabl
         journalRecyclerView.setHasFixedSize(true);
         journalRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         journalRecyclerView.setAdapter(journalRecyclerAdapter);
+
+        //TODO: UI needs to be updated BEFORE the FAB trigger
+
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Log.e("Size of journal entries", String.valueOf(journalEntries.size()));
+                for (DataSnapshot snap : snapshot.child("Journal").getChildren()) {
+                    Journal journal = snap.getValue(Journal.class);
+                    journalEntries.add(journal);
+                }
+                Log.e("Updated size of journal entries", String.valueOf(journalEntries.size()));
+                journalRecyclerAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
         //Create new Journal Entry and save to DB
         addEntry.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +97,6 @@ public class JournalingActivity extends AppCompatActivity implements Serializabl
                 //       --- journal entry
                 //       --- journal id
                 //journal id = new_key
-
 
                 //TITLE: ENTRY 1 --> LIST = ENTRY 1
                 //TITLE: ENTRY 2  --> LIST = ENTRY 1, ENTRY 1, ENTRY 2
@@ -102,15 +124,35 @@ public class JournalingActivity extends AppCompatActivity implements Serializabl
                 });
             }
         });
+    }
 
-        //TODO: Actions -- Edit or Delete Entry -- PT 2
-        //If Swipe Left,
-//        editEntry();
-
-        //if Swipe Right
-            //Delete entry
+    public void testAddEntry(FloatingActionButton addEntry){
 
     }
+
+    //Swipe Left to delete Journal Entry
+    ItemTouchHelper.SimpleCallback itemTouchHelper = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            int position = viewHolder.getBindingAdapterPosition();
+
+            Journal deletedEntry = journalEntries.get(position);
+            Log.e("Entry is at position", String.valueOf(position));
+            Log.e("List size BEFORE deletion", String.valueOf(journalEntries.size()));
+            databaseReference.child("Journal").child(deletedEntry.getJournalID()).removeValue();
+            journalEntries.remove(position);
+            journalRecyclerAdapter.notifyItemRemoved(position);
+            Log.e("Recycler position is", String.valueOf(position));
+            Log.e("List size AFTER deletion", String.valueOf(journalEntries.size()));
+
+
+        }
+    };
 
     /**
      * Opens a new Journal Entry
