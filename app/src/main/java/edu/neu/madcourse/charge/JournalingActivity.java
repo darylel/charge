@@ -148,7 +148,7 @@ public class JournalingActivity extends AppCompatActivity implements JournalRecy
      * Opens a new Journal Entry
      */
     public void createNewEntry() {
-        startActivity(new Intent(JournalingActivity.this, NewJournalEntry.class));
+        startActivity(new Intent(this, NewJournalEntry.class));
     }
 
     /**
