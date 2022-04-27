@@ -1,4 +1,4 @@
-package edu.neu.madcourse.charge.stretch;
+package edu.neu.madcourse.charge.movement;
 
 import android.view.View;
 import android.widget.ImageView;

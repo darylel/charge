@@ -21,7 +21,7 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
 
-import edu.neu.madcourse.charge.stretch.StretchActivity;
+import edu.neu.madcourse.charge.movement.MovementActivity;
 
 public class LandingPageActivity extends AppCompatActivity {
     private ColorMatrixColorFilter filter;
@@ -98,7 +98,7 @@ public class LandingPageActivity extends AppCompatActivity {
         )));
 
         stretching.setOnClickListener(view -> startActivity(new Intent(
-                LandingPageActivity.this, StretchActivity.class
+                LandingPageActivity.this, MovementActivity.class
         )));
 
         quotes.setOnClickListener(view -> startActivity(new Intent(
@@ -257,7 +257,7 @@ public class LandingPageActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         }
 
-        ArrayList<Class<?>> pages = new ArrayList<>(Arrays.asList(StretchActivity.class,
+        ArrayList<Class<?>> pages = new ArrayList<>(Arrays.asList(MovementActivity.class,
                 DoodleActivity.class, GratitudeActivity.class, JournalingActivity.class,
                 StepsActivity.class, QuoteActivity.class));
 

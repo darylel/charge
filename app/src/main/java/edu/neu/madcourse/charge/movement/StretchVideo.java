@@ -1,4 +1,4 @@
-package edu.neu.madcourse.charge.stretch;
+package edu.neu.madcourse.charge.movement;
 
 public class StretchVideo {
     private final String title;

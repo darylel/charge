@@ -1,4 +1,4 @@
-package edu.neu.madcourse.charge.stretch;
+package edu.neu.madcourse.charge.movement;
 
 import android.os.Bundle;
 import android.widget.Toast;

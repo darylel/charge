@@ -1,4 +1,4 @@
-package edu.neu.madcourse.charge.stretch;
+package edu.neu.madcourse.charge.movement;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,7 +28,7 @@ import java.util.Scanner;
 
 import edu.neu.madcourse.charge.R;
 
-public class StretchActivity extends AppCompatActivity {
+public class MovementActivity extends AppCompatActivity {
     private String TAG;
     private StretchAdapter stretchAdapter;
     private ArrayList<StretchVideo> stretchVideoList;
@@ -47,14 +47,14 @@ public class StretchActivity extends AppCompatActivity {
         toolbar.setText(R.string.stretching);
 
         RecyclerView stretchRecyclerView = findViewById(R.id.stretch_recycler_view);
-        TAG = "StretchActivity";
+        TAG = "MovementActivity";
         stretchVideoList = new ArrayList<>();
         stretchAdapter = new StretchAdapter(stretchVideoList, stretchRecyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         stretchRecyclerView.setLayoutManager(layoutManager);
         stretchRecyclerView.setAdapter(stretchAdapter);
         handler = new Handler();
-        context = StretchActivity.this;
+        context = MovementActivity.this;
         getVideos();
     }
 
@@ -98,17 +98,20 @@ public class StretchActivity extends AppCompatActivity {
                 JSONArray videoArray = jsonObject.getJSONArray(jsonItems);
 
                 for (int i = 0; i < videoArray.length(); i++) {
-                    JSONObject video = videoArray.getJSONObject(i);
-                    JSONObject videoId = video.getJSONObject(jsonId);
-                    JSONObject snippet = video.getJSONObject(jsonSnippet);
-                    JSONObject thumbnails = snippet.getJSONObject(jsonThumbnails).getJSONObject(jsonMedium);
+                    if (i != 1 && i != 2) {
+                        JSONObject video = videoArray.getJSONObject(i);
+                        JSONObject videoId = video.getJSONObject(jsonId);
+                        JSONObject snippet = video.getJSONObject(jsonSnippet);
+                        JSONObject thumbnails = snippet.getJSONObject(jsonThumbnails).getJSONObject(jsonMedium);
 
-                    String link = thumbnails.getString(stringURL);
-                    String videoIdString = videoId.getString(stringVideoId);
-                    String title = snippet.getString(stringTitle);
-
-                    StretchVideo stretchVideo = new StretchVideo(title, link, videoIdString);
-                    stretchVideoList.add(stretchVideo);
+                        String link = thumbnails.getString(stringURL);
+                        String videoIdString = videoId.getString(stringVideoId);
+                        String title = snippet.getString(stringTitle)
+                                .replace("&#39;", "'")
+                                .replace("&amp;", "&");
+                        StretchVideo stretchVideo = new StretchVideo(title, link, videoIdString);
+                        stretchVideoList.add(stretchVideo);
+                    }
                 }
 
                 if (stretchVideoList.size() > 0) {

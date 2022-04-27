@@ -1,4 +1,4 @@
-package edu.neu.madcourse.charge.stretch;
+package edu.neu.madcourse.charge.movement;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
