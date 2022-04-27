@@ -44,7 +44,7 @@ public class MoveActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.toolbar_custom);
         TextView toolbar = findViewById(R.id.custom_toolbar);
-        toolbar.setText(R.string.stretching);
+        toolbar.setText(R.string.move);
 
         RecyclerView stretchRecyclerView = findViewById(R.id.move_recycler_view);
         TAG = "MoveActivity";
