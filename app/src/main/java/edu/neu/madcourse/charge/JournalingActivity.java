@@ -60,6 +60,7 @@ public class JournalingActivity extends AppCompatActivity implements JournalRecy
         journalRecyclerAdapter = new JournalRecyclerAdapter(journalEntries, this);
         journalRecyclerView.setHasFixedSize(true);
         journalRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        new ItemTouchHelper(itemTouchHelper).attachToRecyclerView(journalRecyclerView);
         journalRecyclerView.setAdapter(journalRecyclerAdapter);
 
         //Initialize list of journal entries
@@ -149,13 +150,6 @@ public class JournalingActivity extends AppCompatActivity implements JournalRecy
     public void createNewEntry() {
         startActivity(new Intent(this, NewJournalEntry.class));
     }
-
-//    public void editEntry() {
-//        //Source: https://www.youtube.com/watch?v=OUZcjZkJrvY
-//        Intent intent = new Intent(JournalingActivity.this, EditJournalActivity.class);
-//        intent.putExtra("entries_list", (Serializable) journalEntries);
-//        startActivity(intent);
-//    }
 
     /**
      * Opens an already existing Journal Entry
