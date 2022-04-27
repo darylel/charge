@@ -14,8 +14,8 @@ public class MoveHolder extends RecyclerView.ViewHolder {
 
     public MoveHolder(View itemView) {
         super(itemView);
-        stretchTextView = itemView.findViewById(R.id.stretch_textview);
-        stretchImageView = itemView.findViewById(R.id.stretch_imageview);
+        stretchTextView = itemView.findViewById(R.id.move_textview);
+        stretchImageView = itemView.findViewById(R.id.move_imageview);
     }
 
 }
