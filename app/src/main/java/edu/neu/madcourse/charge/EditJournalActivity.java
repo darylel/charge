@@ -19,14 +19,13 @@ import java.util.Date;
 import java.util.Objects;
 
 /**
- * This class represents a populated entry that is to be edited by the user
+ * This class represents a populated entry that is reopened so the user can make edits
  */
 public class EditJournalActivity extends AppCompatActivity {
     Button saveButton;
     TextView journalTitle, entryDescription;
     DatabaseReference databaseReference;
     String user;
-
 
     private static final String TAG = "EditJournalActivity";
 
@@ -58,7 +57,7 @@ public class EditJournalActivity extends AppCompatActivity {
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
                 Date today = new Date(System.currentTimeMillis());
 
-                //Create, set, and store EACH STRING AND THEN I CAN PUT INTO MY JOURNAL OBJECT
+
                 //Get the values
                 String title = journalTitle.getText().toString();
                 Log.e("UPDATED journal title: ", title);
@@ -89,6 +88,10 @@ public class EditJournalActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Closes the journal entry without saving
+     * @param view
+     */
     public void onEditDeleteClick(View view) {
         finish();
     }

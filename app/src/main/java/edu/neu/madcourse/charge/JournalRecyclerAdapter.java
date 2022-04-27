@@ -21,7 +21,8 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
     private final ArrayList<Journal> journalEntries;
     private OnJournalListener myOnJournalListener;
 
-    public JournalRecyclerAdapter(ArrayList<Journal> journalEntries, OnJournalListener onJournalListener) {
+    public JournalRecyclerAdapter(ArrayList<Journal> journalEntries,
+                                  OnJournalListener onJournalListener) {
         this.journalEntries = journalEntries;
         this.myOnJournalListener = onJournalListener;
     }
