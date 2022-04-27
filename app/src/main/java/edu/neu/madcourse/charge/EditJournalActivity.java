@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -25,25 +26,27 @@ public class EditJournalActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_journal);
 
         //Items (Save Button, Title, Description)
-        journalTitle = findViewById(R.id.journal_title);
+        journalTitle = findViewById(R.id.editEntryTitleInput);
         saveButton = findViewById(R.id.overrideSave_button);
-        entryDescription = findViewById(R.id.journalEntryText);
+        entryDescription = findViewById(R.id.editJournalEntryText);
 
         //Valid entry has been selected
         if (getIntent().hasExtra("selectedEntry")) {
+
             Journal editJournalEntry = getIntent().getParcelableExtra("selectedEntry");
             journalTitle.setText(editJournalEntry.getJournalTitle());
             entryDescription.setText(editJournalEntry.getJournalDescription());
-            Log.d(TAG,"onCreate: " + editJournalEntry.toString());
         }
-
-
 
         //TODO: Set the TextViews to the values of the current Journal object
 
         //TODO: for loop in journalEntries ArrayList and look to see if ID exists
 
 
+    }
+
+    public void onEditDeleteClick(View view) {
+        finish();
     }
 
 }

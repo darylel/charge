@@ -163,6 +163,9 @@ public class JournalingActivity extends AppCompatActivity implements JournalRecy
     @Override
     public void onJournalClick(int position) {
         journalEntries.get(position);
+        Log.e("Value of object", journalEntries.get(position).toString());
+        Log.e("JournalingActivity: Journal Title is ", journalEntries.get(position).getJournalTitle());
+        Log.e("JournalingActivity: Journal Descrip is ", journalEntries.get(position).getJournalDescription());
         Intent intent = new Intent(JournalingActivity.this, EditJournalActivity.class);
         intent.putExtra("selectedEntry", journalEntries.get(position));
         startActivity(intent);
