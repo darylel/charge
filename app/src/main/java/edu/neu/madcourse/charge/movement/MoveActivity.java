@@ -1,4 +1,4 @@
-package edu.neu.madcourse.charge.stretch;
+package edu.neu.madcourse.charge.movement;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,33 +28,33 @@ import java.util.Scanner;
 
 import edu.neu.madcourse.charge.R;
 
-public class StretchActivity extends AppCompatActivity {
+public class MoveActivity extends AppCompatActivity {
     private String TAG;
-    private StretchAdapter stretchAdapter;
-    private ArrayList<StretchVideo> stretchVideoList;
+    private MoveAdapter moveAdapter;
+    private ArrayList<MoveVideo> moveVideoList;
     private Handler handler;
     private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stretch);
+        setContentView(R.layout.activity_move);
 
         // Set the custom app bar view
         Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.toolbar_custom);
         TextView toolbar = findViewById(R.id.custom_toolbar);
-        toolbar.setText(R.string.stretching);
+        toolbar.setText(R.string.move);
 
-        RecyclerView stretchRecyclerView = findViewById(R.id.stretch_recycler_view);
-        TAG = "StretchActivity";
-        stretchVideoList = new ArrayList<>();
-        stretchAdapter = new StretchAdapter(stretchVideoList, stretchRecyclerView);
+        RecyclerView stretchRecyclerView = findViewById(R.id.move_recycler_view);
+        TAG = "MoveActivity";
+        moveVideoList = new ArrayList<>();
+        moveAdapter = new MoveAdapter(moveVideoList, stretchRecyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         stretchRecyclerView.setLayoutManager(layoutManager);
-        stretchRecyclerView.setAdapter(stretchAdapter);
+        stretchRecyclerView.setAdapter(moveAdapter);
         handler = new Handler();
-        context = StretchActivity.this;
+        context = MoveActivity.this;
         getVideos();
     }
 
@@ -98,21 +98,24 @@ public class StretchActivity extends AppCompatActivity {
                 JSONArray videoArray = jsonObject.getJSONArray(jsonItems);
 
                 for (int i = 0; i < videoArray.length(); i++) {
-                    JSONObject video = videoArray.getJSONObject(i);
-                    JSONObject videoId = video.getJSONObject(jsonId);
-                    JSONObject snippet = video.getJSONObject(jsonSnippet);
-                    JSONObject thumbnails = snippet.getJSONObject(jsonThumbnails).getJSONObject(jsonMedium);
+                    if (i != 1 && i != 2) {
+                        JSONObject video = videoArray.getJSONObject(i);
+                        JSONObject videoId = video.getJSONObject(jsonId);
+                        JSONObject snippet = video.getJSONObject(jsonSnippet);
+                        JSONObject thumbnails = snippet.getJSONObject(jsonThumbnails).getJSONObject(jsonMedium);
 
-                    String link = thumbnails.getString(stringURL);
-                    String videoIdString = videoId.getString(stringVideoId);
-                    String title = snippet.getString(stringTitle);
-
-                    StretchVideo stretchVideo = new StretchVideo(title, link, videoIdString);
-                    stretchVideoList.add(stretchVideo);
+                        String link = thumbnails.getString(stringURL);
+                        String videoIdString = videoId.getString(stringVideoId);
+                        String title = snippet.getString(stringTitle)
+                                .replace("&#39;", "'")
+                                .replace("&amp;", "&");
+                        MoveVideo moveVideo = new MoveVideo(title, link, videoIdString);
+                        moveVideoList.add(moveVideo);
+                    }
                 }
 
-                if (stretchVideoList.size() > 0) {
-                    handler.post(() ->  stretchAdapter.notifyDataSetChanged());
+                if (moveVideoList.size() > 0) {
+                    handler.post(() ->  moveAdapter.notifyDataSetChanged());
                 }
             } catch (MalformedURLException e) {
                 Log.e(TAG, "Malformed URL Exception thrown");

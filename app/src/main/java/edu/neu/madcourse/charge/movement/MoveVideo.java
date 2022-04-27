@@ -1,11 +1,11 @@
-package edu.neu.madcourse.charge.stretch;
+package edu.neu.madcourse.charge.movement;
 
-public class StretchVideo {
+public class MoveVideo {
     private final String title;
     private final String link;
     private final String video;
 
-    public StretchVideo(String title, String link, String video) {
+    public MoveVideo(String title, String link, String video) {
         this.title = title;
         this.link = link;
         this.video = video;

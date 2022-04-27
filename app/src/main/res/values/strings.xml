@@ -33,7 +33,7 @@
     <string name="doodle">Doodle</string>
     <string name="walking">Walking</string>
     <string name="gratitude">Gratitude</string>
-    <string name="stretching">Stretching</string>
+    <string name="move">Movement</string>
     <string name="journaling">Journaling</string>
     <string name="MyJournal">My Journal</string>
     <string name="JournalTitle">Journal Title</string>
@@ -47,7 +47,7 @@
     <string name="edit_username">Edit Username</string>
     <string name="update_username">Update Username</string>
     <string name="youtube_video_stills">YouTube video stills</string>
-    <string name="youtube_url">https://www.googleapis.com/youtube/v3/search?part=snippet&amp;channelId=UCBINFWq52ShSgUFEoynfSwg&amp;maxResults=10&amp;key=AIzaSyAmsvAi7RXbMFsT-m9KUqhRXPDOGp7A9zY</string>
+    <string name="youtube_url">https://www.googleapis.com/youtube/v3/search?part=snippet&amp;channelId=UCBINFWq52ShSgUFEoynfSwg&amp;maxResults=60&amp;key=AIzaSyAmsvAi7RXbMFsT-m9KUqhRXPDOGp7A9zY</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="not_registered_click_here_to_sign_up">Not registered, click here to Sign Up</string>

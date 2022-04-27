@@ -23,7 +23,7 @@
             android:name=".EditJournalActivity"
             android:exported="false" />
         <activity
-            android:name=".stretch.YouTube"
+            android:name=".movement.YouTube"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="false" />
         <activity
@@ -36,7 +36,7 @@
             android:name=".JournalingActivity"
             android:exported="false" />
         <activity
-            android:name=".stretch.StretchActivity"
+            android:name=".movement.MoveActivity"
             android:exported="false" />
         <activity
             android:name=".StepsActivity"
