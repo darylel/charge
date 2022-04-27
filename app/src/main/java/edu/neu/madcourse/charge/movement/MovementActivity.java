@@ -30,8 +30,8 @@ import edu.neu.madcourse.charge.R;
 
 public class MovementActivity extends AppCompatActivity {
     private String TAG;
-    private StretchAdapter stretchAdapter;
-    private ArrayList<StretchVideo> stretchVideoList;
+    private MovementAdapter movementAdapter;
+    private ArrayList<MovementVideo> movementVideoList;
     private Handler handler;
     private Context context;
 
@@ -48,11 +48,11 @@ public class MovementActivity extends AppCompatActivity {
 
         RecyclerView stretchRecyclerView = findViewById(R.id.stretch_recycler_view);
         TAG = "MovementActivity";
-        stretchVideoList = new ArrayList<>();
-        stretchAdapter = new StretchAdapter(stretchVideoList, stretchRecyclerView);
+        movementVideoList = new ArrayList<>();
+        movementAdapter = new MovementAdapter(movementVideoList, stretchRecyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         stretchRecyclerView.setLayoutManager(layoutManager);
-        stretchRecyclerView.setAdapter(stretchAdapter);
+        stretchRecyclerView.setAdapter(movementAdapter);
         handler = new Handler();
         context = MovementActivity.this;
         getVideos();
@@ -109,13 +109,13 @@ public class MovementActivity extends AppCompatActivity {
                         String title = snippet.getString(stringTitle)
                                 .replace("&#39;", "'")
                                 .replace("&amp;", "&");
-                        StretchVideo stretchVideo = new StretchVideo(title, link, videoIdString);
-                        stretchVideoList.add(stretchVideo);
+                        MovementVideo movementVideo = new MovementVideo(title, link, videoIdString);
+                        movementVideoList.add(movementVideo);
                     }
                 }
 
-                if (stretchVideoList.size() > 0) {
-                    handler.post(() ->  stretchAdapter.notifyDataSetChanged());
+                if (movementVideoList.size() > 0) {
+                    handler.post(() ->  movementAdapter.notifyDataSetChanged());
                 }
             } catch (MalformedURLException e) {
                 Log.e(TAG, "Malformed URL Exception thrown");
