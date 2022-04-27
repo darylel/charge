@@ -27,7 +27,7 @@ public class MovementAdapter extends RecyclerView.Adapter<MovementHolder> {
     @NonNull
     @Override
     public MovementHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.stretch_video_layout, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.move_video_layout, parent, false);
         MovementHolder movementHolder = new MovementHolder(view);
         return movementHolder;
     }
