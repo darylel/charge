@@ -9,11 +9,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * This class represents a populated entry that is to be edited by the user
@@ -22,10 +25,8 @@ public class EditJournalActivity extends AppCompatActivity {
     Button saveButton;
     TextView journalTitle, entryDescription;
     DatabaseReference databaseReference;
-    /*
-    INITIALIZE AUTH TO GET USER
-    FirebaseAuth auth = FirebaseAuth.getInstance();
-     */
+    String user;
+
 
     private static final String TAG = "EditJournalActivity";
 
@@ -34,21 +35,19 @@ public class EditJournalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_journal);
 
-        //Items (Save Button, Title, Description)
+        //Set IDs
         journalTitle = findViewById(R.id.editEntryTitleInput);
         saveButton = findViewById(R.id.overrideSave_button);
         entryDescription = findViewById(R.id.editJournalEntryText);
 
-        /*
-        GET THE USER
-        String user = Objects.requireNonNull(auth.getCurrentUser()).getUid();
-        INITIALIZE THE DATABASE TO REFERENCE THE USER
+        //Retrieve user information
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        user = Objects.requireNonNull(auth.getCurrentUser()).getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference(user);
-        */
 
         //Valid entry has been selected
         if (getIntent().hasExtra("selectedEntry")) {
-
+            //Retrieve the selected journal entry
             Journal editJournalEntry = getIntent().getParcelableExtra("selectedEntry");
             journalTitle.setText(editJournalEntry.getJournalTitle());
             entryDescription.setText(editJournalEntry.getJournalDescription());
@@ -67,20 +66,20 @@ public class EditJournalActivity extends AppCompatActivity {
                 Log.e("UPDATED journal description: ", description);
                 String uniqueID = editJournalEntry.getJournalID();
 
-                //Set the Object values
+                //Set the Object values (ID remains the same)
                 editJournalEntry.setJournalTitle(title);
                 editJournalEntry.setJournalDescription(description);
-                //editedJournalEntry.setJournalID(uniqueID);
                 editJournalEntry.setJournalDate(formatter.format(today));
 
+                /*
                 Log.e("SAVED BUTTON -- OBJECT TITLE", editJournalEntry.getJournalTitle());
                 Log.e("SAVED BUTTON -- OBJECT DESCRIP", editJournalEntry.getJournalDescription());
                 Log.e("SAVED BUTTON -- OBJECT DATE", editJournalEntry.getJournalDate());
 
                 Log.e("SAVED BUTTON -- OBJECT ID", editJournalEntry.getJournalID());
+                */
 
-                //Set values in DB
-                //TODO: DB is not updating, but all of the values are correctly updated before this line
+                //Override values in DB
                 databaseReference.child("Journal").child(uniqueID).setValue(editJournalEntry);
 
                 //Close Activity
