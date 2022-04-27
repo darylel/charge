@@ -28,17 +28,17 @@ import java.util.Scanner;
 
 import edu.neu.madcourse.charge.R;
 
-public class MovementActivity extends AppCompatActivity {
+public class MoveActivity extends AppCompatActivity {
     private String TAG;
-    private MovementAdapter movementAdapter;
-    private ArrayList<MovementVideo> movementVideoList;
+    private MoveAdapter moveAdapter;
+    private ArrayList<MoveVideo> moveVideoList;
     private Handler handler;
     private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stretch);
+        setContentView(R.layout.activity_move);
 
         // Set the custom app bar view
         Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -46,15 +46,15 @@ public class MovementActivity extends AppCompatActivity {
         TextView toolbar = findViewById(R.id.custom_toolbar);
         toolbar.setText(R.string.stretching);
 
-        RecyclerView stretchRecyclerView = findViewById(R.id.stretch_recycler_view);
-        TAG = "MovementActivity";
-        movementVideoList = new ArrayList<>();
-        movementAdapter = new MovementAdapter(movementVideoList, stretchRecyclerView);
+        RecyclerView stretchRecyclerView = findViewById(R.id.move_recycler_view);
+        TAG = "MoveActivity";
+        moveVideoList = new ArrayList<>();
+        moveAdapter = new MoveAdapter(moveVideoList, stretchRecyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         stretchRecyclerView.setLayoutManager(layoutManager);
-        stretchRecyclerView.setAdapter(movementAdapter);
+        stretchRecyclerView.setAdapter(moveAdapter);
         handler = new Handler();
-        context = MovementActivity.this;
+        context = MoveActivity.this;
         getVideos();
     }
 
@@ -109,13 +109,13 @@ public class MovementActivity extends AppCompatActivity {
                         String title = snippet.getString(stringTitle)
                                 .replace("&#39;", "'")
                                 .replace("&amp;", "&");
-                        MovementVideo movementVideo = new MovementVideo(title, link, videoIdString);
-                        movementVideoList.add(movementVideo);
+                        MoveVideo moveVideo = new MoveVideo(title, link, videoIdString);
+                        moveVideoList.add(moveVideo);
                     }
                 }
 
-                if (movementVideoList.size() > 0) {
-                    handler.post(() ->  movementAdapter.notifyDataSetChanged());
+                if (moveVideoList.size() > 0) {
+                    handler.post(() ->  moveAdapter.notifyDataSetChanged());
                 }
             } catch (MalformedURLException e) {
                 Log.e(TAG, "Malformed URL Exception thrown");

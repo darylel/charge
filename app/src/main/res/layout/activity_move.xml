@@ -4,10 +4,10 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".movement.MovementActivity">
+    tools:context=".movement.MoveActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/stretch_recycler_view"
+        android:id="@+id/move_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>
