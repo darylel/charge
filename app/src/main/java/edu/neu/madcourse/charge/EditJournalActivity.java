@@ -22,6 +22,10 @@ public class EditJournalActivity extends AppCompatActivity {
     Button saveButton;
     TextView journalTitle, entryDescription;
     DatabaseReference databaseReference;
+    /*
+    INITIALIZE AUTH TO GET USER
+    FirebaseAuth auth = FirebaseAuth.getInstance();
+     */
 
     private static final String TAG = "EditJournalActivity";
 
@@ -34,6 +38,13 @@ public class EditJournalActivity extends AppCompatActivity {
         journalTitle = findViewById(R.id.editEntryTitleInput);
         saveButton = findViewById(R.id.overrideSave_button);
         entryDescription = findViewById(R.id.editJournalEntryText);
+
+        /*
+        GET THE USER
+        String user = Objects.requireNonNull(auth.getCurrentUser()).getUid();
+        INITIALIZE THE DATABASE TO REFERENCE THE USER
+        databaseReference = FirebaseDatabase.getInstance().getReference(user);
+        */
 
         //Valid entry has been selected
         if (getIntent().hasExtra("selectedEntry")) {
