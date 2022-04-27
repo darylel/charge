@@ -27,6 +27,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Journaling Activity focuses on creating the view of the Journal activity
+ */
 public class JournalingActivity extends AppCompatActivity implements JournalRecyclerAdapter.OnJournalListener {
     RecyclerView journalRecyclerView;
     private JournalRecyclerAdapter journalRecyclerAdapter;
@@ -121,9 +124,12 @@ public class JournalingActivity extends AppCompatActivity implements JournalRecy
     }
 
     //Swipe Left to delete Journal Entry
-    ItemTouchHelper.SimpleCallback itemTouchHelper = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
+    ItemTouchHelper.SimpleCallback itemTouchHelper = new ItemTouchHelper
+            .SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
         @Override
-        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+        public boolean onMove(@NonNull RecyclerView recyclerView,
+                              @NonNull RecyclerView.ViewHolder viewHolder,
+                              @NonNull RecyclerView.ViewHolder target) {
             return false;
         }
 
@@ -148,7 +154,8 @@ public class JournalingActivity extends AppCompatActivity implements JournalRecy
      * Opens a new Journal Entry
      */
     public void createNewEntry() {
-        startActivity(new Intent(this, NewJournalEntry.class));
+        startActivity(new Intent(this,
+                NewJournalEntry.class));
     }
 
     /**
@@ -157,9 +164,11 @@ public class JournalingActivity extends AppCompatActivity implements JournalRecy
     @Override
     public void onJournalClick(int position) {
         journalEntries.get(position);
+        /*
         Log.e("Value of object", journalEntries.get(position).toString());
         Log.e("JournalingActivity: Journal Title is ", journalEntries.get(position).getJournalTitle());
         Log.e("JournalingActivity: Journal Descrip is ", journalEntries.get(position).getJournalDescription());
+         */
         Intent intent = new Intent(JournalingActivity.this, EditJournalActivity.class);
         intent.putExtra("selectedEntry", journalEntries.get(position));
         startActivity(intent);
