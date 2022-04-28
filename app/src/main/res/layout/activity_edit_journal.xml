@@ -10,9 +10,12 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="359dp"
-        android:layout_height="584dp"
-        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/round_textbox"
         android:orientation="vertical"
         android:padding="10dp"
@@ -28,13 +31,13 @@
             android:layout_margin="10dp"
             android:hint="@string/JournalTitle"
             android:padding="10dp"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:textStyle="italic" />
 
         <EditText
             android:id="@+id/editJournalEntryText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:background="@null"
             android:gravity="top"
@@ -45,19 +48,24 @@
 
     </LinearLayout>
 
-    <ImageView
+    <Button
         android:id="@+id/deleteOverride"
-        android:layout_width="27dp"
-        android:layout_height="28dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
         android:clickable="true"
         android:onClick="onEditDeleteClick"
+        android:text="@string/deleteEntry"
+        android:textColor="#FF000000"
+        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.067"
+        app:layout_constraintHorizontal_bias="0.019"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.76"
-        app:srcCompat="@drawable/trash_can" />
+        app:layout_constraintVertical_bias="0.357"
+
+        />
 
     <Button
         android:id="@+id/overrideSave_button"
@@ -66,12 +74,12 @@
         android:background="?android:attr/selectableItemBackground"
         android:text="@string/saveEntry"
         android:textColor="#FF000000"
-        android:textSize="15sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintHorizontal_bias="0.993"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.357" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
