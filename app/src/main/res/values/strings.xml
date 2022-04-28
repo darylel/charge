@@ -39,6 +39,7 @@
     <string name="JournalTitle">Journal Title</string>
     <string name="saveEntry">SAVE</string>
     <string name="deleteEntry">DELETE</string>
+    <string name="editEntry">EDIT</string>
     <string name="JournalEntry">Write down your thoughts and feelings for today…</string>
     <string name="Title">Video title</string>
     <string name="inspire_me">Inspire Me</string>

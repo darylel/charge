@@ -34,24 +34,37 @@
 
             <TextView
                 android:id="@+id/journalEntryDate"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/journal_title"
                 app:layout_constraintTop_toBottomOf="@+id/journal_title" />
 
             <TextView
                 android:id="@+id/journal_title"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 app:layout_constraintBottom_toTopOf="@+id/journalEntryDate"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/journal_image_view"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/editEntry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/editEntry"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.913"
                 app:layout_constraintStart_toEndOf="@+id/journal_image_view"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
