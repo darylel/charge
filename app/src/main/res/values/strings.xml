@@ -36,7 +36,7 @@
     <string name="move">Movement</string>
     <string name="journaling">Journaling</string>
     <string name="MyJournal">My Journal</string>
-    <string name="JournalTitle">Journal Title</string>
+    <string name="JournalTitle">Journal Title (max 30 char)</string>
     <string name="saveEntry">SAVE</string>
     <string name="deleteEntry">DELETE</string>
     <string name="editEntry">EDIT</string>
