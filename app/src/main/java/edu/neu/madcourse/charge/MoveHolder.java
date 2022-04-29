@@ -1,4 +1,4 @@
-package edu.neu.madcourse.charge.movement;
+package edu.neu.madcourse.charge;
 
 import android.view.View;
 import android.widget.ImageView;

@@ -21,8 +21,6 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
 
-import edu.neu.madcourse.charge.movement.MoveActivity;
-
 public class LandingPageActivity extends AppCompatActivity {
     private ColorMatrixColorFilter filter;
     private ImageView m1;

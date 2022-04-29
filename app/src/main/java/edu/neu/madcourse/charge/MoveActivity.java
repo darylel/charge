@@ -1,4 +1,4 @@
-package edu.neu.madcourse.charge.movement;
+package edu.neu.madcourse.charge;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,8 +25,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
-
-import edu.neu.madcourse.charge.R;
 
 public class MoveActivity extends AppCompatActivity {
     private String TAG;

@@ -1,4 +1,4 @@
-package edu.neu.madcourse.charge.movement;
+package edu.neu.madcourse.charge;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-
-import edu.neu.madcourse.charge.R;
 
 public class MoveAdapter extends RecyclerView.Adapter<MoveHolder> {
 

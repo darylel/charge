@@ -1,4 +1,4 @@
-package edu.neu.madcourse.charge.movement;
+package edu.neu.madcourse.charge;
 
 public class MoveVideo {
     private final String title;
