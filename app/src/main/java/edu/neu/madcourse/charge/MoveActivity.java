@@ -129,6 +129,8 @@ public class MoveActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+
+        // Referred to class code: https://github.ccs.neu.edu/danf/NetworkExample/blob/master/app/src/main/java/edu/neu/madcourse/networkexample/NetworkUtil.java
         private String convertStringToStream(InputStream inputStream) {
             Scanner scanner = new Scanner(inputStream).useDelimiter("\\A");
             String stream;

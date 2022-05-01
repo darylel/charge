@@ -11,6 +11,9 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+// Referenced: https://guides.codepath.com/android/Displaying-Images-with-the-Picasso-Library
+// https://square.github.io/picasso/
+
 public class MoveAdapter extends RecyclerView.Adapter<MoveHolder> {
 
     private final ArrayList<MoveVideo> moveVideoList;

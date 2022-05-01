@@ -11,6 +11,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import edu.neu.madcourse.charge.R;
 
+// Referenced: https://developers.google.com/youtube/android/player/reference/com/google/android/youtube/player/YouTubeBaseActivity
+// https://developers.google.com/youtube/android/player/reference/com/google/android/youtube/player/YouTubePlayer.OnInitializedListener
+// https://www.youtube.com/playlist?list=PLwX1yvipPdRWrTZv59R1eso_ME_PZY3Se
 public class YouTube extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
     private YouTubePlayerView youTubePlayerView;
     private DatabaseReference databaseReference;
